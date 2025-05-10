@@ -81,69 +81,7 @@ section {
     font-size: 1.1rem;
 }
 
-/* Header & Navigation */
-.main-header {
-    background: var(--amazon-dark-blue);
-    color: var(--white);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    box-shadow: var(--shadow-medium);
-}
 
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 70px;
-    padding: 0 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-}
-
-.amazon-smile {
-    color: var(--amazon-orange);
-    position: relative;
-}
-
-.amazon-smile::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--amazon-orange);
-    border-radius: 100%;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-}
-
-.nav-links li {
-    margin-left: 30px;
-}
-
-.nav-links a {
-    color: var(--white);
-    text-decoration: none;
-    font-weight: 500;
-    transition: all var(--transition-speed);
-}
-
-.nav-links a:hover {
-    color: var(--amazon-orange);
-}
 
 /* Buttons */
 .btn {
@@ -252,6 +190,7 @@ section {
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    
     gap: 25px;
     margin-top: 50px;
 }
@@ -575,7 +514,51 @@ footer {
 
 @media screen and (max-width: 480px) {
     .services-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .service-card {
+        padding: 22px;
+        font-size: 0.9rem;
+        text-align: center;
+        box-shadow: var(--shadow-light);
+        border: 1px solid var(--amazon-light-gray);
+        border-radius: var(--border-radius-sm);
+        transition: all var(--transition-speed);
+        background: var(--off-white);
+    }
+
+    .case-studies-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+    }
+
+    .case-study-card {
+        padding: 20px;
+        font-size: 0.9rem;
+        text-align: center;
+        box-shadow: var(--shadow-light);
+        border: 1px solid var(--amazon-light-gray);
+        border-radius: var(--border-radius-sm);
+        transition: all var(--transition-speed);
+        background: var(--off-white);
+    }
+
+    .card-number {
+        font-size: 1.2rem;
+        top: 10px;
+        right: 10px;
+        margin: 0;
+    }
+
+    .case-study-card h3 {
+        font-size: 1.2rem;
+    }
+
+    
+
+    .service-card h3 {
+        font-size: 1.2rem;
     }
 
     h1 {

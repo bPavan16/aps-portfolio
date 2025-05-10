@@ -7,13 +7,18 @@
         <title>Pavan H Bhakta | Algorithmic Problem Solving Portfolio</title>
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="style2.css">
+        <!-- <link rel="stylesheet" href="style3.css"> -->
+        <link rel="stylesheet" href="style4.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
             rel="stylesheet">
     </head>
 
     <body>
-        <header class="main-header">
+
+
+        <!-- Navbar -->
+        <!-- <header class="main-header">
             <div class="nav-container">
                 <div class="logo">
                     <span class="amazon-smile">APS</span> Portfolio
@@ -24,6 +29,27 @@
                         <li><a href="#amazon-services">Amazon Services</a></li>
                         <li><a href="#case-studies">Case Studies</a></li>
                         <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header> -->
+
+        <header class="main-header">
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="amazon-smile">APS</span> Portfolio
+                </div>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#pj-projects">Projects</a></li>
+                        <li><a href="#case-studies">Case Studies</a></li>
+                        <li><a href="./my-domain.html">My Domain</a></li>
                     </ul>
                 </nav>
             </div>
@@ -273,11 +299,12 @@
                 <div class="aps-quote-container">
                     <div class="aps-quote-box">
                         <div class="aps-quote-icon"><i class="fas fa-quote-left"></i></div>
-                        <p class="aps-quote-text">“I knew that if I failed I wouldn't regret that, but I knew the one thing I might regret is not trying.”
+                        <p class="aps-quote-text">“I knew that if I failed I wouldn't regret that, but I knew the one
+                            thing I might regret is not trying.”
                         </p>
                         <div class="aps-quote-attribution">
-                            <img src="https://i.insider.com/6093e1f434af8d001859bbf5?width=700"
-                                class="aps-quote-avatar" alt="Steve Jobs">
+                            <img src="https://i.insider.com/6093e1f434af8d001859bbf5?width=700" class="aps-quote-avatar"
+                                alt="Steve Jobs">
                             <cite class="aps-quote-author">— Jeff Bezos</cite>
                         </div>
                     </div>
@@ -312,9 +339,13 @@
                         <div class="pj-project-content">
                             <h3 class="pj-project-title">Traffic Sign Detection Model</h3>
                             <p class="pj-project-description">
-                                Developed an advanced GUI-based traffic sign detection system leveraging the YOLOv4
+                                Developed an advanced GUI-based traffic sign detection system leveraging the YOLOv11
                                 architecture for real-time object detection and classification. The system integrates
-                                Python's Tkinter library to provide an intuitive user interface
+                                Python's Tkinter library to provide an intuitive user interface, enabling users to
+                                stream live video for traffic sign recognition. Additionally, Python's
+                                text-to-speech (TTS) library was utilized to announce detected traffic signs audibly,
+                                enhancing accessibility and usability. ensuring high accuracy and reliability in
+                                real-world scenarios.
                             </p>
                             <div class="pj-tech-stack">
                                 <span class="pj-tech-tag">PyTorch</span>
@@ -360,6 +391,9 @@
                                 Designed and developed a robust food delivery platform using the MERN stack, enabling
                                 users to browse menus, place orders, and track deliveries in real-time with seamless
                                 user experience.
+                                The application incorporates role-based access control, admins can manage restaurant
+                                listings and orders, while customers can view their order history and receive
+                                personalized recommendations based on their preferences.
                             </p>
                             <div class="pj-tech-stack">
                                 <span class="pj-tech-tag">MongoDB</span>
@@ -402,7 +436,10 @@
                             <h3 class="pj-project-title">3-Address Indirect Mode Processor</h3>
                             <p class="pj-project-description">
                                 Designed and simulated a complete 16-bit processor architecture using Logisim that
-                                implements a three-address indirect addressing mode
+                                implements a three-address indirect addressing mode, enabling more efficient memory
+                                access patterns. The design features a 5-stage pipeline with hazard detection,
+                                forwarding units, and branch prediction to minimize stalls and maximize throughput in
+                                instruction execution.
                             </p>
                             <div class="pj-tech-stack">
                                 <span class="pj-tech-tag">Logisim</span>
@@ -484,8 +521,10 @@
                         <div class="pj-project-content">
                             <h3 class="pj-project-title">LLM Paired Comparison Experiment</h3>
                             <p class="pj-project-description">
-                                Using an LLM to compare image sharpness through paired comparison using prompt engineering
-                                approach where it evaluates and compares the quality of image pair
+                                Using an LLM to compare image sharpness through paired comparison using prompt
+                                engineering
+                                approach that enables an LLM to actively participate in a paired comparison experiment,
+                                where it evaluates and compares the quality of image pair
                             </p>
                             <div class="pj-tech-stack">
                                 <span class="pj-tech-tag">Python</span>
@@ -501,7 +540,8 @@
                                 </div>
                                 <div class="pj-highlight">
                                     <i class="fas fa-check-circle"></i>
-                                    <span>Designed a prompt engineering methodology enabling an LLM to evaluate and rank image quality with
+                                    <span>Designed a prompt engineering methodology enabling an LLM to actively engage
+                                        in paired comparison experiments, evaluating and ranking image quality with
                                         precision and consistency.</span>
                                 </div>
                             </div>
@@ -516,192 +556,21 @@
                     </div>
                 </div>
 
-            </div>
-        </section>
-
-
-
-        <!-- Amazon Services -->
-        <section id="amazon-services" class="amazon-services">
-            <div class="container">
-                <h2>Amazon's Ecosystem</h2>
-                <p class="section-desc">
-                    Amazon, a global technology and e-commerce leader, provides an extensive array of services that
-                    impact the daily lives of billions of people worldwide.
-                    Understanding the scale and diversity of Amazon's offerings highlights how advanced data structures
-                    and algorithms are crucial to delivering seamless experiences.
-                </p>
-
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">🛒</div>
-                        <h3>Amazon.com</h3>
-                        <p>E-commerce marketplace for millions of products.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">🚚</div>
-                        <h3>Amazon Prime</h3>
-                        <p>Subscription service with fast shipping, streaming, and exclusive deals.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">☁️</div>
-                        <h3>Amazon Web Services</h3>
-                        <p>Leading cloud computing platform.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">🗣️</div>
-                        <h3>Amazon Alexa</h3>
-                        <p>Voice assistant for smart devices.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">🎵</div>
-                        <h3>Amazon Music</h3>
-                        <p>Music streaming service.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">🎬</div>
-                        <h3>Amazon Prime Video</h3>
-                        <p>Video streaming platform.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">📚</div>
-                        <h3>Kindle & Audible</h3>
-                        <p>E-books and audiobooks.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">🔥</div>
-                        <h3>Amazon Fire Devices</h3>
-                        <p>Tablets, TV sticks, and smart speakers.</p>
-                    </div>
+                <div class="pj-section-cta">
+                    <p>For More Projects and Contributions check out my Github :) </p>
+                    <a href="#contact" class="amz-btn amz-btn-primary">
+                        <span class="amz-btn-icon"><i class="fab fa-github"></i></span>
+                        <span class="amz-btn-text">Github</span>
+                    </a>
                 </div>
+
+
             </div>
         </section>
 
-        <!-- Objectives -->
-        <section id="objectives" class="objectives">
-            <div class="container">
-                <h2>Portfolio Objectives</h2>
-                <div class="objectives-container">
-                    <div class="objective-card">
-                        <div class="objective-icon"><i class="fas fa-rocket"></i></div>
-                        <p>To apply advanced algorithms and data structures to improve the speed and efficiency of
-                            Amazon's services.</p>
-                    </div>
-                    <div class="objective-card">
-                        <div class="objective-icon"><i class="fas fa-code"></i></div>
-                        <p>To demonstrate the real-world use of concepts learned in DSA and APS courses, focusing on
-                            design techniques and performance analysis.</p>
-                    </div>
-                    <div class="objective-card">
-                        <div class="objective-icon"><i class="fas fa-user-check"></i></div>
-                        <p>To propose algorithms that enhance user experiences, solve market challenges, and maximize
-                            business benefits within Amazon's ecosystem.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Case Studies -->
-        <section id="case-studies" class="case-studies">
-            <div class="container">
-                <h2>Business Use Cases</h2>
-                <p class="section-desc">Exploring how data structures and algorithms power Amazon's technological
-                    solutions</p>
-
-                <div class="case-studies-grid">
-                    <div class="case-study-card" onclick="showCaseStudy(1)">
-                        <div class="card-number">01</div>
-                        <h3>Product Recommendations</h3>
-                        <p>Collaborative filtering and recommendation algorithms</p>
-                        <div class="card-footer">
-                            <span class="algorithm-tag">Graph Algorithms</span>
-                            <span class="algorithm-tag">Machine Learning</span>
-                        </div>
-                        <div class="expand-icon"><i class="fas fa-chevron-right"></i></div>
-                    </div>
-
-                    <div class="case-study-card" onclick="showCaseStudy(2)">
-                        <div class="card-number">02</div>
-                        <h3>Inventory Management</h3>
-                        <p>Optimizing warehouse storage and logistics</p>
-                        <div class="card-footer">
-                            <span class="algorithm-tag">Greedy Algorithms</span>
-                            <span class="algorithm-tag">Optimization</span>
-                        </div>
-                        <div class="expand-icon"><i class="fas fa-chevron-right"></i></div>
-                    </div>
-
-                    <div class="case-study-card" onclick="showCaseStudy(3)">
-                        <div class="card-number">03</div>
-                        <h3>Search and Autocomplete</h3>
-                        <p>Fast search suggestions and results ranking</p>
-                        <div class="card-footer">
-                            <span class="algorithm-tag">Tries</span>
-                            <span class="algorithm-tag">Indexing</span>
-                        </div>
-                        <div class="expand-icon"><i class="fas fa-chevron-right"></i></div>
-                    </div>
-
-                    <div class="case-study-card" onclick="showCaseStudy(4)">
-                        <div class="card-number">04</div>
-                        <h3>Order Processing</h3>
-                        <p>Efficient queue management for order fulfillment</p>
-                        <div class="card-footer">
-                            <span class="algorithm-tag">Queue</span>
-                            <span class="algorithm-tag">Priority Queue</span>
-                        </div>
-                        <div class="expand-icon"><i class="fas fa-chevron-right"></i></div>
-                    </div>
-
-                    <div class="case-study-card" onclick="showCaseStudy(5)">
-                        <div class="card-number">05</div>
-                        <h3>Stock Level Updates</h3>
-                        <p>Real-time inventory tracking across warehouses</p>
-                        <div class="card-footer">
-                            <span class="algorithm-tag">Hash Tables</span>
-                            <span class="algorithm-tag">Event Processing</span>
-                        </div>
-                        <div class="expand-icon"><i class="fas fa-chevron-right"></i></div>
-                    </div>
-
-                    <div class="case-study-card" onclick="showCaseStudy(6)">
-                        <div class="card-number">06</div>
-                        <h3>Secure Payment Processing</h3>
-                        <p>Encryption and secure transaction handling</p>
-                        <div class="card-footer">
-                            <span class="algorithm-tag">Cryptography</span>
-                            <span class="algorithm-tag">Transaction Processing</span>
-                        </div>
-                        <div class="expand-icon"><i class="fas fa-chevron-right"></i></div>
-                    </div>
-
-                    <div class="case-study-card" onclick="showCaseStudy(7)">
-                        <div class="card-number">07</div>
-                        <h3>Image Storage and Retrieval</h3>
-                        <p>Efficient storage and fast retrieval of product images</p>
-                        <div class="card-footer">
-                            <span class="algorithm-tag">Indexing</span>
-                            <span class="algorithm-tag">Compression</span>
-                        </div>
-                        <div class="expand-icon"><i class="fas fa-chevron-right"></i></div>
-                    </div>
-
-                    <div class="case-study-card" onclick="showCaseStudy(8)">
-                        <div class="card-number">08</div>
-                        <h3>Review Management</h3>
-                        <p>Processing and analyzing customer feedback</p>
-                        <div class="card-footer">
-                            <span class="algorithm-tag">NLP</span>
-                            <span class="algorithm-tag">Sentiment Analysis</span>
-                        </div>
-                        <div class="expand-icon"><i class="fas fa-chevron-right"></i></div>
-                    </div>
 
 
-                </div>
-            </div>
-        </section>
-
+       
         <!-- Footer -->
         <footer id="contact">
             <div class="container">
@@ -740,6 +609,8 @@
                 </div>
             </div>
         </footer>
+
+        <script src="script.js"></script>
 
     </body>
 
