@@ -1,0 +1,215 @@
+
+/*--------------------------------------------------------------------------------------------- Amazon Services Section --------------------------------------------------------------------------------------------- */
+.amazon-services {
+    background: linear-gradient(to bottom, #f7f7f7, #ffffff);
+    padding: 100px 0;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    
+    gap: 25px;
+    margin-top: 50px;
+}
+
+.service-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--shadow-light);
+    transition: all var(--transition-speed);
+    text-align: center;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-medium);
+}
+
+.service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+/* Objectives Section */
+.objectives {
+    background: var(--amazon-dark-blue);
+    color: var(--white);
+    padding: 100px 0;
+}
+
+.objectives h2 {
+    color: var(--white);
+}
+
+.objectives-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.objective-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    transition: all var(--transition-speed);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.objective-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.objective-icon {
+    color: var(--amazon-orange);
+    font-size: 2rem;
+    margin-bottom: 20px;
+} */
+
+/* Case Studies Section */
+.case-studies {
+    padding: 100px 0;
+    background: var(--white);
+}
+
+.case-studies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.case-study-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--shadow-light);
+    transition: all var(--transition-speed);
+    cursor: pointer;
+    position: relative;
+    border: 1px solid var(--amazon-light-gray);
+}
+
+.case-study-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--amazon-orange);
+}
+
+.card-number {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--amazon-orange);
+    opacity: 0.5;
+}
+
+.card-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.algorithm-tag {
+    background: var(--amazon-light-gray);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: var(--amazon-dark-blue);
+    font-weight: 500;
+}
+
+.expand-icon {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--amazon-light-gray);
+    border-radius: 50%;
+    transition: all var(--transition-speed);
+}
+
+.case-study-card:hover .expand-icon {
+    background: var(--amazon-orange);
+    color: var(--white);
+}
+
+.load-more {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: 50px auto;
+    padding: 40px;
+    width: 80%;
+    max-width: 1000px;
+    border-radius: var(--border-radius);
+    position: relative;
+    box-shadow: var(--shadow-dark);
+    animation: slideIn 0.4s;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: var(--amazon-dark-gray);
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: var(--amazon-orange);
+}
