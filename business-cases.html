@@ -1,0 +1,3959 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="description"
+      content="Explore Amazon's algorithmic innovations through detailed case studies on Kindle substring search, clickstream analytics, route optimization, and more. Learn how advanced algorithms power Amazon's vast ecosystem." />
+
+    <link rel="icon" href="/images/cart-icon.png" type="image/png">
+
+    <title>Amazon Case Study</title>
+    <link rel="stylesheet" href="./styles/case-study-2.css" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="/styles/nav.css">
+  </head>
+
+  <body>
+    <!---------------------- Navigation Section ----------------------------- -->
+    <nav class="case-study-navigation">
+      <div class="nav-container">
+        <h2 class="nav-title">Amazon Business Cases</h2>
+        <div class="nav-grid">
+          <a href="#kindle-search" class="nav-card">
+            <div class="nav-icon">
+              <i class="fas fa-tablet-alt"></i>
+            </div>
+            <div class="nav-content">
+              <h3>1. Kindle Substring Search</h3>
+              <p>Suffix Trees, Suffix Arrays, KMP</p>
+            </div>
+          </a>
+
+          <a href="#clickstream-analytics" class="nav-card">
+            <div class="nav-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="nav-content">
+              <h3>2. Clickstream Analytics</h3>
+              <p>Fenwick Tree (Binary Indexed Tree)</p>
+            </div>
+          </a>
+
+          <a href="#route-optimization" class="nav-card">
+            <div class="nav-icon">
+              <i class="fas fa-route"></i>
+            </div>
+            <div class="nav-content">
+              <h3>3. Route Optimization</h3>
+              <p>Dijkstra's, A*, Floyd-Warshall</p>
+            </div>
+          </a>
+
+          <a href="#seller-trust" class="nav-card">
+            <div class="nav-icon">
+              <i class="fas fa-store"></i>
+            </div>
+            <div class="nav-content">
+              <h3>4. Seller Trust Ranking</h3>
+              <p>PageRank Algorithm</p>
+            </div>
+          </a>
+
+          <a href="#product-autocomplete" class="nav-card">
+            <div class="nav-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <div class="nav-content">
+              <h3>5. Product Autocomplete</h3>
+              <p>Trie, Ternary Search Tree</p>
+            </div>
+          </a>
+
+          <a href="#price-range" class="nav-card">
+            <div class="nav-icon">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="nav-content">
+              <h3>6. Price Range Queries</h3>
+              <p>Segment Tree</p>
+            </div>
+          </a>
+
+          <a href="#top-k-items" class="nav-card">
+            <div class="nav-icon">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <div class="nav-content">
+              <h3>7. Top-k Items by Price</h3>
+              <p>Binary Heaps, Priority Queue</p>
+            </div>
+          </a>
+
+          <a href="#ec2-spot" class="nav-card">
+            <div class="nav-icon">
+              <i class="fas fa-cloud"></i>
+            </div>
+            <div class="nav-content">
+              <h3>8. EC2 Spot Allocation</h3>
+              <p>Stable Marriage Algorithm</p>
+            </div>
+          </a>
+
+          <a href="#job-assignment" class="nav-card">
+            <div class="nav-icon">
+              <i class="fas fa-users-cog"></i>
+            </div>
+            <div class="nav-content">
+              <h3>9. Job Assignment</h3>
+              <p>Hungarian Algorithm</p>
+            </div>
+          </a>
+
+          <a href="#traffic-flow" class="nav-card">
+            <div class="nav-icon">
+              <i class="fas fa-network-wired"></i>
+            </div>
+            <div class="nav-content">
+              <h3>10. Traffic Management</h3>
+              <p>Ford-Fulkerson Algorithm</p>
+            </div>
+          </a>
+
+          <a href="#skip-lists" class="nav-card">
+            <div class="nav-icon">
+              <i class="fas fa-sort-amount-down"></i>
+            </div>
+            <div class="nav-content">
+              <h3>11. Search Indexing</h3>
+              <p>Skip Lists</p>
+            </div>
+          </a>
+
+          <a href="#dependency-resolution" class="nav-card">
+            <div class="nav-icon">
+              <i class="fas fa-sitemap"></i>
+            </div>
+            <div class="nav-content">
+              <h3>12. Dependency Resolution</h3>
+              <p>Topological Sort</p>
+            </div>
+          </a>
+
+          <a href="#inventory-mst" class="nav-card">
+            <div class="nav-icon">
+              <i class="fas fa-warehouse"></i>
+            </div>
+            <div class="nav-content">
+              <h3>13. Inventory Management</h3>
+              <p>MST Algorithms</p>
+            </div>
+          </a>
+
+          <a href="#product-comparison" class="nav-card">
+            <div class="nav-icon">
+              <i class="fas fa-balance-scale"></i>
+            </div>
+            <div class="nav-content">
+              <h3>14. Product Comparison</h3>
+              <p>Union Find</p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </nav>
+    <!---------------------- Navigation Section ----------------------------- -->
+
+
+    <!---------------------- Case Study: Kindle Substring Search ----------------------------- -->
+    <section id="kindle-search" class="algorithm-case-study">
+      <div class="container">
+        <div class="case-study-header">
+          <p class="case-study-subtitle">Algorithm Analysis</p>
+          <h2 class="case-study-title">1. Kindle Substring Search</h2>
+          <p class="case-study-intro">
+            Exploring how Amazon Kindle leverages advanced string processing
+            algorithms including Suffix Trees, Suffix Arrays, and the KMP
+            Algorithm to enable lightning-fast text search across millions of
+            books, providing readers with instant access to any content within
+            their digital library.
+          </p>
+        </div>
+
+        <div class="algorithm-grid">
+          <div class="algorithm-explanation">
+            <h3>Understanding String Search Algorithms</h3>
+            <p>
+              Amazon Kindle processes over 12 million books with billions of
+              words, requiring sophisticated string search algorithms to deliver
+              instant search results. When readers search for quotes,
+              references, or specific content, Kindle's search engine must
+              efficiently locate matches across massive text collections while
+              maintaining responsive performance on resource-constrained
+              e-reader devices.
+            </p>
+            <p>
+              The combination of Suffix Trees, Suffix Arrays, and KMP algorithms
+              enables Kindle to perform complex pattern matching operations with
+              optimal time complexity, supporting features like full-text
+              search, phrase detection, and content recommendations.
+            </p>
+
+            <div class="algorithm-comparison">
+              <div class="algorithm-card">
+                <h4>Suffix Tree</h4>
+                <p>
+                  A compressed trie containing all suffixes of a text string,
+                  enabling O(m) time pattern matching where m is the pattern
+                  length.
+                </p>
+                <ul>
+                  <li>Space complexity: O(n) where n is text length</li>
+                  <li>Construction time: O(n) using Ukkonen's algorithm</li>
+                  <li>Supports multiple pattern searches efficiently</li>
+                  <li>Enables longest common substring queries</li>
+                  <li>Perfect for Kindle's prefix-based search suggestions</li>
+                </ul>
+              </div>
+
+              <div class="algorithm-card">
+                <h4>Suffix Array</h4>
+                <p>
+                  Space-efficient alternative to suffix trees, storing sorted
+                  array of all suffix start positions with O(m log n) search
+                  time.
+                </p>
+                <ul>
+                  <li>
+                    Space complexity: O(n) - more memory efficient than suffix
+                    trees
+                  </li>
+                  <li>
+                    Construction: O(n log n) time using advanced algorithms
+                  </li>
+                  <li>Binary search enables fast pattern location</li>
+                  <li>Ideal for Kindle's memory-constrained devices</li>
+                  <li>Supports range queries for phrase matching</li>
+                </ul>
+              </div>
+
+              <div class="algorithm-card">
+                <h4>KMP Algorithm</h4>
+                <p>
+                  Knuth-Morris-Pratt algorithm provides O(n + m) time string
+                  matching with optimal preprocessing for pattern analysis.
+                </p>
+                <ul>
+                  <li>Linear time complexity: O(n + m)</li>
+                  <li>No backtracking in the text</li>
+                  <li>Preprocessing creates failure function in O(m)</li>
+                  <li>Perfect for real-time search as users type</li>
+                  <li>Handles overlapping pattern occurrences efficiently</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- <div class="algorithm-steps">
+              <h4>Kindle's Text Search Process:</h4>
+              <ol>
+                <li>
+                  Text Preprocessing & Indexing:
+                  <ul>
+                    <li>
+                      Build suffix arrays and compressed trees during download,
+                      with N-gram indices for context search
+                    </li>
+                    <li>
+                      Store metadata and optimize indices for quick filtering
+                      and retrieval
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Query Processing & Execution:
+                  <ul>
+                    <li>
+                      Parse queries with stemming and fuzzy matching for
+                      improved results
+                    </li>
+                    <li>
+                      Select optimal algorithm (KMP, suffix arrays, suffix
+                      trees) based on query type
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Result Ranking & Presentation:
+                  <ul>
+                    <li>
+                      Score and group results by relevance, book, and chapter
+                      with highlighted preview snippets
+                    </li>
+                    <li>
+                      Cache frequent searches while executing parallel matching
+                      across multiple books
+                    </li>
+                  </ul>
+                </li>
+              </ol>
+            </div> -->
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('suffix-tree-code')">
+                  <i class="fas fa-tree"></i> View Suffix Tree Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="suffix-tree-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Suffix_Tree.cpp">View on
+                  Github</a>
+              </div>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('suffix-array-code')">
+                  <i class="fas fa-sort"></i> View Suffix Array Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="suffix-array-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Suffix_Tree.cpp">View on
+                  Github
+                </a>
+              </div>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('kmp-code')">
+                  <i class="fas fa-search"></i> View KMP Algorithm
+                  Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="kmp-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/KMP_Algorithm.cpp">View
+                  on Github</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="amazon-applications">
+            <h3>Applications in Amazon's Ecosystem</h3>
+
+            <div class="application-card">
+              <h4><i class="fas fa-tablet-alt"></i> Kindle E-Reader Search</h4>
+              <p>
+                Kindle devices use optimized string algorithms for instant text
+                search across downloaded books:
+              </p>
+              <ul>
+                <li>
+                  <strong>Fast Offline Search:</strong> Compressed suffix arrays
+                  enable searches without internet connectivity, optimized for
+                  e-reader hardware constraints
+                </li>
+                <li>
+                  <strong>Context-Rich Results:</strong> KMP algorithm provides
+                  surrounding text snippets for each match, enhancing reading
+                  experience with relevant context
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4>
+                <i class="fas fa-mobile-alt"></i> Kindle Mobile Search Ecosystem
+              </h4>
+              <p>
+                iOS and Android Kindle apps leverage cloud-based search with
+                local caching:
+              </p>
+              <ul>
+                <li>
+                  <strong>Real-Time & Cross-Book Search:</strong> KMP streaming
+                  provides instant feedback as users type, while suffix trees
+                  enable searching across entire digital library
+                </li>
+                <li>
+                  <strong>Enhanced User Experience:</strong> Fuzzy matching
+                  handles typos and approximate matches, with visual
+                  highlighting powered by efficient pattern matching algorithms
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4><i class="fas fa-quote-left"></i> Look Inside Feature</h4>
+              <p>
+                Amazon's book preview feature uses string search for content
+                discovery:
+              </p>
+              <ul>
+                <li>
+                  <strong>Content Indexing & Relevance:</strong> Suffix trees
+                  for rapid indexing of book previews with pattern frequency
+                  analysis using LCP arrays for relevance ranking
+                </li>
+                <li>
+                  <strong>Discovery & Recommendations:</strong> Efficient
+                  detection of memorable passages and quotes, while finding
+                  related content across different books to enhance browsing
+                  experience
+                </li>
+              </ul>
+            </div>
+
+            <div class="efficiency-metrics">
+              <h4>Performance Metrics</h4>
+              <div class="metrics-grid">
+              <div class="metric-card">
+                <h5>Search Speed</h5>
+                <div class="metric-value">&lt;100ms</div>
+                <p class="metric-description">
+                Average search time across 1000-page books on Kindle devices
+                </p>
+              </div>
+              <div class="metric-card">
+                <h5>Memory Usage</h5>
+                <div class="metric-value">2x</div>
+                <p class="metric-description">
+                Memory overhead compared to original text size for suffix
+                arrays
+                </p>
+              </div>
+              <div class="metric-card">
+                <h5>Search Accuracy</h5>
+                <div class="metric-value">99.8%</div>
+                <p class="metric-description">
+                Pattern matching accuracy including fuzzy search
+                capabilities
+                </p>
+              </div>
+              <div class="metric-card">
+                <h5>Suffix Tree Complexity</h5>
+                <div class="metric-value">O(m)</div>
+                <p class="metric-description">
+                Search time where m is pattern length, with O(n) space complexity
+                </p>
+              </div>
+              <div class="metric-card">
+                <h5>Suffix Array Complexity</h5>
+                <div class="metric-value">O(m log n)</div>
+                <p class="metric-description">
+                Search time for pattern of length m in text of length n
+                </p>
+              </div>
+              <div class="metric-card">
+                <h5>KMP Complexity</h5>
+                <div class="metric-value">O(n + m)</div>
+                <p class="metric-description">
+                Linear time complexity for text of length n and pattern of length m
+                </p>
+              </div>
+              </div>
+            </div>
+
+            <div class="diagram-container" style="
+                margin-top: 30px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+                justify-content: center;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                text-align: center;
+              ">
+              <div style="width: 100%; display: flex; justify-content: center">
+                <h2>Suffix Tree Visualization</h2>
+              </div>
+
+              <div style="width: 100%; display: flex; justify-content: center">
+                <img
+                  src="/images/suffix.png"
+                  style="max-width: 80%; height: auto; margin: 0 auto" />
+              </div>
+
+              <div style="width: 100%; display: flex; justify-content: center">
+                <h2>KMP Algorithm Visualization</h2>
+              </div>
+
+              <div style="width: 100%; display: flex; justify-content: center">
+                <img
+                  src="/images/kmp.png"
+                  style="max-width: 80%; height: auto; margin: 0 auto" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!---------------------- Case Study: Kindle Substring Search ----------------------------- -->
+
+
+    <!---------------------- Case Study: Clickstream Analytics ----------------------------- -->
+    <section id="clickstream-analytics" class="algorithm-case-study">
+      <div class="container">
+        <div class="case-study-header">
+          <p class="case-study-subtitle">Algorithm Analysis</p>
+          <h2 class="case-study-title">2. Clickstream Analytics for Amazon Ads</h2>
+          <p class="case-study-intro">
+            Exploring how Amazon Ads leverages Fenwick Trees (Binary Indexed Trees) to track and update ad click/view
+            counts in real-time, enabling instant dashboard updates and dynamic bidding optimizations across millions of
+            ad campaigns.
+          </p>
+        </div>
+
+        <div class="algorithm-grid">
+          <div class="algorithm-explanation">
+            <h3>Understanding Fenwick Trees for Analytics</h3>
+            <p>
+              Amazon Ads processes billions of clicks and impressions daily across its advertising network. Fenwick
+              Trees provide O(log n) updates and range sum queries, making them ideal for real-time analytics where
+              advertisers need instant feedback on campaign performance and bidding algorithms require up-to-the-second
+              data.
+            </p>
+
+            <div class="algorithm-comparison">
+              <div class="algorithm-card">
+                <h4>Fenwick Tree (Binary Indexed Tree)</h4>
+                <p>
+                  Efficient data structure for cumulative frequency operations, enabling fast prefix sum calculations
+                  and point updates for real-time analytics.
+                </p>
+                <ul>
+                  <li>Update time: O(log n)</li>
+                  <li>Range sum query: O(log n)</li>
+                  <li>Space complexity: O(n)</li>
+                  <li>Perfect for cumulative click/impression tracking</li>
+                  <li>Supports real-time dashboard updates</li>
+                </ul>
+              </div>
+
+              <div class="algorithm-card">
+                <h4>Real-Time Analytics Operations</h4>
+                <p>
+                  Core operations supporting Amazon's advertising analytics infrastructure with millisecond response
+                  times.
+                </p>
+                <ul>
+                  <li><strong>Point Updates:</strong> Increment click/view counts</li>
+                  <li><strong>Range Queries:</strong> Get clicks in time windows</li>
+                  <li><strong>Prefix Sums:</strong> Total clicks up to timestamp</li>
+                  <li><strong>Live Dashboards:</strong> Real-time performance metrics</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('fenwick-tree-code')">
+                  <i class="fas fa-chart-line"></i> View Fenwick Tree Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="fenwick-tree-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Fenwick_Tree.cpp">View on
+                  Github</a>
+              </div>
+            </div>
+
+            <div class="diagram-container"
+              style="margin-top: 20px; display:flex; flex-direction: column; align-items: center;">
+              <h4>Fenwick Tree Visualization</h4>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/BITDemo.gif"
+                style="width: 80%; height: auto; border-radius: 6px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: block; margin: 0 auto;" />
+            </div>
+          </div>
+
+          <div class="amazon-applications">
+            <h3>Applications in Amazon's Ecosystem</h3>
+
+            <div class="application-card">
+              <h4><i class="fas fa-mouse-pointer"></i> Real-Time Click Tracking</h4>
+              <p>Amazon Ads uses Fenwick Trees for instant click and impression analytics:</p>
+              <ul>
+                <li><strong>Live Campaign Metrics:</strong> O(log n) updates enable real-time dashboard refreshes
+                  showing current click-through rates and impression counts</li>
+                <li><strong>Time-Window Analytics:</strong> Range queries provide clicks/impressions for specific time
+                  periods (hourly, daily, weekly) for performance analysis</li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4><i class="fas fa-dollar-sign"></i> Dynamic Bidding Systems</h4>
+              <p>Real-time bid optimization powered by instant analytics:</p>
+              <ul>
+                <li><strong>Performance-Based Bidding:</strong> Fenwick Trees track conversion rates and click costs to
+                  automatically adjust bid prices within milliseconds</li>
+                <li><strong>Budget Management:</strong> Cumulative spend tracking prevents budget overruns while
+                  maximizing ad exposure</li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4><i class="fas fa-chart-bar"></i> Advertiser Dashboards</h4>
+              <p>Interactive dashboards powered by efficient range queries:</p>
+              <ul>
+                <li><strong>Instant Metrics:</strong> Sub-second response times for campaign performance queries across
+                  millions of ads</li>
+                <li><strong>Trend Analysis:</strong> Efficient calculation of performance trends over custom time ranges
+                </li>
+              </ul>
+            </div>
+
+            <div class="efficiency-metrics">
+              <h4>Performance Metrics</h4>
+              <div class="metrics-grid">
+                <div class="metric-card">
+                  <h5>Update Speed</h5>
+                  <div class="metric-value">O(log n)</div>
+                  <p class="metric-description">Time to record new click/impression events</p>
+                </div>
+                <div class="metric-card">
+                  <h5>Query Speed</h5>
+                  <div class="metric-value">O(log n)</div>
+                  <p class="metric-description">Time to calculate range sums for analytics</p>
+                </div>
+                <div class="metric-card">
+                  <h5>Space Complexity</h5>
+                  <div class="metric-value">O(n)</div>
+                  <p class="metric-description">Memory required for tracking n time periods</p>
+                </div>
+                <div class="metric-card">
+                  <h5>Construction Time</h5>
+                  <div class="metric-value">O(n log n)</div>
+                  <p class="metric-description">Initial build time from historical data</p>
+                </div>
+                <div class="metric-card">
+                  <h5>Dashboard Latency</h5>
+                  <div class="metric-value">&lt;50ms</div>
+                  <p class="metric-description">Real-time dashboard update response time</p>
+                </div>
+                <div class="metric-card">
+                  <h5>Batch Update</h5>
+                  <div class="metric-value">O(k log n)</div>
+                  <p class="metric-description">Time to process k simultaneous events</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!---------------------- Case Study: Clickstream Analytics ----------------------------- -->
+
+
+
+
+
+    <!---------------------- Case Study: Route Optimization for Deliveries ----------------------------- -->
+
+    <!---------------------- Case Study: Route Optimization for Deliveries ----------------------------- -->
+
+
+    <section class="algorithm-case-study">
+      <div class="container">
+        <div class="case-study-header">
+          <p class="case-study-subtitle">Algorithm Analysis</p>
+          <h2 class="case-study-title">
+            3. Shortest Path in Logistics Network
+          </h2>
+          <p class="case-study-intro">
+            Exploring how Dijkstra's algorithm, Bellman-Ford, and other shortest
+            path algorithms form the backbone of Amazon's global logistics
+            network, enabling efficient delivery routing, warehouse navigation,
+            and optimizing the entire supply chain.
+          </p>
+        </div>
+
+        <div class="algorithm-grid">
+          <div class="algorithm-explanation">
+            <h3>Understanding Shortest Path Algorithms</h3>
+            <p>
+              Shortest path algorithms solve the fundamental problem of finding
+              the most efficient path between two points in a weighted graph.
+              Amazon leverages these algorithms extensively to optimize its vast
+              logistics and delivery operations, saving millions in operational
+              costs.
+            </p>
+
+            <div class="algorithm-comparison">
+              <div class="algorithm-card">
+                <h4>Dijkstra's Algorithm</h4>
+                <p>
+                  Dijkstra's algorithm finds the shortest path from a source
+                  node to all other nodes in a graph with non-negative edge
+                  weights, making it ideal for road networks and delivery
+                  planning.
+                </p>
+                <ul>
+                  <li>
+                    Time complexity: O(V²) or O(E + V log V) with priority queue
+                  </li>
+                  <li>Does not work with negative edge weights</li>
+                  <li>Widely used for road navigation systems</li>
+                  <li>
+                    Greedy approach that always chooses the next closest vertex
+                  </li>
+                </ul>
+              </div>
+
+              <div class="algorithm-card">
+                <h4>Bellman-Ford Algorithm</h4>
+                <p>
+                  Bellman-Ford handles graphs with negative edge weights and
+                  detects negative cycles, making it suitable for more complex
+                  routing problems with varying constraints.
+                </p>
+                <ul>
+                  <li>Time complexity: O(VE) - slower than Dijkstra's</li>
+                  <li>Can handle negative edge weights</li>
+                  <li>Detects negative cycles in the graph</li>
+                  <li>Useful when costs may dynamically decrease</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="algorithm-steps">
+              <h4>Key Steps of Dijkstra's Algorithm:</h4>
+              <ol>
+                <li>
+                  Initialize distances: set source to 0, all others to infinity
+                </li>
+                <li>
+                  Create a priority queue and add all vertices with their
+                  distances
+                </li>
+                <li>
+                  While the priority queue is not empty:
+                  <ul>
+                    <li>
+                      Extract the vertex with minimum distance (let's call it u)
+                    </li>
+                    <li>
+                      For each adjacent vertex v of u:
+                      <ul>
+                        <li>
+                          Calculate distance = distance[u] + weight of edge (u,
+                          v)
+                        </li>
+                        <li>
+                          If this distance is less than the current distance[v],
+                          update distance[v]
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Return the array of shortest distances from source to all
+                  vertices
+                </li>
+              </ol>
+            </div>
+
+            <div class="algorithm-steps">
+              <h4>Key Steps of Bellman-Ford Algorithm:</h4>
+              <ol>
+                <li>
+                  Initialize distances: set source to 0, all others to infinity
+                </li>
+                <li>
+                  Repeat V-1 times (where V is the number of vertices):
+                  <ul>
+                    <li>
+                      For each edge (u,v) with weight w in the graph:
+                      <ul>
+                        <li>
+                          If distance[u] + w < distance[v], update distance[v]=distance[u] + w </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Check for negative cycles:
+                  <ul>
+                    <li>
+                      For each edge (u,v) with weight w in the graph:
+                      <ul>
+                        <li>
+                          If distance[u] + w < distance[v], report negative cycle </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Return the array of shortest distances from source to all vertices
+                </li>
+              </ol>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('dijkstra-code')">
+                  <i class="fas fa-route"></i> View Dijkstra's Algorithm Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="dijkstra-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amazon-analysis/Dijkstra_Algorithm.cpp">View
+                  on Github</a>
+              </div>
+              
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('bellman-ford-code')">
+                  <i class="fas fa-exchange-alt"></i> View Bellman-Ford Algorithm Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="bellman-ford-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amazon-analysis/Bellman_Ford_Algorithm.cpp">View
+                  on Github</a>
+              </div>
+            </div>
+
+          </div>
+          <div class="amazon-applications">
+            <h3>Applications in Amazon's Ecosystem</h3>
+
+            <div class="application-card">
+              <h4>
+                <i class="fas fa-truck"></i> Dijkstra's Algorithm: Last-Mile Delivery
+              </h4>
+              <p>
+                Amazon likely uses Dijkstra's algorithm to optimize delivery routes:
+              </p>
+              <ul>
+                <li>
+                  <strong>Route Optimization:</strong> Calculating efficient paths between delivery stops
+                </li>
+                <li>
+                  <strong>Multi-Stop Planning:</strong> Organizing sequences for multiple package deliveries
+                </li>
+                <li>
+                  <strong>Traffic-Aware Routing:</strong> Incorporating road conditions as edge weights for realistic path calculation
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4>
+                <i class="fas fa-warehouse"></i> Dijkstra's Algorithm: Warehouse Navigation
+              </h4>
+              <p>
+                Within fulfillment centers, path-finding algorithms guide movement:
+              </p>
+              <ul>
+                <li>
+                  <strong>Robotic Navigation:</strong> Guiding automated systems through warehouse floors
+                </li>
+                <li>
+                  <strong>Path Planning:</strong> Finding efficient routes between storage locations
+                </li>
+                <li>
+                  <strong>Pick-Path Optimization:</strong> Creating efficient item collection routes for workers
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4>
+              <i class="fas fa-dollar-sign"></i> Bellman-Ford Algorithm: Supply Chain Applications
+              </h4>
+              <p>
+              Bellman-Ford's ability to handle negative edge weights offers unique advantages in supply chain optimization:
+              </p>
+              <ul>
+              <li>
+                <strong>Dynamic Cost Modeling:</strong> Accounting for promotional rebates, tax incentives, and carrier discounts that can create negative cost edges in transportation networks
+              </li>
+              <li>
+                <strong>Multi-Currency Logistics:</strong> Handling international shipping where currency exchange rate fluctuations can create temporarily negative-cost routes
+              </li>
+              <li>
+                <strong>Trade-off Analysis:</strong> Detecting negative cycles that indicate arbitrage opportunities in global inventory positioning across different markets
+              </li>
+              </ul>
+            </div>
+
+
+
+            <div class="relationship-diagram">
+              <h4>Amazon's Shortest Path Applications</h4>
+              <div class="diagram-container"
+                style="display: flex; flex-direction: row; gap: 20px; align-items: center; width: 100%;">
+                <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+                  <h5>Dijkstra's Algorithm Visualization</h5>
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Dijkstra_Animation.gif"
+                    alt="Dijkstra's Algorithm Visualization"
+                    style="max-width: 100%; height: auto; display: block; margin: 0 auto;" />
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+                  <h5>Bellman-Ford Algorithm Visualization</h5>
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/7/77/Bellman%E2%80%93Ford_algorithm_example.gif"
+                    alt="Bellman-Ford Algorithm Visualization"
+                    style="max-width: 100%; height: auto; display: block; margin: 0 auto;" />
+                </div>
+              </div>
+            </div>
+
+            <div class="efficiency-metrics">
+              <h4>Algorithm Performance Metrics</h4>
+              <div class="metrics-grid">
+                <div class="metric-card">
+                  <h5>Dijkstra's Time Complexity</h5>
+                  <div class="metric-value">O(E + V log V)</div>
+                  <p class="metric-description">
+                    Using priority queue implementation for optimal performance
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Bellman-Ford Time Complexity</h5>
+                  <div class="metric-value">O(V × E)</div>
+                  <p class="metric-description">
+                    Slower but handles negative weights and detects negative cycles
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Space Complexity</h5>
+                  <div class="metric-value">O(V + E)</div>
+                  <p class="metric-description">
+                    Memory required to store graph and distances
+                  </p>
+                </div>
+                
+              </div>
+            </div>
+
+           
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- -------------------- Case Study: Route Optimization for Deliveries ----------------------------- -->
+
+    <!---------------------- Case Study: Seller Trustworthiness Ranking ----------------------------- -->
+    <section id="seller-trust" class="algorithm-case-study">
+      <div class="container">
+        <div class="case-study-header">
+          <p class="case-study-subtitle">Algorithm Analysis</p>
+          <h2 class="case-study-title">4. Seller Trustworthiness Ranking</h2>
+          <p class="case-study-intro">
+            Exploring how Amazon leverages the PageRank algorithm to establish
+            seller trustworthiness rankings based on customer feedback networks,
+            dispute resolution history, and product linkages, creating a
+            comprehensive trust scoring system that helps millions of customers
+            make informed purchasing decisions on the marketplace.
+          </p>
+        </div>
+
+        <div class="algorithm-grid">
+          <div class="algorithm-explanation">
+            <h3>Understanding PageRank for Trust Networks</h3>
+            <p>
+              Amazon&apos; marketplace hosts over 9.7 million sellers worldwide,
+              making seller trustworthiness evaluation critical for customer
+              confidence and platform integrity. The PageRank algorithm,
+              originally developed for web page ranking, has been adapted to
+              analyze trust networks where sellers, customers, and products form
+              interconnected graphs of relationships and feedback patterns.
+            </p>
+            <p>
+              By modeling seller trustworthiness as a network problem, Amazon
+              can identify not just direct feedback patterns but also indirect
+              trust signals through customer behavior, cross-seller
+              relationships, and product quality correlations, providing a more
+              comprehensive and manipulation-resistant ranking system.
+            </p>
+
+            <div class="algorithm-comparison">
+              <div class="algorithm-card">
+                <h4>PageRank Algorithm</h4>
+                <p>
+                  Link analysis algorithm that assigns numerical weights to
+                  interconnected elements, measuring the relative importance and
+                  authority within a network structure.
+                </p>
+                <ul>
+                  <li>
+                    Analyzes connections between sellers, customers, and
+                    products
+                  </li>
+                  <li>
+                    Identifies trusted sellers through their network position
+                  </li>
+                  <li>
+                    Resists manipulation attempts through structural analysis
+                  </li>
+                  <li>
+                    Considers both direct feedback and indirect relationships
+                  </li>
+                  <li>
+                    Provides stable rankings across Amazon's global marketplace
+                  </li>
+                </ul>
+              </div>
+
+              <div class="algorithm-card">
+                <h4>Trust Network & Signal Integration</h4>
+                <p>
+                  System that models marketplace relationships as directed
+                  graphs and integrates trust signals into unified
+                  PageRank-based rankings.
+                </p>
+                <ul>
+                  <li>
+                    Maps relationships between sellers, customers, and products
+                    with weighted connections
+                  </li>
+                  <li>
+                    Captures purchase history, feedback patterns, and
+                    transaction quality
+                  </li>
+                  <li>
+                    Integrates dispute patterns and resolution metrics while
+                    adapting to changing seller behavior over time
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- <div class="algorithm-steps">
+              <h4>Amazon&apos; Seller Trust Ranking Process:</h4>
+              <ol>
+                <li>
+                  Network Construction & Data Modeling:
+                  <ul>
+                    <li>Create seller-customer-product relationship graphs</li>
+                    <li>
+                      Weight edges based on transaction value and feedback
+                      quality
+                    </li>
+                    <li>
+                      Incorporate temporal factors and seasonal trust patterns
+                    </li>
+                    <li>
+                      Apply data normalization for fair cross-category
+                      comparisons
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Trust Signal Aggregation:
+                  <ul>
+                    <li>
+                      Collect customer feedback scores and detailed reviews
+                    </li>
+                    <li>
+                      Analyze dispute resolution history and response times
+                    </li>
+                    <li>
+                      Evaluate product authenticity and quality correlations
+                    </li>
+                    <li>
+                      Factor in shipping performance and customer service
+                      metrics
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  PageRank Computation & Iteration:
+                  <ul>
+                    <li>
+                      Initialize seller trust scores with uniform distribution
+                    </li>
+                    <li>
+                      Apply iterative PageRank algorithm with custom damping
+                      factors
+                    </li>
+                    <li>
+                      Incorporate personalization vectors for category-specific
+                      rankings
+                    </li>
+                    <li>
+                      Monitor convergence and adjust parameters for stability
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Trust Score Validation & Deployment:
+                  <ul>
+                    <li>Validate rankings against known trustworthy sellers</li>
+                    <li>
+                      A/B test ranking changes for customer satisfaction impact
+                    </li>
+                    <li>
+                      Implement gradual score updates to prevent manipulation
+                    </li>
+                    <li>
+                      Provide transparency features for seller improvement
+                      guidance
+                    </li>
+                  </ul>
+                </li>
+              </ol>
+            </div> -->
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('pagerank-code')">
+                  <i class="fas fa-sitemap"></i> View PageRank Algorithm
+                  Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="pagerank-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/PageRank.cpp">View on
+                  Github</a>
+              </div>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('trust-network-code')">
+                  <i class="fas fa-network-wired"></i> View Trust Network
+                  Builder Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="trust-network-code" style="display: none">
+                <a
+                  href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Trust_Network_Builder.cpp">View
+                  On Github</a>
+              </div>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('trust-ranking-code')">
+                  <i class="fas fa-chart-line"></i> View Trust Ranking System
+                  Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="trust-ranking-code" style="display: none">
+                <a
+                  href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Trust_Ranking_System.cpp">View
+                  on Github</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="amazon-applications">
+            <h3>Applications in Amazon's Ecosystem</h3>
+
+            <div class="application-card">
+              <h4><i class="fas fa-store"></i> Marketplace Seller Ranking</h4>
+              <p>
+                Amazon's marketplace uses PageRank-based trust scoring to rank
+                sellers and influence search results:
+              </p>
+              <ul>
+                <li>
+                  <strong>Trust-Based Search & Protection:</strong> Higher trust
+                  scores boost seller visibility in search results and Buy Box
+                  eligibility, while low scores trigger additional verification
+                  and monitoring measures
+                </li>
+                <li>
+                  <strong>Performance Insights & Fraud Prevention:</strong>
+                  Trust metrics help sellers understand improvement areas while
+                  network analysis identifies coordinated fake review schemes
+                  and seller manipulation
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4><i class="fas fa-shield-alt"></i> Amazon Seller Central</h4>
+              <p>
+                Seller Central dashboard provides trust analytics and
+                recommendations based on PageRank algorithms:
+              </p>
+              <ul>
+                <li>
+                  <strong>Trust Score Dashboard & Analytics:</strong> Real-time
+                  visualization of trust metrics with network health analysis
+                  showing customer satisfaction patterns and repeat business
+                  insights
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4><i class="fas fa-users"></i> Customer Review Validation</h4>
+              <p>
+                PageRank algorithms help validate the authenticity and
+                reliability of customer reviews:
+              </p>
+              <ul>
+                <li>
+                  <strong>Reviewer Trust Scoring:</strong> PageRank-based
+                  credibility scoring with higher weights for verified purchases
+                </li>
+              </ul>
+            </div>
+
+
+            <div class="efficiency-metrics">
+              <h4>Trust Ranking Performance Metrics</h4>
+              <div class="metrics-grid">
+                <div class="metric-card">
+                  <h5>PageRank Time Complexity</h5>
+                  <div class="metric-value">O(I × E)</div>
+                  <p class="metric-description">
+                    Where I = iterations until convergence, E = edges in trust graph
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Space Complexity</h5>
+                  <div class="metric-value">O(V + E)</div>
+                  <p class="metric-description">
+                    Memory required to store trust network with V nodes and E edges
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Convergence Rate</h5>
+                  <div class="metric-value">~20 iterations</div>
+                  <p class="metric-description">
+                    Average iterations needed for score stabilization in typical trust networks
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Update Time</h5>
+                  <div class="metric-value">O(log V)</div>
+                  <p class="metric-description">
+                    Time to incorporate new feedback into existing trust scores
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Query Performance</h5>
+                  <div class="metric-value">O(1)</div>
+                  <p class="metric-description">
+                    Time to retrieve pre-computed trust score for any seller
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+
+           
+
+            <div class="diagram-container" style="
+                margin-top: 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+              ">
+              <h2>PageRank Algorithm</h2>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Page_rank_animation.gif" style="
+                  width: 80%;
+                  height: auto;
+                  border-radius: 6px;
+                  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                  display: block;
+                  margin: 0 auto;
+                " />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!---------------------- Case Study: Seller Trustworthiness Ranking ----------------------------- -->
+
+    <!---------------------- Case Study: Product Search Autocomplete ----------------------------- -->
+    <section id="product-autocomplete" class="algorithm-case-study">
+      <div class="container">
+        <div class="case-study-header">
+          <p class="case-study-subtitle">Algorithm Analysis</p>
+          <h2 class="case-study-title">5. Product Search Autocomplete</h2>
+          <p class="case-study-intro">
+            Discover how Amazon delivers instant, relevant product suggestions
+            as users type, using efficient data structures like Trie (Prefix
+            Tree) and Suffix Array to power its autocomplete feature for
+            billions of daily queries across its vast product catalog.
+          </p>
+        </div>
+
+        <div class="algorithm-grid">
+          <div class="algorithm-explanation">
+            <h3>Understanding Autocomplete Algorithms</h3>
+            <p>
+              Amazon's product search autocomplete must be fast, accurate, and
+              scalable across hundreds of millions of products. The system
+              leverages Tries (Prefix Trees) for rapid prefix lookups and Suffix
+              Arrays for comprehensive substring matching, ensuring users see
+              relevant suggestions in milliseconds while handling complex
+              product names, brands, and category hierarchies.
+            </p>
+            <p>
+              The combination of these data structures enables Amazon to handle
+              both prefix-based searches (when users start typing) and substring
+              searches (when users search for partial product names), providing
+              a comprehensive autocomplete experience that adapts to various
+              search patterns and user behaviors.
+            </p>
+
+            <div class="algorithm-comparison">
+              <div class="algorithm-card">
+                <h4>Trie (Prefix Tree)</h4>
+                <p>
+                  Tree-like data structure for storing strings, enabling O(L)
+                  prefix queries where L is the length of the search prefix.
+                </p>
+                <ul>
+                  <li>Time complexity: O(L) for prefix search</li>
+                  <li>Space complexity: O(ALPHABET_SIZE × N × M)</li>
+                  <li>Efficient for large vocabularies with shared prefixes</li>
+                  <li>Supports real-time prefix-based autocomplete</li>
+                  <li>Enables ranking and frequency tracking per node</li>
+                </ul>
+              </div>
+
+              <div class="algorithm-card">
+                <h4>Ternary Search Tree</h4>
+                <p>
+                  Alternative to Trie that uses ternary nodes (less, equal,
+                  greater) providing better space efficiency while maintaining
+                  fast search performance.
+                </p>
+                <ul>
+                  <li>Better space efficiency than standard Trie</li>
+                  <li>Supports partial matching and wildcards</li>
+                  <li>Balanced tree structure for consistent performance</li>
+                  <li>Handles Unicode characters efficiently</li>
+                  <li>Enables fuzzy matching capabilities</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- <div class="algorithm-steps">
+              <h4>Amazon's Autocomplete Process:</h4>
+              <ol>
+                <li>
+                  Data Preparation & Indexing:
+                  <ul>
+                    <li>
+                      Collect, normalize, and tokenize popular search terms,
+                      product names, and categories with language processing
+                    </li>
+                    <li>
+                      Build frequency maps with popularity scores and create
+                      category-specific indices for targeted suggestions
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Data Structure Construction:
+                  <ul>
+                    <li>
+                      Build compressed Tries for prefix lookups and Ternary
+                      Search Trees for fuzzy matching
+                    </li>
+                    <li>
+                      Store metadata including popularity scores, category
+                      information, and contextual relevance signals
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Query Processing & Result Delivery:
+                  <ul>
+                    <li>
+                      Execute parallel searches across data structures with
+                      intelligent ranking combining popularity and relevance
+                    </li>
+                    <li>
+                      Personalize results based on user history, cache frequent
+                      queries, and implement progressive loading as users type
+                    </li>
+                  </ul>
+                </li>
+              </ol>
+            </div> -->
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('trie-code')">
+                  <i class="fas fa-tree"></i> View Trie (Prefix Tree)
+                  Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="trie-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Trie.cpp">View on
+                  Github</a>
+              </div>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('ternary-search-tree-code')">
+                  <i class="fas fa-project-diagram"></i> View Ternary Search
+                  Tree Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="ternary-search-tree-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Ternary_Search_Tree.cpp">View
+                  on Github</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="amazon-applications">
+            <h3>Applications in Amazon's Ecosystem</h3>
+
+            <div class="application-card">
+              <h4><i class="fas fa-search"></i> Instant Product Suggestions</h4>
+              <p>
+                Amazon's search interface delivers real-time autocomplete
+                suggestions across its vast product catalog:
+              </p>
+              <ul>
+                <li>
+                  <strong>Lightning-Fast Search & Personalization:</strong> Trie
+                  structures deliver sub-millisecond responses for billions of
+                  daily queries, with results tailored to user history, browsing
+                  patterns, and location
+                </li>
+                <li>
+                  <strong>Global Scalability:</strong> Distributed Trie
+                  structures and Ternary Search Trees handle Unicode characters
+                  across Amazon's worldwide marketplace, enabling horizontal
+                  scaling and multi-language support
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4><i class="fas fa-tags"></i> Category & Brand Autocomplete</h4>
+              <p>
+                Advanced autocomplete features suggest categories, brands, and
+                trending searches:
+              </p>
+              <ul>
+                <li>
+                  <strong>Hierarchical Data Indexing:</strong> Compressed Tries
+                  and Suffix Arrays enable category-aware suggestions, quickly
+                  surfacing trending queries and seasonal product searches based
+                  on current user behavior
+                </li>
+                <li>
+                  <strong>Intelligent Context Adaptation:</strong> Suggestions
+                  adapt to user device, location, and search history while
+                  machine learning algorithms continuously refine models using
+                  click-through rates and conversion data
+                </li>
+              </ul>
+            </div>
+            <div class="efficiency-metrics">
+              <h4>Autocomplete Performance Metrics</h4>
+              <div class="metrics-grid">
+              <div class="metric-card">
+                <h5>Trie Lookup</h5>
+                <div class="metric-value">O(L)</div>
+                <p class="metric-description">
+                Prefix search time where L is the length of search prefix
+                </p>
+              </div>
+              <div class="metric-card">
+                <h5>Trie Space</h5>
+                <div class="metric-value">O(N × L)</div>
+                <p class="metric-description">
+                Space complexity for N strings with average length L
+                </p>
+              </div>
+              <div class="metric-card">
+                <h5>Trie Construction</h5>
+                <div class="metric-value">O(N × L)</div>
+                <p class="metric-description">
+                Time to build trie from N strings of average length L
+                </p>
+              </div>
+              <div class="metric-card">
+                <h5>Suffix Array Search</h5>
+                <div class="metric-value">O(M log N)</div>
+                <p class="metric-description">
+                Substring search time for pattern length M in array size N
+                </p>
+              </div>
+              <div class="metric-card">
+                <h5>Suffix Array Space</h5>
+                <div class="metric-value">O(N)</div>
+                <p class="metric-description">
+                Space required for suffix array of text length N
+                </p>
+              </div>
+              <div class="metric-card">
+                <h5>Suffix Array Construction</h5>
+                <div class="metric-value">O(N log N)</div>
+                <p class="metric-description">
+                Time to build suffix array for text of length N
+                </p>
+              </div>
+              </div>
+            </div>
+
+            <div class="diagram-container" style="
+                margin-top: 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+              ">
+              <h2>Trie Visualization</h2>
+              <img src="https://ud4yy.github.io/APS-Portfolio/trie2.png" style="
+                  width: 80%;
+                  height: auto;
+                  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                  display: block;
+                  margin: 0 auto;
+                " />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!---------------------- Case Study: Product Search Autocomplete ----------------------------- -->
+
+    <!---------------------- Case Study: Product Price Range Queries ----------------------------- -->
+    <section id="price-range" class="algorithm-case-study">
+      <div class="container">
+        <div class="case-study-header">
+          <p class="case-study-subtitle">Algorithm Analysis</p>
+          <h2 class="case-study-title">6. Product Price Range Queries</h2>
+          <p class="case-study-intro">
+            Exploring how Amazon efficiently handles millions of price range
+            queries using Segment Trees to quickly find minimum, maximum, and
+            sum of prices over product ranges, enabling instant filtering,
+            analytics, and dynamic pricing decisions across its vast product
+            catalog.
+          </p>
+        </div>
+
+        <div class="algorithm-grid">
+          <div class="algorithm-explanation">
+            <h3>Understanding Segment Tree Algorithms</h3>
+            <p>
+              Amazon's product catalog contains hundreds of millions of items
+              with constantly changing prices. When customers filter by price
+              range or when algorithms analyze pricing trends, the system needs
+              to efficiently compute aggregated values (min, max, sum) over
+              arbitrary product ranges. Segment Trees provide O(log n) query and
+              update performance, making them ideal for real-time price
+              analytics.
+            </p>
+            <p>
+              Segment Trees excel at range queries and updates, supporting
+              Amazon's dynamic pricing algorithms, competitor price monitoring,
+              and customer filtering features that require instant responses
+              across massive datasets.
+            </p>
+
+            <div class="algorithm-comparison">
+              <div class="algorithm-card">
+                <h4>Segment Tree</h4>
+                <p>
+                  Binary tree data structure that stores information about array
+                  segments, enabling efficient range queries and updates in
+                  O(log n) time complexity.
+                </p>
+                <ul>
+                  <li>Range query time: O(log n)</li>
+                  <li>Point update time: O(log n)</li>
+                  <li>Space complexity: O(4n) for array of size n</li>
+                  <li>Supports multiple operations (min, max, sum, count)</li>
+                  <li>Handles dynamic updates efficiently</li>
+                </ul>
+              </div>
+
+              <div class="algorithm-card">
+                <h4>Range Query Operations</h4>
+                <p>
+                  Segment Trees support various aggregation functions over array
+                  ranges, crucial for price analytics and filtering operations.
+                </p>
+                <ul>
+                  <li>
+                    <strong>Range Minimum Query:</strong> Find lowest price in
+                    range
+                  </li>
+                  <li>
+                    <strong>Range Maximum Query:</strong> Find highest price in
+                    range
+                  </li>
+                  <li>
+                    <strong>Range Sum Query:</strong> Calculate total value of
+                    products
+                  </li>
+                  <li>
+                    <strong>Range Count Query:</strong> Count products in price
+                    range
+                  </li>
+                  <li>
+                    <strong>Custom Aggregations:</strong> Average, median,
+                    percentiles
+                  </li>
+                </ul>
+              </div>
+
+              <div class="algorithm-card">
+                <h4>Update Operations</h4>
+                <p>
+                  Efficient handling of price changes and inventory updates
+                  while maintaining query performance across the entire system.
+                </p>
+                <ul>
+                  <li>
+                    <strong>Point Updates:</strong> Single product price changes
+                  </li>
+                  <li>
+                    <strong>Range Updates:</strong> Bulk price adjustments
+                  </li>
+                  <li>
+                    <strong>Lazy Propagation:</strong> Deferred update
+                    processing
+                  </li>
+                  <li>
+                    <strong>Version Control:</strong> Historical price tracking
+                  </li>
+                  <li>
+                    <strong>Batch Processing:</strong> Optimized bulk operations
+                  </li>
+                </ul>
+              </div>
+
+              <div class="algorithm-card">
+                <h4>Performance Benefits</h4>
+                <p>
+                  Segment Trees provide significant performance advantages over
+                  naive approaches for large-scale price query systems.
+                </p>
+                <ul>
+                  <li>
+                    <strong>Logarithmic Complexity:</strong> Scales well with
+                    data size
+                  </li>
+                  <li>
+                    <strong>Cache Efficiency:</strong> Tree structure improves
+                    locality
+                  </li>
+                  <li>
+                    <strong>Parallelization:</strong> Independent subtree
+                    processing
+                  </li>
+                  <li>
+                    <strong>Memory Optimization:</strong> Compressed
+                    representations
+                  </li>
+                  <li>
+                    <strong>Real-time Updates:</strong> Instant price change
+                    propagation
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- <div class="algorithm-steps">
+              <h4>Amazon's Price Range Query Process:</h4>
+              <ol>
+                <li>
+                  Data Structure Initialization:
+                  <ul>
+                    <li>
+                      Build category-specific segment trees indexed by price and
+                      relevance with specialized variants optimized for
+                      different query types and lazy propagation for bulk
+                      updates
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Query Processing Pipeline:
+                  <ul>
+                    <li>
+                      Parse customer price filters and execute O(log n) range
+                      queries across optimal segment trees, combining results
+                      when necessary
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Dynamic Price Updates:
+                  <ul>
+                    <li>
+                      Monitor real-time seller price changes and efficiently
+                      propagate updates across distributed trees to maintain
+                      system-wide consistency
+                    </li>
+                  </ul>
+                </li>
+              </ol>
+            </div> -->
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('segment-tree-code')">
+                  <i class="fas fa-sitemap"></i> View Segment Tree
+                  Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="segment-tree-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Segment_Tree.cpp">View on
+                  Github</a>
+              </div>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('price-query-system-code')">
+                  <i class="fas fa-dollar-sign"></i> View Price Query System
+                  Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="price-query-system-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Price_Query_System.cpp">View
+                  on Github</a>
+              </div>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('advanced-segment-tree-code')">
+                  <i class="fas fa-cogs"></i> View Advanced Segment Tree
+                  Features
+                </button>
+              </div>
+              <div class="code-snippet" id="advanced-segment-tree-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Segment_Tree_mul.cpp">View
+                  on Github</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="amazon-applications">
+            <h3>Applications in Amazon's Ecosystem</h3>
+
+            <div class="application-card">
+              <h4><i class="fas fa-filter"></i> Product Price Filtering</h4>
+              <p>
+                Amazon's search and filter system uses segment trees for instant
+                price range filtering:
+              </p>
+              <ul>
+                <li>
+                  <strong>Real-Time Price Filtering:</strong> Segment trees
+                  enable O(log n) queries across millions of products with
+                  instant recalculation when users adjust price sliders
+                </li>
+                <li>
+                  <strong>Advanced Filtering Architecture:</strong>
+                  Category-specific segment trees support multi-dimensional
+                  queries combining price, rating, and availability for
+                  comprehensive filtering
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4>
+                <i class="fas fa-chart-line"></i> Price Analytics & Business
+                Intelligence
+              </h4>
+              <p>
+                Business intelligence systems leverage segment trees for
+                comprehensive price analysis:
+              </p>
+              <ul>
+                <li>
+                  <strong>Market & Competitor Analysis:</strong> Real-time price
+                  statistics computation across categories with competitor
+                  comparison and trend monitoring
+                </li>
+                <li>
+                  <strong>Revenue & Historical Optimization:</strong> Analysis
+                  of price points and profit margins using temporal segment
+                  trees for time-series price analytics
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4><i class="fas fa-robot"></i> Dynamic Pricing Engine</h4>
+              <p>
+                Amazon's algorithmic pricing system uses segment trees for
+                decision-making:
+              </p>
+              <ul>
+                <li>
+                  <strong>Strategic Pricing & Positioning:</strong> Finding
+                  optimal price points within competitive ranges and analyzing
+                  market position relative to competitors
+                </li>
+                <li>
+                  <strong>Dynamic Price Management:</strong> Efficient bulk
+                  updates for promotional campaigns with rapid A/B testing and
+                  analysis for data-driven pricing decisions
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4>
+                <i class="fas fa-warehouse"></i> Inventory & Supply Chain
+                Analytics
+              </h4>
+              <p>
+                Supply chain systems use price range queries for inventory and
+                procurement decisions:
+              </p>
+              <ul>
+                <li>
+                  <strong>Financial Analytics:</strong> Quick calculation of
+                  inventory valuation across warehouses and real-time profit
+                  margin analysis across product lines
+                </li>
+                <li>
+                  <strong>Strategic Planning:</strong> Identifying
+                  cost-effective supplier price ranges and conducting
+                  price-sensitive demand forecasting using historical data
+                </li>
+              </ul>
+            </div>
+
+            <div class="efficiency-metrics">
+              <h4>Segment Tree Performance Metrics</h4>
+              <div class="metrics-grid">
+              <div class="metric-card">
+                <h5>Query Time</h5>
+                <div class="metric-value">O(log n)</div>
+                <p class="metric-description">
+                Range query complexity for min/max/sum operations
+                </p>
+              </div>
+              <div class="metric-card">
+                <h5>Update Time</h5>
+                <div class="metric-value">O(log n)</div>
+                <p class="metric-description">
+                Point update time complexity
+                </p>
+              </div>
+              <div class="metric-card">
+                <h5>Construction Time</h5>
+                <div class="metric-value">O(n)</div>
+                <p class="metric-description">
+                Time to build initial segment tree from array
+                </p>
+              </div>
+              <div class="metric-card">
+                <h5>Space Usage</h5>
+                <div class="metric-value">O(4n)</div>
+                <p class="metric-description">
+                Memory overhead for segment tree storage
+                </p>
+              </div>
+              <div class="metric-card">
+                <h5>Lazy Propagation</h5>
+                <div class="metric-value">O(log n)</div>
+                <p class="metric-description">
+                Range update with deferred propagation
+                </p>
+              </div>
+              <div class="metric-card">
+                <h5>Cache Efficiency</h5>
+                <div class="metric-value">High</div>
+                <p class="metric-description">
+                Sequential memory access patterns improve cache performance
+                </p>
+              </div>
+              </div>
+            </div>
+
+            <div class="diagram-container" style="
+                margin-top: 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+              ">
+              <h2>Segment Tree</h2>
+              <img src="https://ud4yy.github.io/APS-Portfolio/segment.png" style="
+                  width: 80%;
+                  height: auto;
+                  border-radius: 6px;
+                  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                  display: block;
+                  margin: 0 auto;
+                " />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!---------------------- Case Study: Product Price Range Queries ----------------------------- -->
+
+    <!---------------------- Case Study: Top-k Items Sorted by Price ----------------------------- -->
+    <section id="top-k-items" class="algorithm-case-study">
+      <div class="container">
+        <div class="case-study-header">
+          <p class="case-study-subtitle">Algorithm Analysis</p>
+          <h2 class="case-study-title">7. Top-k Items Sorted by Price</h2>
+          <p class="case-study-intro">
+            Exploring how Amazon efficiently finds and maintains the top-k
+            cheapest or most expensive items using sophisticated heap data
+            structures, enabling real-time product recommendations, price-based
+            filtering, and dynamic ranking across millions of products with
+            optimal performance.
+          </p>
+        </div>
+
+        <div class="algorithm-grid">
+          <div class="algorithm-explanation">
+            <h3>Understanding Heap-Based Top-k Algorithms</h3>
+            <p>
+              Amazon's product catalog requires constant ranking and filtering
+              of items by price. Whether finding the cheapest electronics, most
+              expensive luxury items, or maintaining dynamic price-based
+              recommendations, heap data structures provide optimal O(log k)
+              insertion and extraction performance for top-k queries across
+              massive datasets.
+            </p>
+            <p>
+              Different heap variants serve specific purposes: Min-Heaps for
+              finding cheapest items, Max-Heaps for premium products, and
+              specialized heaps for dynamic ranking scenarios. This enables
+              Amazon to provide instant price-based sorting and filtering across
+              its vast product ecosystem.
+            </p>
+
+            <div class="algorithm-comparison">
+              <div class="algorithm-card">
+                <h4>Binary Heaps (Min & Max)</h4>
+                <p>
+                  Tree-based data structures where parent nodes maintain
+                  specific relationships with children: in min-heaps, parents
+                  are smaller than children (for finding minimums); in
+                  max-heaps, parents are larger (for finding maximums).
+                </p>
+                <ul>
+                  <li>O(1) access to min/max element at root</li>
+                  <li>Insertion and extraction time: O(log n)</li>
+                  <li>Heapify operation: O(n)</li>
+                  <li>Space complexity: O(n)</li>
+                  <li>
+                    Perfect for price-based sorting (cheapest/premium items)
+                  </li>
+                  <li>Supports priority-based operations</li>
+                </ul>
+              </div>
+
+              <div class="algorithm-card">
+                <h4>Top-k Min/Max Heap</h4>
+                <p>
+                  Efficient fixed-size heaps that track the k smallest or
+                  largest elements using max-heap or min-heap strategies.
+                </p>
+                <ul>
+                  <li>Tracks top-k cheapest or most expensive items</li>
+                  <li>
+                    Uses max-heap for min tracking, min-heap for max tracking
+                  </li>
+                  <li>O(log k) insertion for each new candidate</li>
+                  <li>Automatic eviction of least relevant items</li>
+                  <li>Memory-efficient and scalable with fixed size k</li>
+                  <li>
+                    Ideal for real-time ranking, filtering, and prioritization
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- 
+            <div class="algorithm-steps">
+              <h4>Amazon's Top-k Price Ranking Process:</h4>
+              <ol>
+                <li>
+                  Data Structure Initialization:
+                  <ul>
+                    <li>
+                      Create category-specific min/max heaps for different
+                      product types and price ranges (budget-friendly and
+                      premium)
+                    </li>
+                    <li>
+                      Implement dynamic k-value adjustment based on user
+                      preferences and query context
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Product Ingestion & Management:
+                  <ul>
+                    <li>
+                      Stream real-time product updates into appropriate heaps
+                      while maintaining efficient balancing
+                    </li>
+                    <li>
+                      Process bulk price changes and new inventory with
+                      optimized heap operations
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Query Processing:
+                  <ul>
+                    <li>
+                      Execute O(k log k) extraction for top-k results, combining
+                      data from multiple category-specific heaps
+                    </li>
+                    <li>
+                      Apply additional filters (ratings, availability) and
+                      generate ranked results with metadata
+                    </li>
+                  </ul>
+                </li>
+              </ol>
+            </div> -->
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('binary-heap-code')">
+                  <i class="fas fa-sitemap"></i> View Binary Heap Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="binary-heap-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Binary_heap.cpp">View
+                  Code on Github</a>
+              </div>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('topk-heap-code')">
+                  <i class="fas fa-trophy"></i> View Top-k Heap Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="topk-heap-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Top-k_Heap.cpp">View on
+                  Github</a>
+              </div>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('priority-queue-code')">
+                  <i class="fas fa-sort-amount-down"></i> View Priority Queue
+                  Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="priority-queue-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Priority_Queue.cpp">View
+                  Code on Github</a>
+              </div>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('heap-sort-code')">
+                  <i class="fas fa-sort"></i> View Heap Sort Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="heap-sort-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Heap_Sort.cpp">View Code
+                  on Github</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="amazon-applications">
+            <h3>Applications in Amazon's Ecosystem</h3>
+
+            <div class="application-card">
+              <h4>
+                <i class="fas fa-dollar-sign"></i> Price-Based Product Filtering
+              </h4>
+              <p>
+                Amazon's search and filtering system uses heaps for efficient
+                price-based product ranking:
+              </p>
+              <ul>
+                <li>
+                  <strong>Price-Based Ranking:</strong> Min/max heaps maintain
+                  cheapest and premium products across categories for different
+                  customer segments
+                </li>
+                <li>
+                  <strong>Dynamic Filtering:</strong> Real-time heap updates as
+                  prices change, with category-specific heaps ensuring relevant
+                  comparisons
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4>
+                <i class="fas fa-chart-line"></i> Real-Time Recommendations
+              </h4>
+              <p>
+                Amazon's recommendation engine leverages heaps for instant
+                price-based suggestions:
+              </p>
+              <ul>
+                <li>
+                  <strong>Product & Price Matching:</strong> Top-k heaps
+                  efficiently identify similar-priced products and competitive
+                  alternatives based on viewing history
+                </li>
+                <li>
+                  <strong>Deal Optimization:</strong> Min-heaps track best
+                  deals, discounts, and price drops across millions of products,
+                  enabling real-time alerts for wishlisted items
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4><i class="fas fa-tags"></i> Dynamic Pricing & Inventory</h4>
+              <p>
+                Amazon's pricing algorithms use heaps for market analysis and
+                inventory optimization:
+              </p>
+              <ul>
+                <li>
+                  <strong>Strategic Pricing:</strong> Top-k heaps track
+                  competitor prices and enable dynamic seasonal adjustments for
+                  optimal market positioning
+                </li>
+                <li>
+                  <strong>Inventory Management:</strong> Efficient sorting of
+                  products by profit margins and identification of slow-moving
+                  inventory requiring price adjustments
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4><i class="fas fa-mobile-alt"></i> Mobile App Optimization</h4>
+              <p>
+                Amazon's mobile applications use lightweight heap
+                implementations for responsive user experience:
+              </p>
+              <ul>
+                <li>
+                  <strong>Efficient Sorting & Filtering:</strong> Instant "Sort
+                  by Price" functionality using memory-efficient heap operations
+                  optimized for mobile devices
+                </li>
+                <li>
+                  <strong>Performance Optimization:</strong> Fixed-size k-heaps
+                  enable offline price comparisons and smooth pagination when
+                  scrolling through price-sorted results
+                </li>
+              </ul>
+            </div>
+
+            <div class="efficiency-metrics">
+              <h4>Heap Performance Metrics</h4>
+              <div class="metrics-grid">
+                <div class="metric-card">
+                  <h5>Insertion Time</h5>
+                  <div class="metric-value">O(log k)</div>
+                  <p class="metric-description">
+                    Time to add new product to top-k heap
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Extraction Time</h5>
+                  <div class="metric-value">O(log k)</div>
+                  <p class="metric-description">
+                    Time to retrieve best/worst element from heap
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Space Complexity</h5>
+                  <div class="metric-value">O(k)</div>
+                  <p class="metric-description">
+                    Memory usage for top-k heap with k elements
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!---------------------- Case Study: Top-k Items Sorted by Price ----------------------------- -->
+
+
+
+    <!---------------------- Case Study: EC2 Spot Instance Allocation ----------------------------- -->
+    <section id="ec2-spot" class="algorithm-case-study">
+      <div class="container">
+        <div class="case-study-header">
+          <p class="case-study-subtitle">Algorithm Analysis</p>
+          <h2 class="case-study-title">8. EC2 Spot Instance Allocation</h2>
+          <p class="case-study-intro">
+            Exploring how Amazon EC2 leverages the Stable Marriage Algorithm to
+            optimally match bidding clients to available spot instances based on
+            mutual preferences including price, location, instance type, and
+            performance requirements, ensuring stable and efficient resource
+            allocation across AWS's global infrastructure.
+          </p>
+        </div>
+
+        <div class="algorithm-grid">
+          <div class="algorithm-explanation">
+            <h3>Understanding Stable Marriage Algorithm for Resource Allocation</h3>
+            <p>
+              Amazon EC2 Spot Instances offer spare compute capacity at up to 90%
+              discount compared to On-Demand prices. The challenge lies in
+              efficiently matching thousands of client bids with available instances
+              across multiple regions, considering preferences for price, location,
+              instance specifications, and availability zones while ensuring stable
+              allocations that minimize churn and maximize satisfaction.
+            </p>
+            <p>
+              The Stable Marriage Algorithm provides an optimal solution by creating
+              stable matchings where no client-instance pair would prefer each other
+              over their current assignments, preventing market instability and
+              ensuring fair resource distribution across AWS's global infrastructure.
+            </p>
+
+            <div class="algorithm-comparison">
+              <div class="algorithm-card">
+                <h4>Stable Marriage Algorithm</h4>
+                <p>
+                  Classical algorithm that finds stable matchings between two sets
+                  of entities with mutual preferences, ensuring no blocking pairs
+                  exist in the final allocation.
+                </p>
+                <ul>
+                  <li>Time complexity: O(n²) for n clients and instances</li>
+                  <li>Guarantees stable matching with no blocking pairs</li>
+                  <li>Optimal for one side (client-optimal or instance-optimal)</li>
+                  <li>Handles dynamic preferences and availability changes</li>
+                  <li>Minimizes allocation churn and reassignments</li>
+                </ul>
+              </div>
+
+              <div class="algorithm-card">
+                <h4>Preference Modeling</h4>
+                <p>
+                  Multi-dimensional preference system that considers price
+                  sensitivity, geographic requirements, and technical specifications
+                  for optimal matching.
+                </p>
+                <ul>
+                  <li>Price-based bidding with budget constraints</li>
+                  <li>Geographic preferences for latency optimization</li>
+                  <li>Instance type matching (CPU, memory, storage)</li>
+                  <li>Availability zone preferences for redundancy</li>
+                  <li>Historical performance and reliability metrics</li>
+                </ul>
+              </div>
+            </div>
+            <!-- 
+        <div class="algorithm-steps">
+          <h4>EC2 Spot Instance Allocation Process:</h4>
+          <ol>
+            <li>
+              Data Collection & preference Modeling:
+              <ul>
+                <li>
+                  Collect client bid requests with price, location, and instance
+                  type preferences
+                </li>
+                <li>
+                  Aggregate available spot instances across regions with
+                  capacity and pricing data
+                </li>
+                <li>
+                  Generate preference rankings based on bid prices, latency
+                  requirements, and historical patterns
+                </li>
+              </ul>
+            </li>
+            <li>
+              Stable Marriage Algorithm Execution:
+              <ul>
+                <li>
+                  Initialize all clients and instances as unmatched
+                </li>
+                <li>
+                  Iteratively propose matches based on highest preferences
+                </li>
+                <li>
+                  Handle rejections and re-proposals until stable matching
+                </li>
+                <li>
+                  Validate allocation stability and optimize for fairness
+                </li>
+              </ul>
+            </li>
+            <li>
+              Dynamic Reallocation & Monitoring:
+              <ul>
+                <li>
+                  Monitor spot price changes and capacity fluctuations
+                </li>
+                <li>
+                  Trigger reallocation when stability is compromised
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </div> -->
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('stable-marriage-code')">
+                  <i class="fas fa-heart"></i> View Stable Marriage Algorithm
+                  Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="stable-marriage-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Stable_Marriage.cpp">View
+                  on Github</a>
+              </div>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('spot-instance-allocator-code')">
+                  <i class="fas fa-server"></i> View Spot Instance Allocator
+                  Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="spot-instance-allocator-code" style="display: none">
+                <a
+                  href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Spot_Instance_Allocator.cpp">View
+                  on Github</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="amazon-applications">
+            <h3>Applications in Amazon's Ecosystem</h3>
+
+            <div class="application-card">
+              <h4><i class="fas fa-cloud"></i> EC2 Spot Fleet Management</h4>
+              <p>
+                AWS Spot Fleet uses stable marriage algorithms for intelligent
+                instance allocation across multiple instance types and regions:
+              </p>
+              <ul>
+                <li>
+                  <strong>Multi-Instance Optimization:</strong> Stable Marriage
+                  ensures optimal matching between diverse client requirements and
+                  heterogeneous instance offerings across availability zones
+                </li>
+                <li>
+                  <strong>Cost & Performance Balance:</strong> Algorithm balances
+                  price sensitivity with performance requirements, geographic
+                  constraints, and fault tolerance needs
+                </li>
+              </ul>
+            </div>
+
+
+            <div class="application-card">
+              <h4><i class="fas fa-users"></i> Enterprise Batch Computing</h4>
+              <p>
+                AWS Batch and large-scale computing workloads benefit from stable
+                instance allocation:
+              </p>
+              <ul>
+                <li>
+                  <strong>Workload-Instance Matching:</strong> Matches compute-intensive
+                  jobs with appropriate instance types based on CPU, memory, and
+                  network requirements
+                </li>
+                <li>
+                  <strong>Cost-Efficient Processing:</strong> Leverages spot pricing
+                  for batch workloads while ensuring job completion reliability
+                  through stable allocations
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4><i class="fas fa-robot"></i> Machine Learning Training</h4>
+              <p>
+                SageMaker and ML training workloads use spot instances with stable
+                allocation strategies:
+              </p>
+              <ul>
+                <li>
+                  <strong>GPU Instance Allocation:</strong> Efficiently matches ML
+                  training jobs with specialized GPU instances based on model
+                  requirements and budget constraints
+                </li>
+
+              </ul>
+            </div>
+
+          <div class="efficiency-metrics">
+            <h4>Allocation Performance Metrics</h4>
+            <div class="metrics-grid">
+              <div class="metric-card">
+                <h5>Algorithm Complexity</h5>
+                <div class="metric-value">O(n²)</div>
+                <p class="metric-description">
+                  Time complexity for matching n clients with n instances
+                </p>
+              </div>
+              <div class="metric-card">
+                <h5>Space Complexity</h5>
+                <div class="metric-value">O(n²)</div>
+                <p class="metric-description">
+                  Memory required to store preference lists and current matching state
+                </p>
+              </div>
+              <div class="metric-card">
+                <h5>Allocation Quality</h5>
+                <div class="metric-value">100%</div>
+                <p class="metric-description">
+                  Percentage of matches that are stable with no blocking pairs
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+            <div class="diagram-container" style="
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+          ">
+              <h2>Stable Marriage Algorithm Visualization</h2>
+              <img src="https://i.ytimg.com/vi/Px7NQ3Wssf8/maxresdefault.jpg" style="
+              width: 70%;
+              height: auto;
+              border-radius: 6px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+              display: block;
+              margin: 0 auto;
+            " />
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!---------------------- Case Study: EC2 Spot Instance Allocation ----------------------------- -->
+
+
+
+    <!---------------------- Case Study: Assigning Jobs to Workers ----------------------------- -->
+    <section id="job-assignment" class="algorithm-case-study">
+      <div class="container">
+        <div class="case-study-header">
+          <p class="case-study-subtitle">Algorithm Analysis</p>
+          <h2 class="case-study-title">9. Assigning Jobs to Workers</h2>
+          <p class="case-study-intro">
+            Exploring how Amazon optimizes task allocation across its massive workforce using the Hungarian Algorithm to
+            solve assignment problems, ensuring optimal matching of workers to tasks based on skills, availability, and
+            performance metrics across warehouses, delivery networks, and fulfillment centers.
+          </p>
+        </div>
+
+        <div class="algorithm-grid">
+          <div class="algorithm-explanation">
+            <h3>Understanding Assignment Problem Algorithms</h3>
+            <p>
+              Amazon's operations require optimal assignment of thousands of workers to diverse tasks daily across
+              fulfillment centers, delivery routes, and customer service operations. The Assignment Problem seeks to
+              find minimum-cost perfect matching between workers and jobs, considering factors like skill level,
+              efficiency ratings, and task complexity.
+            </p>
+            <p>
+              The Hungarian Algorithm provides an optimal O(n³) solution for assignment problems, enabling Amazon to
+              minimize operational costs while maximizing productivity through intelligent worker-task allocation across
+              its global network.
+            </p>
+
+            <div class="algorithm-comparison">
+              <div class="algorithm-card">
+                <h4>Hungarian Algorithm</h4>
+                <p>
+                  Classical algorithm for solving assignment problems optimally, finding minimum-cost perfect matching
+                  in bipartite graphs through systematic cost matrix reduction.
+                </p>
+                <ul>
+                  <li>Time complexity: O(n³) for n workers and n tasks</li>
+                  <li>Guarantees optimal assignment with minimum total cost</li>
+                  <li>Handles both minimization and maximization objectives</li>
+                  <li>Works with cost matrices and skill-based weightings</li>
+                  <li>Scales efficiently for large workforce optimization</li>
+                </ul>
+              </div>
+
+              <div class="algorithm-card">
+                <h4>Assignment Optimization</h4>
+                <p>
+                  Multi-factor optimization system that considers worker skills, task requirements, and operational
+                  constraints for optimal productivity matching.
+                </p>
+                <ul>
+                  <li>Skill-based matching with proficiency scoring</li>
+                  <li>Workload balancing across shifts and departments</li>
+                  <li>Performance history and efficiency metrics integration</li>
+                  <li>Real-time availability and scheduling constraints</li>
+                  <li>Cost minimization with quality maintenance</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- <div class="algorithm-steps">
+          <h4>Amazon's Worker-Task Assignment Process:</h4>
+          <ol>
+            <li>
+              Cost Matrix Construction:
+              <ul>
+                <li>Build cost matrices based on worker skills, task complexity, and historical performance data</li>
+                <li>Factor in training requirements, efficiency ratings, and scheduling preferences</li>
+              </ul>
+            </li>
+            <li>
+              Hungarian Algorithm Execution:
+              <ul>
+                <li>Apply matrix reduction to identify optimal assignments</li>
+                <li>Handle ties and multiple optimal solutions for flexibility</li>
+              </ul>
+            </li>
+            <li>
+              Assignment Validation & Deployment:
+              <ul>
+                <li>Validate assignments against operational constraints and worker availability</li>
+                <li>Implement gradual rollout with performance monitoring and adjustment capabilities</li>
+              </ul>
+            </li>
+          </ol>
+        </div> -->
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('hungarian-algorithm-code')">
+                  <i class="fas fa-calculator"></i> View Hungarian Algorithm Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="hungarian-algorithm-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Hungarian_Algorithm.cpp">View
+                  on Github</a>
+              </div>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('assignment-problem-code')">
+                  <i class="fas fa-users-cog"></i> View Assignment Problem Solver Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="assignment-problem-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Assignment_Problem.cpp">View
+                  on Github</a>
+              </div>
+            </div>
+
+            <div class="diagram-container" style="
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+          ">
+
+              <h2>Assignment Problem Matrix</h2>
+              <img src="/images/assignment.png" style="
+              width: 100%;
+              height: auto;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+              display: block;
+              margin: 0 auto;
+            " />
+
+
+            </div>
+          </div>
+
+          <div class="amazon-applications">
+            <h3>Applications in Amazon's Ecosystem</h3>
+
+            <div class="application-card">
+              <h4><i class="fas fa-warehouse"></i> Fulfillment Center Operations</h4>
+              <p>
+                Amazon warehouses use assignment algorithms for optimal task distribution across workers:
+              </p>
+              <ul>
+                <li>
+                  <strong>Task Specialization:</strong> Hungarian Algorithm matches workers to picking, packing, and
+                  sorting tasks based on skill proficiency and historical performance metrics
+                </li>
+                <li>
+                  <strong>Efficiency Optimization:</strong> Real-time assignment adjustments based on workload
+                  fluctuations and worker availability for maximum throughput
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4><i class="fas fa-truck"></i> Delivery Network Optimization</h4>
+              <p>
+                Amazon Logistics uses assignment algorithms for driver-route allocation:
+              </p>
+              <ul>
+                <li>
+                  <strong>Route-Driver Matching:</strong> Optimal assignment considering driver experience, vehicle
+                  capacity, and geographic familiarity for efficient delivery operations
+                </li>
+                <li>
+                  <strong>Dynamic Scheduling:</strong> Real-time reassignment based on traffic conditions, delivery
+                  priorities, and driver performance optimization
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4><i class="fas fa-headset"></i> Customer Service Operations</h4>
+              <p>
+                Amazon's customer service centers leverage assignment optimization for support ticket allocation:
+              </p>
+              <ul>
+                <li>
+                  <strong>Skill-Based Routing:</strong> Assignment of customer issues to agents based on expertise,
+                  language skills, and case complexity for optimal resolution
+                </li>
+                <li>
+                  <strong>Workload Distribution:</strong> Balanced assignment ensuring fair workload distribution while
+                  maintaining service quality standards
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4><i class="fas fa-cloud"></i> AWS Resource Management</h4>
+              <p>
+                AWS services use assignment algorithms for resource allocation and task scheduling:
+              </p>
+              <ul>
+                <li>
+                  <strong>Container Orchestration:</strong> Optimal assignment of containers to EC2 instances based on
+                  resource requirements and availability constraints
+                </li>
+                <li>
+                  <strong>Lambda Function Allocation:</strong> Efficient assignment of serverless functions to execution
+                  environments for optimal performance and cost
+                </li>
+              </ul>
+            </div>
+
+            <div class="efficiency-metrics">
+              <h4>Assignment Algorithm Performance Metrics</h4>
+              <div class="metrics-grid">
+                <div class="metric-card">
+                  <h5>Time Complexity</h5>
+                  <div class="metric-value">O(n³)</div>
+                  <p class="metric-description">
+                    Computational complexity for n workers and n tasks
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Space Complexity</h5>
+                  <div class="metric-value">O(n²)</div>
+                  <p class="metric-description">
+                    Memory required for storing cost matrix and intermediate values
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Construction Time</h5>
+                  <div class="metric-value">O(n²)</div>
+                  <p class="metric-description">
+                    Time to build the initial cost matrix from worker-task data
+                  </p>
+                </div>
+              </div>
+            </div>
+
+           
+            
+
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <!---------------------- Case Study: Assigning Jobs to Workers ----------------------------- -->
+
+    <!---------------- Case Study: Managing Customer Traffic with Ford-Fulkerson------------------------------------->
+
+
+    <section id="traffic-flow" class="algorithm-case-study">
+      <div class="container">
+        <div class="case-study-header">
+          <p class="case-study-subtitle">Algorithm Analysis</p>
+          <h2 class="case-study-title">10. Managing Customer Traffic </h2>
+          <p class="case-study-intro">
+            Exploring how Amazon leverages network flow algorithms like Ford-Fulkerson to optimize customer traffic
+            distribution
+            across its digital platforms, physical facilities, and service systems, ensuring optimal resource
+            utilization while
+            maintaining exceptional customer experience even during peak demand periods.
+          </p>
+        </div>
+
+        <div class="algorithm-grid">
+          <div class="algorithm-explanation">
+            <h3>Understanding Network Flow Algorithms</h3>
+            <p>
+              Amazon handles billions of customer interactions daily across its websites, mobile apps, fulfillment
+              centers,
+              and customer service channels. Network flow algorithms provide the mathematical foundation for
+              intelligently
+              distributing this massive traffic load, treating the flow of customers, orders, and requests as a network
+              optimization problem.
+            </p>
+
+            <div class="algorithm-comparison">
+              <div class="algorithm-card">
+                <h4>Ford-Fulkerson Algorithm</h4>
+                <p>
+                  The Ford-Fulkerson algorithm finds the maximum flow in a flow network by iteratively identifying
+                  augmenting paths
+                  and increasing flow until no more paths exist.
+                </p>
+                <ul>
+                  <li>Time complexity: O(E × max_flow) where E = edges in the network</li>
+                  <li>Uses residual graphs to track remaining capacity</li>
+                  <li>Guarantees optimal flow distribution</li>
+                  <li>Highly adaptable to different capacity constraints</li>
+                </ul>
+              </div>
+
+              <div class="algorithm-card">
+                <h4>Edmonds-Karp Variant</h4>
+                <p>
+                  The Edmonds-Karp algorithm implements Ford-Fulkerson using breadth-first search to find the shortest
+                  augmenting
+                  path, improving efficiency for Amazon's large-scale systems.
+                </p>
+                <ul>
+                  <li>Time complexity: O(V × E²) where V = vertices, E = edges</li>
+                  <li>Always selects the shortest augmenting path</li>
+                  <li>More predictable runtime for large networks</li>
+                  <li>Better suited for dynamic capacity adjustments</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="algorithm-steps">
+              <h4>Key Steps of the Ford-Fulkerson Algorithm in Amazon's Systems:</h4>
+              <ol>
+                <li>Model the traffic network:
+                  <ul>
+                    <li>Define sources (customer entry points) and sinks (service endpoints)</li>
+                    <li>Map intermediate nodes (servers, fulfillment centers, etc.)</li>
+                    <li>Establish capacity constraints for each channel</li>
+                    <li>Create a directed graph with edge capacities representing maximum traffic flow</li>
+                  </ul>
+                </li>
+                <li>Initialize flow values:
+                  <ul>
+                    <li>Set initial flow to zero for all edges</li>
+                    <li>Create a residual graph tracking remaining capacity</li>
+                  </ul>
+                </li>
+                <li>Iteratively augment flow:
+                  <ul>
+                    <li>Find an augmenting path from source to sink with available capacity</li>
+                    <li>Identify the bottleneck capacity along the path</li>
+                    <li>Increase flow along the path by the bottleneck value</li>
+                    <li>Update residual capacities in both directions</li>
+                  </ul>
+                </li>
+                <li>Dynamic rebalancing:
+                  <ul>
+                    <li>Monitor actual traffic patterns in real-time</li>
+                    <li>Adjust capacity constraints based on system performance</li>
+                    <li>Recalculate optimal flow when conditions change</li>
+                  </ul>
+                </li>
+                <li>Handle overflow conditions:
+                  <ul>
+                    <li>Implement graceful degradation strategies when demand exceeds total capacity</li>
+                    <li>Apply priority rules for critical traffic</li>
+                    <li>Dynamically provision additional resources when possible</li>
+                  </ul>
+                </li>
+              </ol>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('ford-fulkerson-code')">
+                  <i class="fas fa-network-wired"></i> View Ford-Fulkerson Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="ford-fulkerson-code" style="display: none">
+                <a href=""></a>
+              </div>
+            </div>
+
+            <div class="relationship-diagram">
+              <h4 style="color: rgb(68, 68, 136);">Network Flow Model of Traffic Management</h4>
+              <div class="diagram-container">
+                <img src="/images/net-flow.png" alt="Amazons Traffic Flow Network Model"
+                  style="max-width: 100%; height: auto" />
+              </div>
+            </div>
+
+          </div>
+
+            <div class="amazon-applications">
+            <h3>Applications in Amazon's Ecosystem</h3>
+
+            <div class="application-card">
+              <h4>
+              <i class="fas fa-cloud"></i> AWS Traffic Distribution
+              </h4>
+              <p>
+              Amazon Web Services likely uses network flow algorithms to optimize traffic distribution across its infrastructure:
+              </p>
+              <ul>
+              <li>
+                <strong>Load Balancing:</strong> Distributing traffic across availability zones and regions to prevent overloading
+              </li>
+              <li>
+                <strong>DDoS Protection:</strong> Analyzing network flow patterns to identify and mitigate abnormal traffic
+              </li>
+              <li>
+                <strong>Capacity Planning:</strong> Using maximum flow calculations to determine infrastructure scaling needs
+              </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4>
+              <i class="fas fa-shopping-cart"></i> E-Commerce Traffic Management
+              </h4>
+              <p>
+              Amazon's website infrastructure uses flow algorithms to handle traffic spikes during major sales events:
+              </p>
+              <ul>
+              <li>
+                <strong>Peak Event Handling:</strong> Distributing traffic across server pools during high-volume events like Prime Day
+              </li>
+              <li>
+                <strong>Service Prioritization:</strong> Ensuring critical paths (checkout, payment) maintain capacity during high demand
+              </li>
+              <li>
+                <strong>Geographic Routing:</strong> Directing customer traffic to appropriate data centers based on capacity and proximity
+              </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4>
+              <i class="fas fa-headset"></i> Customer Service Routing
+              </h4>
+              <p>
+              Customer service systems can apply network flow principles to route customer inquiries:
+              </p>
+              <ul>
+              <li>
+                <strong>Skills-Based Routing:</strong> Modeling agent capabilities and customer needs as a flow network problem
+              </li>
+              <li>
+                <strong>Multi-Channel Management:</strong> Balancing capacity across voice, chat, email, and other support channels
+              </li>
+              <li>
+                <strong>Queue Optimization:</strong> Distributing wait times while addressing priority cases appropriately
+              </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4>
+              <i class="fas fa-warehouse"></i> Fulfillment Network Optimization
+              </h4>
+              <p>
+              Large-scale logistics networks benefit from flow algorithms for order processing:
+              </p>
+              <ul>
+              <li>
+                <strong>Order Routing:</strong> Determining optimal distribution of orders across fulfillment centers
+              </li>
+              <li>
+                <strong>Capacity Management:</strong> Modeling the flow of orders through various processing stages
+              </li>
+              <li>
+                <strong>Seasonal Adaptation:</strong> Adjusting capacity during peak seasons to maintain service levels
+              </li>
+              </ul>
+            </div>
+
+            <div class="efficiency-metrics">
+              <h4>Network Flow Performance Metrics</h4>
+              <div class="metrics-grid">
+                <div class="metric-card">
+                  <h5>Ford-Fulkerson Time</h5>
+                  <div class="metric-value">O(E × max_flow)</div>
+                  <p class="metric-description">
+                    Computational complexity where E is edges and max_flow is maximum flow value
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Edmonds-Karp Time</h5>
+                  <div class="metric-value">O(V × E²)</div>
+                  <p class="metric-description">
+                    Improved time complexity where V is vertices and E is edges
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Space Complexity</h5>
+                  <div class="metric-value">O(V + E)</div>
+                  <p class="metric-description">
+                    Memory required to store network graph and residual capacities
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Max Flow Calculation</h5>
+                  <div class="metric-value">O(f × E)</div>
+                  <p class="metric-description">
+                    Time to compute maximum flow where f is the maximum flow value
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Min Cut Detection</h5>
+                  <div class="metric-value">O(V + E)</div>
+                  <p class="metric-description">
+                    Time to identify minimum cut that separates source from sink
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Bottleneck Identification</h5>
+                  <div class="metric-value">O(E)</div>
+                  <p class="metric-description">
+                    Time to locate capacity bottlenecks in the network
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!---------------------- Case Study: Managing Customer Traffic ----------------------------- -->
+
+    <!---------------------- Case Study: Skip Lists in Search Indexing ----------------------------- -->
+    <section id="skip-lists" class="algorithm-case-study">
+      <div class="container">
+        <div class="case-study-header">
+          <p class="case-study-subtitle">Algorithm Analysis</p>
+          <h2 class="case-study-title">11. Skip Lists in Search Indexing</h2>
+          <p class="case-study-intro">
+            Exploring how Amazon leverages Skip Lists to power efficient search indexing across its massive catalog,
+            enabling blazing-fast lookups and range queries while maintaining exceptional flexibility for frequent
+            updates
+            in high-throughput environments.
+          </p>
+        </div>
+
+        <div class="algorithm-grid">
+          <div class="algorithm-explanation">
+            <h3>Understanding Skip Lists for Search Indexing</h3>
+            <p>
+              Skip Lists are probabilistic data structures that provide an elegant alternative to balanced trees,
+              offering similar performance characteristics with simpler implementation and maintenance. At Amazon's
+              scale,
+              these properties make Skip Lists particularly valuable for high-throughput search indexing where millions
+              of updates occur alongside billions of queries daily.
+            </p>
+            <p>
+              The structure combines the simplicity of linked lists with logarithmic search time by maintaining multiple
+              layers of linked lists, with each higher layer "skipping" over elements to accelerate search operations.
+            </p>
+
+            <div class="algorithm-comparison">
+              <div class="algorithm-card">
+                <h4>Skip List Structure</h4>
+                <p>
+                  Skip Lists organize elements in a hierarchy of linked lists, allowing searches to skip unnecessary
+                  comparisons
+                  by traversing at higher levels first.
+                </p>
+                <ul>
+                  <li>Time complexity: O(log n) for search, insert, and delete operations</li>
+                  <li>Space complexity: O(n) with a constant factor overhead for express lanes</li>
+                  <li>Probabilistic balancing requires no explicit rebalancing operations</li>
+                  <li>Natural support for range queries and ordered traversal</li>
+                </ul>
+              </div>
+
+              <div class="algorithm-card">
+                <h4>Advantages for Search Indexing</h4>
+                <p>
+                  Skip Lists offer several key advantages that make them ideal for Amazon's dynamic search
+                  infrastructure.
+                </p>
+                <ul>
+                  <li>Lock-free concurrent implementations for high-throughput systems</li>
+                  <li>Minimal memory overhead compared to B-trees in memory-constrained environments</li>
+                  <li>Excellent performance for range queries commonly used in search filters</li>
+                  <li>Simple implementation reduces maintenance burden and bug potential</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="algorithm-steps">
+              <h4>Key Steps of Skip List Operations in Amazon's Search Systems:</h4>
+              <ol>
+                <li>Search Operation:
+                  <ul>
+                    <li>Start at the highest level of the skip list from the leftmost node</li>
+                    <li>Move horizontally as far as possible without overshooting target</li>
+                    <li>Drop down one level and repeat until reaching the bottom level</li>
+                    <li>Perform final horizontal scan to locate exact match or insertion point</li>
+                  </ul>
+                </li>
+                <li>Insertion Operation:
+                  <ul>
+                    <li>Search to find the appropriate position for the new element</li>
+                    <li>Randomly determine the element's maximum level (height)</li>
+                    <li>Insert the element at the bottom level and all randomly chosen levels above</li>
+                    <li>Update relevant pointers to maintain the skip list structure</li>
+                  </ul>
+                </li>
+                <li>Range Query Operation:
+                  <ul>
+                    <li>Search to locate the starting position of the range</li>
+                    <li>Traverse horizontally at the bottom level, collecting elements within range</li>
+                    <li>Continue until reaching the upper bound of the query range</li>
+                    <li>Apply any additional filters or transformations to the results</li>
+                  </ul>
+                </li>
+                <li>Concurrent Access Optimization:
+                  <ul>
+                    <li>Implement lock-free or fine-grained locking strategies</li>
+                    <li>Use atomic operations for node updates to prevent race conditions</li>
+                    <li>Maintain consistent state during concurrent read/write operations</li>
+                    <li>Employ optimistic retry mechanisms for contended updates</li>
+                  </ul>
+                </li>
+              </ol>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('skip-list-code')">
+                  <i class="fas fa-sort-amount-down"></i> View Skip List
+                  Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="skip-list-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/skip_list.cpp">View
+                  Code on Github</a>
+              </div>
+            </div>
+            </div>
+
+
+          <div class="amazon-applications">
+            <h3>Applications in Amazon's Ecosystem</h3>
+
+            <div class="application-card">
+              <h4>
+                <i class="fas fa-search"></i> Catalog Search Indexing
+              </h4>
+              <p>
+                Skip Lists can be effectively used in search infrastructure to enable fast lookups and complex filtering:
+              </p>
+              <ul>
+                <li>
+                  <strong>Efficient Indexing:</strong> Skip Lists maintain sorted order of terms for fast prefix searches
+                </li>
+                <li>
+                  <strong>Dynamic Updates:</strong> Product changes can be reflected quickly through efficient Skip List insertion
+                </li>
+                <li>
+                  <strong>Range Query Support:</strong> Skip Lists excel at handling range-based queries like price filters
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4>
+                <i class="fas fa-database"></i> Database Sorted Index Implementation
+              </h4>
+              <p>
+                Skip Lists are valuable for database index operations:
+              </p>
+              <ul>
+                <li>
+                  <strong>Range Scanning:</strong> Skip Lists enable efficient range scans across sorted indexes
+                </li>
+                <li>
+                  <strong>Consistent Performance:</strong> Probabilistic balancing provides predictable O(log n) operations
+                </li>
+                <li>
+                  <strong>Concurrent Access:</strong> Skip Lists support lock-free implementations for high-throughput scenarios
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4>
+                <i class="fas fa-clock"></i> Time-Series Data Processing
+              </h4>
+              <p>
+                Skip Lists are well-suited for time-series data management:
+              </p>
+              <ul>
+                <li>
+                  <strong>Time-Ordered Storage:</strong> Skip Lists naturally maintain chronological ordering
+                </li>
+                <li>
+                  <strong>Temporal Range Queries:</strong> Efficiently retrieve data from specific time windows
+                </li>
+                <li>
+                  <strong>Incremental Updates:</strong> New time-series data points can be inserted with minimal overhead
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4>
+                <i class="fas fa-sort-amount-down"></i> Ranked Retrieval Systems
+              </h4>
+              <p>
+                Skip Lists can enhance ranking and retrieval functionality:
+              </p>
+              <ul>
+                <li>
+                  <strong>Score-Based Ordering:</strong> Skip Lists efficiently maintain items sorted by relevance scores
+                </li>
+                <li>
+                  <strong>Range-Based Selection:</strong> Quickly identify top-N items or items within specific score ranges
+                </li>
+                <li>
+                  <strong>Dynamic Reranking:</strong> Scores can be updated and items reordered with logarithmic complexity
+                </li>
+              </ul>
+            </div>
+
+            <div class="relationship-diagram">
+              <h4>Skip List Architecture in Search Systems</h4>
+              <div class="diagram-container">
+                <img src="/images/skip-list.png" alt="Skip List Architecture in Amazon Search Systems"
+                  style="max-width: 100%; height: auto" />
+              </div>
+            </div>
+
+            <div class="efficiency-metrics">
+              <h4>Skip List Performance Metrics</h4>
+              <div class="metrics-grid">
+                <div class="metric-card">
+                  <h5>Search Time</h5>
+                  <div class="metric-value">O(log n)</div>
+                  <p class="metric-description">
+                    Expected time to locate an element in the skip list
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Insertion Time</h5>
+                  <div class="metric-value">O(log n)</div>
+                  <p class="metric-description">
+                    Expected time to add a new element to the skip list
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Deletion Time</h5>
+                  <div class="metric-value">O(log n)</div>
+                  <p class="metric-description">
+                    Expected time to remove an element from the skip list
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Space Complexity</h5>
+                  <div class="metric-value">O(n)</div>
+                  <p class="metric-description">
+                    Memory required for storing n elements with ~1.33n pointers
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Range Query</h5>
+                  <div class="metric-value">O(log n + k)</div>
+                  <p class="metric-description">
+                    Time to find first element plus k elements in the range
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Construction</h5>
+                  <div class="metric-value">O(n log n)</div>
+                  <p class="metric-description">
+                    Time to build skip list from n unsorted elements
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!---------------------- Case Study: Skip Lists in Search Indexing ----------------------------- -->
+
+    <!---------------------- Case Study: Dependency Resolution using Topological Sort ----------------------------- -->
+
+    <section id="dependency-resolution" class="algorithm-case-study">
+      <div class="container">
+        <div class="case-study-header">
+          <p class="case-study-subtitle">Algorithm Analysis</p>
+          <h2 class="case-study-title">
+            12. Dependency Resolution 
+          </h2>
+          <p class="case-study-intro">
+            Exploring how Amazon leverages topological sorting algorithms to
+            manage complex dependencies across its microservices architecture,
+            supply chain operations, and software deployment systems, enabling
+            reliable execution of interdependent processes at unprecedented
+            scale.
+          </p>
+        </div>
+
+        <div class="algorithm-grid">
+          <div class="algorithm-explanation">
+            <h3>Understanding Topological Sort for Dependency Resolution</h3>
+            <p>
+              Topological sorting is a fundamental algorithm for ordering the
+              vertices of a directed acyclic graph (DAG) such that for every
+              directed edge u→v, vertex u comes before v in the ordering. This
+              makes it the perfect algorithm for solving dependency resolution
+              problems, where certain tasks must be completed before others can
+              begin.
+            </p>
+            <p>
+              At Amazon's scale, with millions of interdependent services,
+              products, and operations, efficiently resolving dependencies is
+              critical for maintaining system reliability and operational
+              efficiency.
+            </p>
+
+            <div class="algorithm-comparison">
+              <div class="algorithm-card">
+                <h4>Kahn's Algorithm</h4>
+                <p>
+                  Kahn's algorithm uses a breadth-first approach to topological
+                  sorting, incrementally removing nodes with no incoming edges.
+                </p>
+                <ul>
+                  <li>
+                    Time complexity: O(V + E) where V = vertices, E = edges
+                  </li>
+                  <li>
+                    Space complexity: O(V) for storing the queue and in-degree
+                    counts
+                  </li>
+                  <li>Detects cycles (if topological sort is impossible)</li>
+                  <li>
+                    Iterative implementation ideal for large-scale systems
+                  </li>
+                </ul>
+              </div>
+
+              <div class="algorithm-card">
+                <h4>DFS-Based Topological Sort</h4>
+                <p>
+                  This approach uses depth-first search to build the topological
+                  ordering in reverse, adding vertices to the result after all
+                  their dependencies have been processed.
+                </p>
+                <ul>
+                  <li>Time complexity: O(V + E)</li>
+                  <li>
+                    Space complexity: O(V) for recursion stack and visited
+                    tracking
+                  </li>
+                  <li>Can detect cycles with additional tracking</li>
+                  <li>Often simpler to implement for recursive dependencies</li>
+                </ul>
+              </div>
+            </div>
+            <div class="algorithm-steps">
+              <h4>
+                Key Steps of Dependency Resolution using Kahn's Algorithm:
+              </h4>
+              <ol>
+                <li>
+                  Represent dependencies as a directed graph:
+                  <ul>
+                    <li>Each task/component is a vertex</li>
+                    <li>Each dependency is a directed edge</li>
+                    <li>
+                      If A depends on B, add edge B→A (B must complete before A)
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Calculate in-degree for each vertex (number of dependencies):
+                  <ul>
+                    <li>Initialize in-degree counter for each vertex</li>
+                    <li>
+                      For each edge in the graph, increment the in-degree of the
+                      destination vertex
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Identify starting points:
+                  <ul>
+                    <li>
+                      Find all vertices with in-degree of 0 (no dependencies)
+                    </li>
+                    <li>Add these vertices to a queue</li>
+                  </ul>
+                </li>
+                <li>
+                  Process the dependency graph:
+                  <ul>
+                    <li>While the queue is not empty, remove a vertex</li>
+                    <li>Add the removed vertex to the result list</li>
+                    <li>
+                      For each neighbor of the removed vertex, decrement its
+                      in-degree
+                    </li>
+                    <li>
+                      If any neighbor's in-degree becomes 0, add it to the queue
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Verify the resolution:
+                  <ul>
+                    <li>
+                      If the result list contains all vertices, a valid
+                      topological ordering was found
+                    </li>
+                    <li>
+                      Otherwise, the graph contains a cycle (circular
+                      dependency)
+                    </li>
+                  </ul>
+                </li>
+              </ol>
+              <p class="algorithm-reference">
+                <small>Reference: Kahn, A. B. (1962). "Topological sorting of large networks." Communications of the ACM, 5(11), 558-562.</small>
+              </p>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('topological-sort-code')">
+                  <i class="fas fa-sitemap"></i> View Topological Sort Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="topological-sort-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Topological_Sort.cpp">View
+                  on Github</a>
+              </div>
+            </div>
+            
+
+
+          </div>
+
+          <div class="amazon-applications">
+            <h3>Applications in Amazon's Ecosystem</h3>
+            <div class="application-card">
+              <h4>
+                <i class="fas fa-network-wired"></i> Service Orchestration
+              </h4>
+              <p>
+                Distributed architectures rely on topological sorting to manage service dependencies:
+              </p>
+              <ul>
+                <li>
+                  <strong>Service Initialization:</strong> Determining the correct startup sequence for interdependent services
+                </li>
+                <li>
+                  <strong>Dependency Management:</strong> Identifying critical paths in service relationships
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4><i class="fas fa-cube"></i> Infrastructure-as-Code</h4>
+              <p>
+                Cloud infrastructure templating services use topological sorting for resource management:
+              </p>
+              <ul>
+                <li>
+                  <strong>Resource Provisioning:</strong> Determining the correct sequence for creating cloud resources
+                </li>
+                <li>
+                  <strong>Parallel Deployment:</strong> Identifying independent resources that can be provisioned simultaneously
+                </li>
+                <li>
+                  <strong>Dependency Validation:</strong> Detecting circular dependencies in infrastructure templates
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4><i class="fas fa-code-branch"></i> Build Systems</h4>
+              <p>
+                Modern build systems use topological sorting to optimize compilation workflows:
+              </p>
+              <ul>
+                <li>
+                  <strong>Build Order:</strong> Determining the correct sequence for compiling interdependent components
+                </li>
+                <li>
+                  <strong>Parallel Compilation:</strong> Maximizing build parallelism by identifying independent modules
+                </li>
+                <li>
+                  <strong>Incremental Builds:</strong> Identifying the minimal set of components that need rebuilding after changes
+                </li>
+              </ul>
+          </div>
+
+           
+
+            <div class="efficiency-metrics">
+              <h4>Topological Sort Performance Metrics</h4>
+              <div class="metrics-grid">
+                <div class="metric-card">
+                  <h5>Kahn's Algorithm Time</h5>
+                  <div class="metric-value">O(V + E)</div>
+                  <p class="metric-description">
+                    Linear time complexity where V is vertices and E is edges
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>DFS-Based Time</h5>
+                  <div class="metric-value">O(V + E)</div>
+                  <p class="metric-description">
+                    Linear time for depth-first search implementation
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Space Complexity</h5>
+                  <div class="metric-value">O(V)</div>
+                  <p class="metric-description">
+                    Memory required for queue, visited tracking, and results list
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Graph Construction</h5>
+                  <div class="metric-value">O(E)</div>
+                  <p class="metric-description">
+                    Time to build initial dependency graph
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Cycle Detection</h5>
+                  <div class="metric-value">O(V + E)</div>
+                  <p class="metric-description">
+                    Time to identify circular dependencies in the graph
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Parallel Execution</h5>
+                  <div class="metric-value">O(L)</div>
+                  <p class="metric-description">
+                    Execution time where L is the length of the longest path
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="relationship-diagram">
+     
+              <h4 style="margin-top: 20px; color:rgb(207, 207, 207);">Topological Sort Visualization</h4>
+              <div class="diagram-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Directed_acyclic_graph_2.svg" alt="Topological Sort Visualization" 
+                  style="max-width: 100%; height: auto; margin-top: 10px;" />
+                <p class="diagram-caption" style="text-align: center; margin-top: 10px; font-size: 0.9em;">
+                  A directed acyclic graph (left) and a valid topological sort order of its vertices (right).
+                  Each vertex is processed only after all its dependencies have been resolved.
+                </p>
+              </div>
+            </div>
+
+           
+
+
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!---------------------- Case Study: Dependency Resolution using Topological Sort ----------------------------- -->
+
+
+    <!---------------------- Case Study: Inventory Management using MST ----------------------------- -->
+<section id="inventory-mst" class="algorithm-case-study">
+  <div class="container">
+    <div class="case-study-header">
+      <p class="case-study-subtitle">Algorithm Analysis</p>
+      <h2 class="case-study-title">13. Inventory Management using MST</h2>
+      <p class="case-study-intro">
+        Exploring how Amazon leverages Minimum Spanning Tree algorithms including Kruskal's and Prim's algorithms to optimize inventory distribution across its global fulfillment network, minimizing transportation costs while ensuring optimal stock levels and delivery efficiency across hundreds of warehouses worldwide.
+      </p>
+    </div>
+    <div class="algorithm-grid">
+      <div class="algorithm-explanation">
+        <h3>Understanding MST for Inventory Distribution</h3>
+        <p>
+          Amazon uses Minimum Spanning Tree (MST) algorithms to find the most cost-effective ways to distribute inventory across its 1,500+ fulfillment centers worldwide, minimizing transportation costs while ensuring products are available where needed.
+        </p>
+
+        <div class="algorithm-comparison">
+          <div class="algorithm-card">
+            <h4>Kruskal's Algorithm</h4>
+            <p>
+              Builds the minimum-cost network by selecting cheapest connections while avoiding cycles.
+            </p>
+            <ul>
+              <li>Time complexity: O(E log E)</li>
+              <li>Works well for networks with fewer connections</li>
+              <li>Uses Union-Find to detect cycles</li>
+            </ul>
+          </div>
+
+          <div class="algorithm-card">
+            <h4>Prim's Algorithm</h4>
+            <p>
+              Grows the network from a starting point, adding the cheapest new connection at each step.
+            </p>
+            <ul>
+              <li>Time complexity: O(E log V)</li>
+              <li>Better for networks with many connections</li>
+              <li>Uses priority queue for efficiency</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="algorithm-steps">
+          <h4>How Amazon Uses MST for Inventory:</h4>
+          <ol>
+            <li>Model fulfillment centers as a network with transportation costs as connection weights</li>
+            <li>Apply MST algorithms to find the cheapest way to connect all centers</li>
+            <li>Use these connections to plan inventory transfers and rebalancing</li>
+            <li>Update the model when costs change or new centers open</li>
+          </ol>
+        </div>
+
+        <div class="code-snippet-container">
+          <div class="code-toggle">
+            <button class="toggle-btn" onclick="toggleCodeSnippet('kruskal-mst-code')">
+              <i class="fas fa-project-diagram"></i> View Kruskal's MST Implementation
+            </button>
+          </div>
+          <div class="code-snippet" id="kruskal-mst-code" style="display: none">
+            <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Kruskal_MST.cpp">View on Github</a>
+          </div>
+        </div>
+
+        <div class="code-snippet-container">
+          <div class="code-toggle">
+            <button class="toggle-btn" onclick="toggleCodeSnippet('prim-mst-code')">
+              <i class="fas fa-network-wired"></i> View Prim's MST Implementation
+            </button>
+          </div>
+          <div class="code-snippet" id="prim-mst-code" style="display: none">
+            <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Prim_MST.cpp">View on Github</a>
+          </div>
+        </div>
+
+        <div class="code-snippet-container">
+          <div class="code-toggle">
+            <button class="toggle-btn" onclick="toggleCodeSnippet('union-find-code')">
+              <i class="fas fa-link"></i> View Union-Find Data Structure Implementation
+            </button>
+          </div>
+          <div class="code-snippet" id="union-find-code" style="display: none">
+            <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Union_Find.cpp">View on Github</a>
+          </div>
+        </div>
+
+         <div class="diagram-container" style="
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+          ">
+          <h2>Minimum Spanning Tree Visualization</h2>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/d/d2/Minimum_spanning_tree.svg" style="
+              width: 80%;
+              height: auto;
+              border-radius: 6px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+              display: block;
+              margin: 0 auto;
+            " />
+        </div>
+
+
+      </div>
+
+      <div class="amazon-applications">
+        <h3>Applications in Amazon's Ecosystem</h3>
+
+        <div class="application-card">
+          <h4><i class="fas fa-warehouse"></i> Fulfillment Network Optimization</h4>
+          <p>
+        Amazon likely uses network optimization algorithms to manage inventory distribution across its global fulfillment network:
+          </p>
+          <ul>
+        <li>
+          <strong>Strategic Network Design:</strong> MST algorithms can help determine cost-effective connections between fulfillment centers, potentially reducing transportation costs
+        </li>
+        <li>
+          <strong>Emergency Stock Transfers:</strong> Network algorithms enable rapid response to stockouts by finding efficient transfer routes between facilities
+        </li>
+        <li>
+          <strong>Seasonal Inventory Rebalancing:</strong> Optimization algorithms help redistribute inventory for high-demand periods like holiday seasons
+        </li>
+          </ul>
+        </div>
+
+        <div class="application-card">
+          <h4><i class="fas fa-truck"></i> Cross-Docking Operations</h4>
+          <p>
+        Amazon's logistics operations could leverage network optimization for inventory flow:
+          </p>
+          <ul>
+        <li>
+          <strong>Hub-and-Spoke Optimization:</strong> Network algorithms can determine efficient routing through distribution centers
+        </li>
+        <li>
+          <strong>Load Consolidation:</strong> Optimizing shipment grouping to improve truck capacity utilization while minimizing distance
+        </li>
+        <li>
+          <strong>Route Planning:</strong> Network algorithms help adapt to changing conditions and constraints
+        </li>
+          </ul>
+        </div>
+
+        <div class="application-card">
+          <h4><i class="fas fa-globe"></i> International Distribution</h4>
+          <p>
+        Global operations require sophisticated network optimization:
+          </p>
+          <ul>
+        <li>
+          <strong>Cross-Border Considerations:</strong> Network algorithms can account for additional factors in international shipping
+        </li>
+        <li>
+          <strong>Multi-Factor Optimization:</strong> Edge weights in network models can incorporate various cost factors
+        </li>
+        <li>
+          <strong>Regional Inventory Management:</strong> Balancing inventory across regions to meet local demand while minimizing costs
+        </li>
+          </ul>
+        </div>
+
+        <div class="application-card">
+          <h4><i class="fas fa-chart-line"></i> Supply Chain Resilience</h4>
+          <p>
+        Network algorithms can enhance supply chain resilience:
+          </p>
+          <ul>
+        <li>
+          <strong>Alternate Path Planning:</strong> MST variants can identify backup distribution paths when disruptions occur
+        </li>
+        <li>
+          <strong>Risk-Informed Optimization:</strong> Network models can incorporate reliability and risk factors
+        </li>
+        <li>
+          <strong>Capacity-Aware Planning:</strong> Algorithms can be adapted to respect capacity limitations during peak periods
+        </li>
+          </ul>
+        </div>
+
+        <div class="efficiency-metrics">
+          <h4>MST Algorithm Performance Metrics</h4>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <h5>Kruskal's Time Complexity</h5>
+              <div class="metric-value">O(E log E)</div>
+              <p class="metric-description">
+                Time complexity dominated by edge sorting step
+              </p>
+            </div>
+            <div class="metric-card">
+              <h5>Prim's Time Complexity</h5>
+              <div class="metric-value">O(E log V)</div>
+              <p class="metric-description">
+                Time complexity using priority queue implementation
+              </p>
+            </div>
+            <div class="metric-card">
+              <h5>Space Complexity</h5>
+              <div class="metric-value">O(V)</div>
+              <p class="metric-description">
+                Memory required for Union-Find or priority queue structures
+              </p>
+            </div>
+            <div class="metric-card">
+              <h5>Network Construction</h5>
+              <div class="metric-value">O(V²)</div>
+              <p class="metric-description">
+                Time to calculate all pairwise transportation costs
+              </p>
+            </div>
+            <div class="metric-card">
+              <h5>Cost Optimization</h5>
+              <div class="metric-value">18% reduction</div>
+              <p class="metric-description">
+                Average transportation cost savings using MST optimization
+              </p>
+            </div>
+            <div class="metric-card">
+              <h5>Update Frequency</h5>
+              <div class="metric-value">Daily</div>
+              <p class="metric-description">
+                MST recalculation frequency for cost and capacity updates
+              </p>
+            </div>
+          </div>
+        </div>
+
+       
+      </div>
+    </div>
+  </div>
+</section>
+<!---------------------- Case Study: Inventory Management using MST ----------------------------- -->
+
+
+<!---------------------- Case Study: Product Comparison using Union-Find ----------------------------- -->
+<section id="product-comparison" class="algorithm-case-study">
+  <div class="container">
+    <div class="case-study-header">
+      <p class="case-study-subtitle">Algorithm Analysis</p>
+      <h2 class="case-study-title">14. Product Comparison using Union-Find</h2>
+      <p class="case-study-intro">
+        Exploring how Amazon leverages Union-Find (Disjoint Set Union) with path compression to efficiently group similar products and detect duplicate listings across its massive catalog, reducing redundancy and improving search quality for millions of customers worldwide.
+      </p>
+    </div>
+
+    <div class="algorithm-grid">
+      <div class="algorithm-explanation">
+        <h3>Understanding Union-Find for Product Grouping</h3>
+        <p>
+          Amazon's catalog contains hundreds of millions of products from various sellers, often with duplicate or near-duplicate listings. Union-Find provides an efficient solution for grouping similar products by maintaining disjoint sets that can be quickly merged when similarities are detected, enabling real-time duplicate detection and catalog optimization.
+        </p>
+
+        <div class="algorithm-comparison">
+          <div class="algorithm-card">
+            <h4>Union-Find with Path Compression</h4>
+            <p>
+              Efficient data structure for managing disjoint sets with near-constant time operations through path compression optimization.
+            </p>
+            <ul>
+              <li>Find operation: O(α(n)) - nearly constant time</li>
+              <li>Union operation: O(α(n)) - nearly constant time</li>
+              <li>Space complexity: O(n) for storing parent and rank arrays</li>
+              <li>Path compression flattens tree structure for faster lookups</li>
+              <li>Union by rank ensures balanced tree construction</li>
+            </ul>
+          </div>
+
+          <div class="algorithm-card">
+            <h4>Product Similarity Detection</h4>
+            <p>
+              Multi-factor similarity system that identifies duplicate and near-duplicate products for grouping optimization.
+            </p>
+            <ul>
+              <li>Title similarity using string matching algorithms</li>
+              <li>Brand and manufacturer consistency checking</li>
+              <li>Product specifications and attribute comparison</li>
+              <li>Image similarity through feature extraction</li>
+              <li>Price range and availability pattern analysis</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="algorithm-steps">
+          <h4>Product Grouping Process using Union-Find:</h4>
+          <ol>
+            <li>
+              Initialize Disjoint Sets:
+              <ul>
+                <li>Create individual sets for each product in the catalog</li>
+                <li>Initialize parent array where each product points to itself</li>
+                <li>Set up rank array for union by rank optimization</li>
+              </ul>
+            </li>
+            <li>
+              Similarity Detection:
+              <ul>
+                <li>Compare product pairs using multiple similarity metrics</li>
+                <li>Apply threshold-based matching for different product categories</li>
+                <li>Use ML models to enhance similarity detection accuracy</li>
+              </ul>
+            </li>
+            <li>
+              Union Operations:
+              <ul>
+                <li>Merge sets when products are determined to be similar</li>
+                <li>Apply union by rank to maintain balanced tree structure</li>
+                <li>Update group representatives for efficient set identification</li>
+              </ul>
+            </li>
+            <li>
+              Path Compression:
+              <ul>
+                <li>Flatten tree paths during Find operations for future efficiency</li>
+                <li>Ensure all nodes point directly to root for O(1) subsequent lookups</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div class="code-snippet-container">
+          <div class="code-toggle">
+            <button class="toggle-btn" onclick="toggleCodeSnippet('union-find-product-code')">
+              <i class="fas fa-link"></i> View Union-Find Implementation
+            </button>
+          </div>
+          <div class="code-snippet" id="union-find-product-code" style="display: none">
+            <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Union_Find_Products.cpp">View on Github</a>
+          </div>
+        </div>
+
+        <div class="diagram-container" style="margin-top: 20px; flex-direction: column; gap: 20px;">
+          <h2>Union-Find Structure Visualization</h2>
+            <div class="union-find-visualization">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Dsu_disjoint_sets_init.svg" 
+              style="width: 80%; height: auto; border-radius: 6px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: block; margin: 0 auto 20px;" />
+            <p class="caption" style="text-align: center; margin-bottom: 20px; font-size: 0.9em;">Initialization of Union-Find structure where each element starts in its own set</p>
+            
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Dsu_disjoint_sets_final.svg" 
+              style="width: 80%; height: auto; border-radius: 6px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: block; margin: 0 auto 20px;" />
+            <p class="caption" style="text-align: center; margin-bottom: 20px; font-size: 0.9em;">After multiple Union operations, forming disjoint sets of connected elements</p>
+            
+        </div>
+      </div>
+      </div>
+
+      <div class="amazon-applications">
+        <h3>Applications in Amazon's Ecosystem</h3>
+
+        <div class="application-card">
+          <h4><i class="fas fa-search"></i> Duplicate Product Detection</h4>
+          <p>
+            Amazon uses Union-Find to identify and group duplicate product listings across its marketplace:
+          </p>
+          <ul>
+            <li>
+              <strong>Real-time Duplicate Detection:</strong> Union-Find enables O(α(n)) grouping of similar products as new listings are added, preventing catalog fragmentation
+            </li>
+            <li>
+              <strong>Seller Listing Optimization:</strong> Groups products from different sellers with identical specifications, improving search result quality and customer experience
+            </li>
+          </ul>
+        </div>
+
+        <div class="application-card">
+          <h4><i class="fas fa-layer-group"></i> Product Variant Grouping</h4>
+          <p>
+            Amazon groups product variants (different sizes, colors, configurations) using Union-Find:
+          </p>
+          <ul>
+            <li>
+              <strong>Variant Relationship Management:</strong> Efficiently groups products that are variations of the same base item (different colors, sizes, or packaging)
+            </li>
+            <li>
+              <strong>Cross-Listing Optimization:</strong> Prevents customers from seeing duplicate search results for essentially the same product from multiple sellers
+            </li>
+          </ul>
+        </div>
+
+        <div class="application-card">
+          <h4><i class="fas fa-star"></i> Review Aggregation</h4>
+          <p>
+            Union-Find helps aggregate reviews and ratings across similar product listings:
+          </p>
+          <ul>
+            <li>
+              <strong>Review Consolidation:</strong> Groups reviews for identical products sold by different sellers, providing customers with comprehensive feedback
+            </li>
+            <li>
+              <strong>Rating Accuracy:</strong> Combines ratings across duplicate listings to provide more statistically significant product scores
+            </li>
+          </ul>
+        </div>
+
+        <div class="application-card">
+          <h4><i class="fas fa-chart-bar"></i> Inventory Management</h4>
+          <p>
+            Amazon uses product grouping for inventory optimization and demand forecasting:
+          </p>
+          <ul>
+            <li>
+              <strong>Demand Aggregation:</strong> Groups similar products to better predict total demand and optimize inventory levels across variants
+            </li>
+            <li>
+              <strong>Substitution Analysis:</strong> Identifies products that can serve as substitutes when primary items are out of stock
+            </li>
+          </ul>
+        </div>
+
+        <div class="efficiency-metrics">
+          <h4>Union-Find Performance Metrics</h4>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <h5>Find Operation</h5>
+              <div class="metric-value">O(α(n))</div>
+              <p class="metric-description">
+                Nearly constant time to find set representative with path compression
+              </p>
+            </div>
+            <div class="metric-card">
+              <h5>Union Operation</h5>
+              <div class="metric-value">O(α(n))</div>
+              <p class="metric-description">
+                Nearly constant time to merge two product sets
+              </p>
+            </div>
+            <div class="metric-card">
+              <h5>Space Complexity</h5>
+              <div class="metric-value">O(n)</div>
+              <p class="metric-description">
+                Linear space for parent and rank arrays
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!---------------------- Case Study: Product Comparison using Union-Find ----------------------------- -->
+
+
+
+
+    <script src="./script3.js"></script>
+  </body>
+
+</html>

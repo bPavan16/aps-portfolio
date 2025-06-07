@@ -106,3 +106,411 @@
               <a href="#" class="pj-project-link">View Research <i class="fas fa-arrow-right"></i></a>
             </div>
           </div>
+
+
+
+
+
+
+
+          <!-- Route optim -->
+           <section id="route-optimization" class="algorithm-case-study">
+      <div class="container">
+        <div class="case-study-header">
+          <p class="case-study-subtitle">Algorithm Analysis</p>
+          <h2 class="case-study-title">3. Route Optimization for Deliveries</h2>
+          <p class="case-study-intro">
+            Exploring how Amazon leverages advanced graph algorithms including
+            Dijkstra's, A*, and Floyd-Warshall algorithms to optimize delivery
+            routes across its global logistics network, minimizing travel time
+            and costs while ensuring timely delivery promises to millions of
+            customers worldwide.
+          </p>
+        </div>
+
+        <div class="algorithm-grid">
+          <div class="algorithm-explanation">
+            <h3>Understanding Route Optimization Algorithms</h3>
+            <p>
+              Amazon's logistics network spans the globe with over 1,000
+              delivery stations and millions of daily packages. Efficient route
+              optimization is critical for maintaining cost-effectiveness while
+              meeting customer delivery expectations. The combination of
+              shortest path algorithms enables Amazon to solve complex routing
+              problems across different scenarios and constraints.
+            </p>
+            <p>
+              Each algorithm serves specific purposes: Dijkstra's for
+              single-source shortest paths with optimal performance, A* for
+              goal-directed search with intelligent heuristics that dramatically
+              reduce search space, and Floyd-Warshall for all-pairs shortest
+              paths in regional networks, providing comprehensive coverage for
+              Amazon's diverse routing needs.
+            </p>
+
+            <div class="algorithm-comparison">
+              <div class="algorithm-card">
+                <h4>Dijkstra's Algorithm</h4>
+                <p>
+                  Single-source shortest path algorithm that finds optimal
+                  routes from delivery depots to all destinations using a greedy
+                  approach with priority queues.
+                </p>
+                <ul>
+                  <li>Time complexity: O((V + E) log V) with binary heap</li>
+                  <li>Optimal for non-negative edge weights</li>
+                  <li>Perfect for last-mile delivery optimization</li>
+                  <li>Handles real-time traffic updates efficiently</li>
+                  <li>Memory efficient for large delivery networks</li>
+                </ul>
+              </div>
+
+              <div class="algorithm-card">
+                <h4>A* Algorithm</h4>
+                <p>
+                  Heuristic-based pathfinding algorithm that uses estimated
+                  costs to goal destinations, significantly reducing search
+                  space for targeted routing.
+                </p>
+                <ul>
+                  <li>Time complexity: O(b^d) where b is branching factor</li>
+                  <li>Optimal with admissible heuristics</li>
+                  <li>Excellent for GPS navigation systems</li>
+                  <li>Reduces computational overhead by 60-80%</li>
+                  <li>Ideal for real-time route recalculation</li>
+                </ul>
+              </div>
+
+              <div class="algorithm-card">
+                <h4>Floyd-Warshall</h4>
+                <p>
+                  All-pairs shortest path algorithm that computes optimal
+                  distances between every pair of locations, useful for
+                  pre-computing route matrices.
+                </p>
+                <ul>
+                  <li>
+                    Time complexity: O(V³) - suitable for smaller networks
+                  </li>
+                  <li>Handles negative edge weights</li>
+                  <li>Pre-computes all possible routes</li>
+                  <li>Perfect for delivery hub optimization</li>
+                  <li>Enables instant route queries</li>
+                </ul>
+              </div>
+
+              <div class="algorithm-card">
+                <h4>Bellman-Ford Algorithm</h4>
+                <p>
+                  Single-source shortest path algorithm that can handle negative
+                  edge weights and detect negative cycles, useful for cost
+                  optimization scenarios.
+                </p>
+                <ul>
+                  <li>Time complexity: O(VE) for detecting negative cycles</li>
+                  <li>Handles negative edge weights safely</li>
+                  <li>Detects cost-saving opportunities</li>
+                  <li>Perfect for incentive-based routing</li>
+                  <li>Robust against pricing anomalies</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- <div class="algorithm-steps">
+              <h4>Amazon's Route Optimization Process:</h4>
+              <ol>
+                <li>
+                  Network Modeling & Data Preparation:
+                  <ul>
+                    <li>
+                      Model delivery locations as vertices in weighted graphs
+                    </li>
+                    <li>
+                      Represent roads, traffic conditions, and constraints as
+                      edges
+                    </li>
+                    <li>
+                      Incorporate real-time data (traffic, weather, road
+                      closures)
+                    </li>
+                    <li>
+                      Apply dynamic pricing based on delivery time windows
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Algorithm Selection Strategy:
+                  <ul>
+                    <li>
+                      Use Dijkstra's for single depot to multiple destinations
+                    </li>
+                    <li>Apply A* for GPS navigation and real-time routing</li>
+                    <li>
+                      Utilize Floyd-Warshall for small regional hub networks
+                    </li>
+                    <li>
+                      Implement Bellman-Ford for networks with cost incentives
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Route Calculation & Optimization:
+                  <ul>
+                    <li>
+                      Execute parallel algorithm instances for different
+                      scenarios
+                    </li>
+                    <li>Apply vehicle capacity and time window constraints</li>
+                    <li>
+                      Optimize for multiple objectives (time, cost, fuel
+                      efficiency)
+                    </li>
+                    <li>Generate turn-by-turn navigation instructions</li>
+                  </ul>
+                </li>
+                <li>
+                  Dynamic Route Adjustment:
+                  <ul>
+                    <li>Monitor real-time conditions and delivery status</li>
+                    <li>Recalculate routes using A* for urgent changes</li>
+                    <li>Balance workload across delivery fleet</li>
+                    <li>Update customer delivery estimates</li>
+                  </ul>
+                </li>
+              </ol>
+            </div> -->
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('dijkstra-code')">
+                  <i class="fas fa-route"></i> View Dijkstra's Algorithm
+                  Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="dijkstra-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Dijkstra_algorithm.cpp">
+                  View on Github</a>
+              </div>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('astar-code')">
+                  <i class="fas fa-star"></i> View A* Algorithm Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="astar-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/AStar_algorithm.cpp">View
+                  on Github</a>
+              </div>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('floyd-warshall-code')">
+                  <i class="fas fa-network-wired"></i> View Floyd-Warshall
+                  Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="floyd-warshall-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Floyd_Warshall.cpp">View
+                  on Github</a>
+              </div>
+            </div>
+
+            <div class="code-snippet-container">
+              <div class="code-toggle">
+                <button class="toggle-btn" onclick="toggleCodeSnippet('bellman-ford-code')">
+                  <i class="fas fa-project-diagram"></i> View Bellman-Ford
+                  Algorithm Implementation
+                </button>
+              </div>
+              <div class="code-snippet" id="bellman-ford-code" style="display: none">
+                <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Bellman_Ford.cpp">View on
+                  Github</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="amazon-applications">
+            <h3>Applications in Amazon&apos;s Ecosystem</h3>
+
+            <div class="application-card">
+              <h4>
+                <i class="fas fa-truck"></i> Last Mile Delivery Optimization
+              </h4>
+              <p>
+                Amazon&apos;s delivery network uses route optimization
+                algorithms for millions of daily deliveries:
+              </p>
+              <ul>
+                <li>
+                  <strong>Real-Time Route Calculation:</strong> Dijkstra's
+                  algorithm computes optimal paths with dynamic weight updates
+                  based on live traffic data from partner services
+                </li>
+                <li>
+                  <strong>Multi-Objective Optimization:</strong> Balancing time
+                  window constraints, fuel cost, and delivery priority to ensure
+                  deliveries arrive within promised time slots
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4>
+                <i class="fas fa-shipping-fast"></i> Amazon Prime Delivery
+                Network
+              </h4>
+              <p>
+                Prime&apos;s same-day and next-day delivery promises rely on
+                sophisticated route optimization:
+              </p>
+              <ul>
+                <li>
+                  <strong>Network Optimization:</strong> Floyd-Warshall
+                  pre-computes distances between fulfillment centers, while A*
+                  algorithm handles priority-based routing for urgent deliveries
+                </li>
+                <li>
+                  <strong>Advanced Logistics:</strong> Bellman-Ford algorithm
+                  manages capacity-constrained delivery networks with cost
+                  incentives, enabling optimal depot selection and coordination
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4>
+                <i class="fas fa-globe-americas"></i> Amazon Logistics (AMZL)
+              </h4>
+              <p>
+                Amazon&apos;s proprietary delivery service leverages advanced
+                algorithms for global route optimization:
+              </p>
+              <ul>
+                <li>
+                  <strong>Global Logistics Optimization:</strong> Bellman-Ford
+                  algorithm handles negative edge weights for customs incentives
+                  and cost optimization scenarios
+                </li>
+                <li>
+                  <strong>Adaptive Routing Systems:</strong> Dynamic edge weight
+                  updates using Dijkstra&apos;s algorithm for weather and
+                  traffic conditions, with scalable architecture that selects
+                  optimal algorithms based on network size and constraints
+                </li>
+              </ul>
+            </div>
+
+            <div class="application-card">
+              <h4><i class="fas fa-mobile-alt"></i> Amazon Flex Driver App</h4>
+              <p>
+                The Flex platform uses optimized routing algorithms to assist
+                independent delivery contractors:
+              </p>
+              <ul>
+                <li>
+                  <strong>Real-Time Navigation & Re-routing:</strong> A*
+                  algorithm provides turn-by-turn directions with quick path
+                  recalculation when conditions change, optimizing delivery
+                  efficiency
+                </li>
+                <li>
+                  <strong>Mobile-Optimized Route Planning:</strong> Lightweight
+                  implementation of Dijkstra's algorithm for optimal route
+                  planning, designed to run efficiently on smartphones
+                </li>
+              </ul>
+            </div>
+
+            <div class="efficiency-metrics">
+              <h4>Algorithm Performance Comparison</h4>
+              <div class="metrics-grid">
+                <div class="metric-card">
+                  <h5>Dijkstra&apos;s</h5>
+                  <div class="metric-value">O((V+E)logV)</div>
+                  <p class="metric-description">
+                    Optimal for single-source problems with non-negative weights
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>A* Algorithm</h5>
+                  <div class="metric-value">O(b^d)</div>
+                  <p class="metric-description">
+                    Best for goal-directed search with good heuristics
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Floyd-Warshall</h5>
+                  <div class="metric-value">O(V³)</div>
+                  <p class="metric-description">
+                    All-pairs shortest paths for dense small networks
+                  </p>
+                </div>
+                <div class="metric-card">
+                  <h5>Bellman-Ford</h5>
+                  <div class="metric-value">O(VE)</div>
+                  <p class="metric-description">
+                    Single-source shortest paths with negative weight handling
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="diagram-container" style="
+                margin-top: 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+              ">
+              <div style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  gap: 20px;
+                  justify-content: space-around;
+                ">
+                <div style="flex: 1; min-width: 250px; max-width: 400px">
+                  <h2>A* Algorithm</h2>
+                  <img src="https://raw.githubusercontent.com/npretto/pathfinding/master/gif/a-star.gif" style="
+                      width: 80%;
+                      height: auto;
+                      border-radius: 6px;
+                      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                      display: block;
+                      margin: 0 auto;
+                    " />
+                </div>
+
+                <div style="flex: 1; min-width: 250px; max-width: 400px">
+                  <h2>Dijkstra Algorithm</h2>
+                  <img src="https://raw.githubusercontent.com/npretto/pathfinding/master/gif/dijkstra.gif" style="
+                      width: 80%;
+                      height: auto;
+                      border-radius: 6px;
+                      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                      display: block;
+                      margin: 0 auto;
+                    " />
+                </div>
+              </div>
+
+              <div style="display: flex; justify-content: center">
+                <div style="max-width: 450px; width: 100%">
+                  <h2>Floyd-Warshall Algorithm</h2>
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Floyd_warshall_gif.gif?20210625174819"
+                    style="
+                      width: 75%;
+                      height: auto;
+                      border-radius: 6px;
+                      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                      display: block;
+                      margin: 0 auto;
+                    " />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
