@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm Analysis Summary | Amazon Case Studies</title>
+    <link rel="stylesheet" href="./styles/base.css">
+    <link rel="stylesheet" href="./styles/nav.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ff9900;
+            --secondary-color: #232f3e;
+            --accent-color: #37475a;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #ff9900 0%, #ffb84d 100%);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .summary-hero {
+            background: var(--gradient);
+            color: white;
+            padding: 100px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        .summary-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .summary-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .summary-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .back-navigation {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--white);
+            color: var(--secondary-color);
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .inference-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .inference-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .inference-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 153, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .inference-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .inference-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .inference-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .inference-card h3 {
+            color: var(--secondary-color);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .inference-card .icon {
+            background: var(--gradient);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.3);
+        }
+
+        .inference-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .algorithm-tag {
+            display: inline-block;
+            background: rgba(255, 153, 0, 0.1);
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 15px;
+            border: 1px solid rgba(255, 153, 0, 0.2);
+        }
+
+        .complexity-section {
+            padding: 80px 0;
+            background: var(--light-bg);
+        }
+
+        .complexity-table-container {
+            height: 100%;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-top: 40px;
+            border: 1px solid #eee;
+        }
+
+        .table-header {
+            background: var(--gradient);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .table-header h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .table-header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .complexity-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        .complexity-table th {
+            background: var(--secondary-color);
+            color: white;
+            padding: 20px 15px;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .complexity-table td {
+            padding: 18px 15px;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+            vertical-align: top;
+        }
+
+        .complexity-table tr:hover {
+            background: rgba(255, 153, 0, 0.05);
+            transform: scale(1.01);
+        }
+
+        .algorithm-name {
+            font-weight: 700;
+            color: var(--secondary-color);
+            font-size: 1rem;
+        }
+
+        .use-case {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        .complexity-value {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+
+        .time-complexity {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .space-complexity {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            box-shadow: 0 3px 10px rgba(46, 204, 113, 0.3);
+        }
+
+        .key-advantage {
+            color: #27ae60;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .key-insights {
+            background: var(--white);
+            padding: 80px 0;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .insight-item {
+            text-align: center;
+            padding: 40px 30px;
+            background: var(--light-bg);
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .insight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary-color);
+        }
+
+        .insight-icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .insight-item h4 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .insight-item p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .stats-section {
+            background: var(--secondary-color);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .stat-item {
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .footer-cta {
+            background: var(--gradient);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .footer-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .footer-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            color: var(--secondary-color);
+            padding: 18px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            color: var(--primary-color);
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 768px) {
+            .summary-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .inference-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .complexity-table {
+                font-size: 0.85rem;
+            }
+
+            .complexity-table th,
+            .complexity-table td {
+                padding: 12px 8px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .category-divider {
+            background: var(--gradient);
+            height: 3px;
+            margin: 40px 0;
+            border-radius: 2px;
+        }
+
+         .complexity-table-container {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: visible;
+            margin-top: 40px;
+            border: 1px solid #eee;
+        }
+
+        .table-responsive {
+            overflow-x: visible;
+            max-height: none;
+            overflow-y: visible;
+        }
+
+        .complexity-table th {
+            background: var(--secondary-color);
+            color: white;
+            padding: 20px 15px;
+            text-align: left;
+            font-weight: 600;
+            position: static;
+            top: auto;
+            z-index: auto;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="back-navigation">
+        <a href="./business-cases.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Case Studies</span>
+        </a>
+    </div>
+
+    <section class="summary-hero">
+        <div class="container">
+            <h1>Algorithm Analysis Summary</h1>
+            <p>Comprehensive analysis of 19 advanced algorithms and data structures powering Amazon's global infrastructure, from substring search to machine learning optimization.</p>
+        </div>
+    </section>
+
+    <section class="inference-section">
+        <div class="container">
+            <h2 class="section-title">Algorithm Inferences by Category</h2>
+            
+            <!-- String Processing & Search Algorithms -->
+            <div class="inference-grid">
+                <div class="inference-card">
+                    <h3><span class="icon"><i class="fas fa-search"></i></span>Kindle Text Search</h3>
+                    <p>Suffix Trees and KMP algorithms enable Amazon Kindle's instant text search across millions of books. Suffix Trees provide O(m) pattern matching while KMP ensures linear-time processing without backtracking, essential for resource-constrained e-readers.</p>
+                    <span class="algorithm-tag">Suffix Trees • KMP • String Processing</span>
+                </div>
+
+                <div class="inference-card">
+                    <h3><span class="icon"><i class="fas fa-spell-check"></i></span>Product Autocomplete</h3>
+                    <p>Trie structures power Amazon's autocomplete features with O(L) prefix searches where L is query length. This enables real-time suggestions as users type, supporting billions of daily searches across the global marketplace.</p>
+                    <span class="algorithm-tag">Trie • Ternary Search Tree • Prefix Matching</span>
+                </div>
+
+                <div class="inference-card">
+                    <h3><span class="icon"><i class="fas fa-copy"></i></span>Product Matching</h3>
+                    <p>LCS algorithms identify similarities between product descriptions for duplicate detection and enhanced search relevance. O(m×n) complexity enables comprehensive text analysis while space optimization reduces memory usage.</p>
+                    <span class="algorithm-tag">LCS • Dynamic Programming • Text Similarity</span>
+                </div>
+            </div>
+
+            <div class="category-divider"></div>
+
+            <!-- Data Structure & Caching -->
+            <div class="inference-grid">
+                <div class="inference-card">
+                    <h3><span class="icon"><i class="fas fa-memory"></i></span>Cache Management</h3>
+                    <p>LRU Cache with hash maps and doubly linked lists provides O(1) operations for product page caching. This combination ensures frequently accessed content remains available while automatically evicting stale data.</p>
+                    <span class="algorithm-tag">LRU Cache • Hash Map • Linked List</span>
+                </div>
+
+                <div class="inference-card">
+                    <h3><span class="icon"><i class="fas fa-shopping-cart"></i></span>Cart Operations</h3>
+                    <p>Stack data structure manages shopping cart operations with LIFO behavior matching user expectations. O(1) push/pop operations enable efficient undo functionality and session state management.</p>
+                    <span class="algorithm-tag">Stack • LIFO • Session Management</span>
+                </div>
+
+                <div class="inference-card">
+                    <h3><span class="icon"><i class="fas fa-sort-amount-down"></i></span>Search Indexing</h3>
+                    <p>Skip Lists provide O(log n) search performance with probabilistic balancing, eliminating complex rebalancing operations. Perfect for high-throughput environments requiring frequent updates and range queries.</p>
+                    <span class="algorithm-tag">Skip Lists • Probabilistic • Range Queries</span>
+                </div>
+            </div>
+
+            <div class="category-divider"></div>
+
+            <!-- Analytics & Range Queries -->
+            <div class="inference-grid">
+                <div class="inference-card">
+                    <h3><span class="icon"><i class="fas fa-chart-line"></i></span>Clickstream Analytics</h3>
+                    <p>Fenwick Trees enable O(log n) updates for Amazon Ads real-time analytics. Essential for processing billions of click events daily while providing instant dashboard updates and dynamic bidding optimizations.</p>
+                    <span class="algorithm-tag">Fenwick Tree • Real-time Analytics • Binary Indexing</span>
+                </div>
+
+                <div class="inference-card">
+                    <h3><span class="icon"><i class="fas fa-dollar-sign"></i></span>Price Range Queries</h3>
+                    <p>Segment Trees handle price filtering with O(log n) range queries across millions of products. Support for min/max/sum operations enables instant price-based filtering and dynamic pricing analytics.</p>
+                    <span class="algorithm-tag">Segment Tree • Range Queries • Price Analytics</span>
+                </div>
+
+                <div class="inference-card">
+                    <h3><span class="icon"><i class="fas fa-trophy"></i></span>Top-K Item Selection</h3>
+                    <p>Binary Heaps manage top-k product rankings with O(log k) operations. Essential for price-based sorting, deal discovery, and recommendation systems requiring constant performance regardless of catalog size.</p>
+                    <span class="algorithm-tag">Binary Heap • Priority Queue • Top-K Selection</span>
+                </div>
+            </div>
+
+            <div class="category-divider"></div>
+
+            <!-- Graph & Network Algorithms -->
+            <div class="inference-grid">
+                <div class="inference-card">
+                    <h3><span class="icon"><i class="fas fa-route"></i></span>Route Optimization</h3>
+                    <p>Dijkstra's algorithm optimizes delivery routes with O(E + V log V) complexity. Critical for last-mile delivery efficiency and warehouse robot navigation across Amazon's global logistics network.</p>
+                    <span class="algorithm-tag">Dijkstra • Shortest Path • Logistics</span>
+                </div>
+
+                <div class="inference-card">
+                    <h3><span class="icon"><i class="fas fa-network-wired"></i></span>Seller Trust Ranking</h3>
+                    <p>PageRank algorithm establishes seller trustworthiness through network analysis. O(I×E) complexity where I is iterations enables manipulation-resistant rankings across millions of marketplace sellers.</p>
+                    <span class="algorithm-tag">PageRank • Network Analysis • Trust Metrics</span>
+                </div>
+
+                <div class="inference-card">
+                    <h3><span class="icon"><i class="fas fa-warehouse"></i></span>Inventory Distribution</h3>
+                    <p>MST algorithms optimize inventory distribution networks with O(E log E) complexity. Kruskal's and Prim's algorithms minimize transportation costs across Amazon's 1,500+ fulfillment centers worldwide.</p>
+                    <span class="algorithm-tag">MST • Kruskal • Prim • Network Optimization</span>
+                </div>
+            </div>
+
+            <div class="category-divider"></div>
+
+            <!-- Optimization & Assignment -->
+            <div class="inference-grid">
+                <div class="inference-card">
+                    <h3><span class="icon"><i class="fas fa-users-cog"></i></span>Job Assignment</h3>
+                    <p>Hungarian Algorithm provides optimal worker-task assignment with O(n³) complexity. Essential for fulfillment center operations, ensuring minimum cost perfect matching across diverse workforce requirements.</p>
+                    <span class="algorithm-tag">Hungarian Algorithm • Assignment Problem • Optimization</span>
+                </div>
+
+                <div class="inference-card">
+                    <h3><span class="icon"><i class="fas fa-heart"></i></span>Resource Allocation</h3>
+                    <p>Stable Marriage Algorithm optimizes EC2 spot instance allocation with O(n²) complexity. Ensures stable matching between client bids and available instances, preventing market instability and allocation churn.</p>
+                    <span class="algorithm-tag">Stable Marriage • Resource Allocation • Game Theory</span>
+                </div>
+
+                <div class="inference-card">
+                    <h3><span class="icon"><i class="fas fa-link"></i></span>Product Grouping</h3>
+                    <p>Union-Find with path compression achieves O(α(n)) operations for product duplicate detection. Near-constant time performance essential for maintaining catalog quality across hundreds of millions of products.</p>
+                    <span class="algorithm-tag">Union-Find • Path Compression • Disjoint Sets</span>
+                </div>
+            </div>
+
+            <div class="category-divider"></div>
+
+            <!-- System & Flow Management -->
+            <div class="inference-grid">
+                <div class="inference-card">
+                    <h3><span class="icon"><i class="fas fa-sitemap"></i></span>Dependency Resolution</h3>
+                    <p>Topological Sort manages microservices dependencies with O(V+E) linear complexity. Critical for service orchestration and build systems, ensuring proper initialization sequences across distributed architecture.</p>
+                    <span class="algorithm-tag">Topological Sort • DAG • Dependency Management</span>
+                </div>
+
+                <div class="inference-card">
+                    <h3><span class="icon"><i class="fas fa-stream"></i></span>Traffic Management</h3>
+                    <p>Ford-Fulkerson algorithm manages customer traffic flow with O(E×max_flow) complexity. Essential for load balancing, DDoS protection, and capacity planning across AWS infrastructure.</p>
+                    <span class="algorithm-tag">Ford-Fulkerson • Max Flow • Network Flow</span>
+                </div>
+
+                <div class="inference-card">
+                    <h3><span class="icon"><i class="fas fa-robot"></i></span>Warehouse Navigation</h3>
+                    <p>A* search guides Kiva robots with O(b^d) complexity using intelligent heuristics. Optimal pathfinding essential for avoiding obstacles and traffic congestion in automated fulfillment centers.</p>
+                    <span class="algorithm-tag">A* Search • Pathfinding • Robotics</span>
+                </div>
+            </div>
+
+            <div class="category-divider"></div>
+
+            <!-- Compression & Media -->
+            <div class="inference-grid">
+                <div class="inference-card">
+                    <h3><span class="icon"><i class="fas fa-compress"></i></span>Media Compression</h3>
+                    <p>Huffman Coding optimizes Prime Video streaming with O(n log n) encoding complexity. Essential for bandwidth optimization and quality preservation across varying network conditions worldwide.</p>
+                    <span class="algorithm-tag">Huffman Coding • Compression • Media Streaming</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="complexity-section">
+        <div class="container">
+            <h2 class="section-title">Comprehensive Complexity Analysis</h2>
+            <div class="complexity-table-container">
+                <div class="table-header">
+                    <h3>Time & Space Complexity Overview</h3>
+                    <p>Complete analysis of 19 algorithms and data structures powering Amazon's ecosystem</p>
+                </div>
+                <div class="table-responsive">
+                    <table class="complexity-table">
+                        <thead>
+                            <tr>
+                                <th>Algorithm/Data Structure</th>
+                                <th>Amazon Use Case</th>
+                                <th>Time Complexity</th>
+                                <th>Space Complexity</th>
+                                <th>Key Advantage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">Suffix Tree</div>
+                                    <div class="use-case">Kindle text search & pattern matching</div>
+                                </td>
+                                <td>
+                                    <strong>Search:</strong> Instant text search across millions of books<br>
+                                    <strong>Features:</strong> Full-text indexing, prefix matching
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(m)</span></td>
+                                <td><span class="complexity-value space-complexity">O(n)</span></td>
+                                <td class="key-advantage">Constant time pattern matching independent of text size</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">KMP Algorithm</div>
+                                    <div class="use-case">String pattern matching & text processing</div>
+                                </td>
+                                <td>
+                                    <strong>Processing:</strong> Efficient string search without backtracking<br>
+                                    <strong>Features:</strong> Linear time, optimal preprocessing
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(n + m)</span></td>
+                                <td><span class="complexity-value space-complexity">O(m)</span></td>
+                                <td class="key-advantage">Linear time with no backtracking, memory efficient</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">Fenwick Tree</div>
+                                    <div class="use-case">Real-time clickstream analytics for Amazon Ads</div>
+                                </td>
+                                <td>
+                                    <strong>Analytics:</strong> Real-time click/impression tracking<br>
+                                    <strong>Features:</strong> Dashboard updates, bidding optimization
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(log n)</span></td>
+                                <td><span class="complexity-value space-complexity">O(n)</span></td>
+                                <td class="key-advantage">Efficient range sum queries and point updates</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">Dijkstra's Algorithm</div>
+                                    <div class="use-case">Route optimization & delivery planning</div>
+                                </td>
+                                <td>
+                                    <strong>Logistics:</strong> Last-mile delivery optimization<br>
+                                    <strong>Features:</strong> Shortest path, traffic-aware routing
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(E + V log V)</span></td>
+                                <td><span class="complexity-value space-complexity">O(V + E)</span></td>
+                                <td class="key-advantage">Optimal shortest path with priority queue optimization</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">PageRank</div>
+                                    <div class="use-case">Seller trust ranking & marketplace integrity</div>
+                                </td>
+                                <td>
+                                    <strong>Trust:</strong> Seller credibility scoring<br>
+                                    <strong>Features:</strong> Review validation, fraud detection
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(I × E)</span></td>
+                                <td><span class="complexity-value space-complexity">O(V + E)</span></td>
+                                <td class="key-advantage">Authority-based ranking resistant to manipulation</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">Trie (Prefix Tree)</div>
+                                    <div class="use-case">Product autocomplete & search suggestions</div>
+                                </td>
+                                <td>
+                                    <strong>Search:</strong> Real-time autocomplete suggestions<br>
+                                    <strong>Features:</strong> Prefix matching, typo tolerance
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(L)</span></td>
+                                <td><span class="complexity-value space-complexity">O(N × L)</span></td>
+                                <td class="key-advantage">Fast prefix-based search with shared prefix optimization</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">Segment Tree</div>
+                                    <div class="use-case">Price range queries & filtering</div>
+                                </td>
+                                <td>
+                                    <strong>Filtering:</strong> Price range queries across millions of products<br>
+                                    <strong>Features:</strong> Dynamic pricing, analytics
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(log n)</span></td>
+                                <td><span class="complexity-value space-complexity">O(4n)</span></td>
+                                <td class="key-advantage">Efficient range operations with logarithmic updates</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">Binary Heap</div>
+                                    <div class="use-case">Top-k items selection & priority queues</div>
+                                </td>
+                                <td>
+                                    <strong>Ranking:</strong> Top-k cheapest/premium products<br>
+                                    <strong>Features:</strong> Deal discovery, recommendations
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(log k)</span></td>
+                                <td><span class="complexity-value space-complexity">O(k)</span></td>
+                                <td class="key-advantage">Priority-based ordering with constant root access</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">Stable Marriage</div>
+                                    <div class="use-case">EC2 spot instance allocation & resource matching</div>
+                                </td>
+                                <td>
+                                    <strong>Cloud:</strong> Optimal client-instance matching<br>
+                                    <strong>Features:</strong> Stable allocation, preference handling
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(n²)</span></td>
+                                <td><span class="complexity-value space-complexity">O(n²)</span></td>
+                                <td class="key-advantage">Stable optimal matching preventing allocation churn</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">Hungarian Algorithm</div>
+                                    <div class="use-case">Worker-task assignment & job optimization</div>
+                                </td>
+                                <td>
+                                    <strong>Operations:</strong> Optimal worker-task assignment<br>
+                                    <strong>Features:</strong> Cost minimization, skill matching
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(n³)</span></td>
+                                <td><span class="complexity-value space-complexity">O(n²)</span></td>
+                                <td class="key-advantage">Guaranteed optimal assignment solution</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">Ford-Fulkerson</div>
+                                    <div class="use-case">Customer traffic management & load balancing</div>
+                                </td>
+                                <td>
+                                    <strong>Infrastructure:</strong> Traffic flow optimization<br>
+                                    <strong>Features:</strong> Load balancing, capacity planning
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(E × max_flow)</span></td>
+                                <td><span class="complexity-value space-complexity">O(V + E)</span></td>
+                                <td class="key-advantage">Maximum flow calculation for capacity optimization</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">Skip List</div>
+                                    <div class="use-case">Search indexing & database operations</div>
+                                </td>
+                                <td>
+                                    <strong>Indexing:</strong> High-throughput search indexing<br>
+                                    <strong>Features:</strong> Range queries, concurrent access
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(log n)</span></td>
+                                <td><span class="complexity-value space-complexity">O(n)</span></td>
+                                <td class="key-advantage">Probabilistic balancing with simple implementation</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">Topological Sort</div>
+                                    <div class="use-case">Microservices dependency resolution</div>
+                                </td>
+                                <td>
+                                    <strong>Architecture:</strong> Service initialization ordering<br>
+                                    <strong>Features:</strong> Build systems, deployment pipelines
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(V + E)</span></td>
+                                <td><span class="complexity-value space-complexity">O(V)</span></td>
+                                <td class="key-advantage">Linear time DAG ordering with cycle detection</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">Kruskal's MST</div>
+                                    <div class="use-case">Inventory distribution network optimization</div>
+                                </td>
+                                <td>
+                                    <strong>Logistics:</strong> Minimum cost fulfillment network<br>
+                                    <strong>Features:</strong> Transportation optimization
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(E log E)</span></td>
+                                <td><span class="complexity-value space-complexity">O(V)</span></td>
+                                <td class="key-advantage">Minimum cost connectivity for network design</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">Union-Find</div>
+                                    <div class="use-case">Product duplicate detection & grouping</div>
+                                </td>
+                                <td>
+                                    <strong>Catalog:</strong> Duplicate product identification<br>
+                                    <strong>Features:</strong> Review aggregation, variant grouping
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(α(n))</span></td>
+                                <td><span class="complexity-value space-complexity">O(n)</span></td>
+                                <td class="key-advantage">Near-constant time disjoint set operations</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">LRU Cache</div>
+                                    <div class="use-case">Product page & API response caching</div>
+                                </td>
+                                <td>
+                                    <strong>Performance:</strong> High-speed content caching<br>
+                                    <strong>Features:</strong> Automatic eviction, hit rate optimization
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(1)</span></td>
+                                <td><span class="complexity-value space-complexity">O(capacity)</span></td>
+                                <td class="key-advantage">Constant time operations with optimal memory usage</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">LCS Algorithm</div>
+                                    <div class="use-case">Product description similarity & matching</div>
+                                </td>
+                                <td>
+                                    <strong>Matching:</strong> Product similarity detection<br>
+                                    <strong>Features:</strong> Duplicate detection, recommendations
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(m × n)</span></td>
+                                <td><span class="complexity-value space-complexity">O(min(m,n))</span></td>
+                                <td class="key-advantage">Optimal subsequence finding with space optimization</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">Stack</div>
+                                    <div class="use-case">Shopping cart state management</div>
+                                </td>
+                                <td>
+                                    <strong>UX:</strong> Cart operations with undo functionality<br>
+                                    <strong>Features:</strong> Session persistence, action history
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(1)</span></td>
+                                <td><span class="complexity-value space-complexity">O(n)</span></td>
+                                <td class="key-advantage">LIFO operations matching user behavior patterns</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">A* Search</div>
+                                    <div class="use-case">Warehouse robot navigation & pathfinding</div>
+                                </td>
+                                <td>
+                                    <strong>Robotics:</strong> Intelligent robot pathfinding<br>
+                                    <strong>Features:</strong> Obstacle avoidance, traffic coordination
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(b^d)</span></td>
+                                <td><span class="complexity-value space-complexity">O(b^d)</span></td>
+                                <td class="key-advantage">Heuristic-guided optimal pathfinding</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="algorithm-name">Huffman Coding</div>
+                                    <div class="use-case">Media compression for Prime Video & Music</div>
+                                </td>
+                                <td>
+                                    <strong>Streaming:</strong> Video/audio compression optimization<br>
+                                    <strong>Features:</strong> Bandwidth optimization, quality preservation
+                                </td>
+                                <td><span class="complexity-value time-complexity">O(n log n)</span></td>
+                                <td><span class="complexity-value space-complexity">O(n)</span></td>
+                                <td class="key-advantage">Optimal prefix-free encoding for media streaming</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  
+
+    <section class="footer-cta">
+        <div class="container">
+            <h2>Explore More</h2>
+            <p>Dive deeper into algorithmic problem solving and discover how these concepts power modern technology at unprecedented scale.</p>
+            <div class="cta-buttons">
+                <a href="./business-cases.html" class="cta-btn">
+                    <i class="fas fa-microscope"></i>
+                    <span>Detailed Case Studies</span>
+                </a>
+                <a href="./index.html" class="cta-btn">
+                    <i class="fas fa-home"></i>
+                    <span>Back to Portfolio</span>
+                </a>
+                <a href="https://github.com/bPavan16/my-aps-academia" class="cta-btn" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <span>View Source Code</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Add smooth scrolling for better user experience
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.inference-card, .insight-item, .stat-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Table row highlight effect
+        document.querySelectorAll('.complexity-table tr').forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.01)';
+                this.style.zIndex = '1';
+            });
+            row.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+                this.style.zIndex = 'auto';
+            });
+        });
+
+        // Add loading animation for table
+        window.addEventListener('load', function() {
+            const tableRows = document.querySelectorAll('.complexity-table tbody tr');
+            tableRows.forEach((row, index) => {
+                setTimeout(() => {
+                    row.style.opacity = '1';
+                    row.style.transform = 'translateX(0)';
+                }, index * 50);
+            });
+        });
+
+        // Initialize table row animations
+        document.querySelectorAll('.complexity-table tbody tr').forEach(row => {
+            row.style.opacity = '0';
+            row.style.transform = 'translateX(-20px)';
+            row.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        });
+    </script>
+</body>
+</html>

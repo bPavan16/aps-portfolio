@@ -1,0 +1,231 @@
+
+.inference-summary-section {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.inference-summary-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+  animation: float 30s ease-in-out infinite;
+}
+
+.inference-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.inference-content {
+  color: white;
+}
+
+.inference-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 25px;
+  background: linear-gradient(135deg, #ff9900, #ffb84d, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.inference-title i {
+  color: #ff9900;
+  -webkit-text-fill-color: #ff9900;
+}
+
+.inference-description {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  opacity: 0.9;
+  max-width: 500px;
+}
+
+.inference-stats {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 20px 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 153, 0, 0.2);
+  border-color: rgba(255, 153, 0, 0.4);
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ff9900;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+.inference-button-container {
+  margin-top: 40px;
+}
+
+.inference-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  background: linear-gradient(135deg, #ff9900, #ffb84d);
+  color: white;
+  padding: 20px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 10px 30px rgba(255, 153, 0, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.inference-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.inference-button:hover::before {
+  left: 100%;
+}
+
+.inference-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(255, 153, 0, 0.4);
+  text-decoration: none;
+  color: white;
+}
+
+.inference-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.algorithm-preview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 400px;
+}
+
+.preview-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 25px 20px;
+  text-align: center;
+  color: white;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.preview-card:hover {
+  transform: translateY(-5px) scale(1.05);
+  background: rgba(255, 153, 0, 0.2);
+  border-color: rgba(255, 153, 0, 0.4);
+  box-shadow: 0 15px 30px rgba(255, 153, 0, 0.2);
+}
+
+.preview-card i {
+  font-size: 2rem;
+  color: #ff9900;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.preview-card span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .inference-hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  
+  .inference-title {
+    font-size: 2.2rem;
+    justify-content: center;
+  }
+  
+  .inference-stats {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .stat-item {
+    min-width: 120px;
+  }
+  
+  .algorithm-preview {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .preview-card {
+    padding: 20px 15px;
+  }
+  
+  .inference-button {
+    padding: 18px 30px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .inference-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .algorithm-preview {
+    grid-template-columns: 1fr;
+    max-width: 200px;
+  }
+}
