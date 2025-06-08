@@ -196,10 +196,10 @@
     color: darken(var(--amazon-orange), 20%);
   }
   &:visited {
-    color: var(--amazon-dark-blue);
+    color: red; /* Default visited link color */
   }
   &:visited:hover {
-    color: darken(var(--amazon-dark-blue), 10%);
+    color: darken(darkblue, 10%);
   }
   &:visited:focus {
     outline: 2px solid var(--amazon-dark-blue);
