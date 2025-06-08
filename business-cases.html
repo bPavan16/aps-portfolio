@@ -19,13 +19,53 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+      .back-to-home {
+      
+        padding: 20px;
+        margin-bottom: 4px;
+      }
+      
+      .back-button {
+        position: relative;
+        align-items: center;
+        padding: 10px 16px;
+        width: 150px;
+        background-color: #36383b;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+      }
+      
+      .back-button:hover {
+        background-color: #37475a;
+        text-decoration: none;
+        color: white;
+      }
+      
+      .back-button i {
+        margin-right: 8px;
+      }
+    </style>
   </head>
 
   <body>
+
+
+  
+
+
     <!---------------------- Navigation Section ----------------------------- -->
     <nav class="case-study-navigation">
+      <div class="back-to-home">
+      <a href="index.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>Home
+      </a>
+    </div>
       <div class="nav-container">
-        <h2 class="nav-title">Amazon Business Cases</h2>
+        <h2 class="nav-title">Amazon Case Study </h2>
         <div class="nav-grid">
           <a href="#kindle-search" class="nav-card">
             <div class="nav-icon">
@@ -167,6 +207,58 @@
             </div>
           </a>
 
+
+          <a href="#cache-lru" class="nav-card">
+            <div class="nav-icon">
+              <i class="fas fa-memory"></i>
+            </div>
+            <div class="nav-content">
+              <h3>15. Cache Management</h3>
+              <p>LRU Algorithm</p>
+            </div>
+          </a>
+
+          <a href="#lcs-product-matching" class="nav-card">
+            <div class="nav-icon">
+              <i class="fas fa-align-left"></i>
+            </div>
+            <div class="nav-content">
+              <h3>16. Product Matching</h3>
+              <p>LCS Algorithm</p>
+            </div>
+          </a>
+
+
+          <a href="#cart-stack" class="nav-card">
+            <div class="nav-icon">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="nav-content">
+              <h3>17. Cart Management</h3>
+              <p>Stack Data Structure</p>
+            </div>
+          </a>
+
+          <a href="#astar-pathfinding" class="nav-card">
+            <div class="nav-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <div class="nav-content">
+              <h3>18. Warehouse Navigation</h3>
+              <p>A* Search Algorithm</p>
+            </div>
+          </a>
+
+
+          <a href="#huffman-compression" class="nav-card">
+            <div class="nav-icon">
+              <i class="fas fa-compress"></i>
+            </div>
+            <div class="nav-content">
+              <h3>19. Media Compression</h3>
+              <p>Huffman Coding</p>
+            </div>
+          </a>
         </div>
       </div>
     </nav>
@@ -3952,10 +4044,1001 @@
 </section>
 <!---------------------- Case Study: Product Comparison using Union-Find ----------------------------- -->
 
+<!---------------------- Case Study: Cache Management using LRU Algorithm ----------------------------- -->
+<section id="cache-lru" class="algorithm-case-study">
+  <div class="container">
+    <div class="case-study-header">
+      <p class="case-study-subtitle">Algorithm Analysis</p>
+      <h2 class="case-study-title">15. Cache Management using LRU Algorithm</h2>
+      <p class="case-study-intro">
+        Exploring how Amazon leverages LRU (Least Recently Used) Cache with Hash Map and Doubly Linked List to optimize product page caching and API response caching, reducing server load and improving response times across its global e-commerce platform.
+      </p>
+    </div>
+
+    <div class="algorithm-grid">
+      <div class="algorithm-explanation">
+        <h3>Understanding LRU Cache for Performance Optimization</h3>
+        <p>
+          Amazon's platform serves billions of product pages and API requests daily. LRU Cache provides O(1) access, insertion, and deletion operations by combining hash maps for fast lookups with doubly linked lists for efficient ordering management, ensuring frequently accessed content remains readily available while automatically evicting stale data.
+        </p>
+
+        <div class="algorithm-comparison">
+          <div class="algorithm-card">
+            <h4>LRU Cache Structure</h4>
+            <p>
+              Combines hash map and doubly linked list for optimal cache performance with constant-time operations.
+            </p>
+            <ul>
+              <li>Get operation: O(1) - hash map lookup + list update</li>
+              <li>Put operation: O(1) - insertion with automatic eviction</li>
+              <li>Space complexity: O(capacity) for fixed-size cache</li>
+              <li>Maintains access order automatically</li>
+              <li>Efficient memory utilization with predictable behavior</li>
+            </ul>
+          </div>
+
+          <div class="algorithm-card">
+            <h4>Cache Operations</h4>
+            <p>
+              Core operations that enable Amazon's high-performance caching infrastructure.
+            </p>
+            <ul>
+              <li><strong>Cache Hit:</strong> Move accessed item to front of list</li>
+              <li><strong>Cache Miss:</strong> Load data and add to cache</li>
+              <li><strong>Eviction:</strong> Remove least recently used item when full</li>
+              <li><strong>Update:</strong> Refresh existing cache entries</li>
+              <li><strong>Invalidation:</strong> Remove specific cache entries</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="algorithm-steps">
+          <h4>LRU Cache Implementation Process:</h4>
+          <ol>
+            <li>
+              Data Structure Setup:
+              <ul>
+                <li>Initialize hash map for O(1) key-to-node mapping</li>
+                <li>Create doubly linked list with head and tail sentinels</li>
+                <li>Set cache capacity limit for memory management</li>
+              </ul>
+            </li>
+            <li>
+              Get Operation:
+              <ul>
+                <li>Check hash map for key existence</li>
+                <li>If found, move node to front of list (most recent)</li>
+                <li>Return cached value</li>
+              </ul>
+            </li>
+            <li>
+              Put Operation:
+              <ul>
+                <li>If key exists, update value and move to front</li>
+                <li>If new key and cache full, remove least recent item</li>
+                <li>Add new node to front and update hash map</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div class="code-snippet-container">
+          <div class="code-toggle">
+            <button class="toggle-btn" onclick="toggleCodeSnippet('lru-cache-code')">
+              <i class="fas fa-memory"></i> View LRU Cache Implementation
+            </button>
+          </div>
+          <div class="code-snippet" id="lru-cache-code" style="display: none">
+            <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/LRU_Cache.cpp">View on Github</a>
+          </div>
+        </div>
+
+        <div class="diagram-container" style="margin-top: 20px;">
+          <h2>LRU Cache Structure Visualization</h2>
+          <img src="./images/lru.png" 
+               style="width: 80%; height: auto; border-radius: 6px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: block; margin: 0 auto;" />
+        </div>
+      </div>
+
+      <div class="amazon-applications">
+        <h3>Applications in Amazon's Ecosystem</h3>
+
+        <div class="application-card">
+          <h4><i class="fas fa-shopping-bag"></i> Product Page Caching</h4>
+          <p>
+            Amazon uses LRU Cache to optimize product page delivery and reduce database load:
+          </p>
+          <ul>
+            <li>
+              <strong>Fast Page Loading:</strong> O(1) retrieval of frequently viewed product pages, reducing load times from hundreds of milliseconds to under 50ms
+            </li>
+            <li>
+              <strong>Dynamic Content Management:</strong> Automatic eviction of outdated product information while keeping popular items readily accessible
+            </li>
+          </ul>
+        </div>
+
+        <div class="application-card">
+          <h4><i class="fas fa-code"></i> API Response Caching</h4>
+          <p>
+            Amazon's microservices architecture leverages LRU caching for API optimization:
+          </p>
+          <ul>
+            <li>
+              <strong>Service Performance:</strong> Cache frequently requested API responses to reduce backend processing and improve service response times
+            </li>
+            <li>
+              <strong>Rate Limiting Protection:</strong> Reduce API calls to external services by caching responses while maintaining data freshness
+            </li>
+          </ul>
+        </div>
+
+        <div class="application-card">
+          <h4><i class="fas fa-search"></i> Search Result Caching</h4>
+          <p>
+            Amazon's search infrastructure uses LRU caching for query optimization:
+          </p>
+          <ul>
+            <li>
+              <strong>Query Performance:</strong> Cache popular search results to provide instant responses for common queries
+            </li>
+            <li>
+              <strong>Personalization:</strong> Cache user-specific search results and recommendations for faster personalized experiences
+            </li>
+          </ul>
+        </div>
+
+        <div class="application-card">
+          <h4><i class="fas fa-mobile-alt"></i> Mobile App Optimization</h4>
+          <p>
+            Amazon's mobile applications use LRU caching for responsive user experience:
+          </p>
+          <ul>
+            <li>
+              <strong>Offline Functionality:</strong> Cache essential app data for offline browsing and faster app startup times
+            </li>
+            <li>
+              <strong>Image Caching:</strong> Store frequently viewed product images locally to reduce data usage and improve loading speed
+            </li>
+          </ul>
+        </div>
+
+        <div class="efficiency-metrics">
+          <h4>LRU Cache Performance Metrics</h4>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <h5>Get Operation</h5>
+              <div class="metric-value">O(1)</div>
+              <p class="metric-description">
+                Constant time to retrieve cached data
+              </p>
+            </div>
+            <div class="metric-card">
+              <h5>Put Operation</h5>
+              <div class="metric-value">O(1)</div>
+              <p class="metric-description">
+                Constant time to add/update cache entries
+              </p>
+            </div>
+            <div class="metric-card">
+              <h5>Space Complexity</h5>
+              <div class="metric-value">O(capacity)</div>
+              <p class="metric-description">
+                Memory usage bounded by cache capacity
+              </p>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!---------------------- Case Study: Cache Management using LRU Algorithm ----------------------------- -->
+
+<!---------------------- Case Study: Product Matching using LCS ----------------------------- -->
+<section id="lcs-product-matching" class="algorithm-case-study">
+  <div class="container">
+    <div class="case-study-header">
+      <p class="case-study-subtitle">Algorithm Analysis</p>
+      <h2 class="case-study-title">16. Product Matching using LCS</h2>
+      <p class="case-study-intro">
+        Exploring how Amazon uses Longest Common Subsequence (LCS) algorithms to find similarities between product descriptions, enabling accurate product matching, duplicate detection, and improved search relevance across its vast marketplace.
+      </p>
+    </div>
+
+    <div class="algorithm-grid">
+      <div class="algorithm-explanation">
+        <h3>Understanding LCS for Product Matching</h3>
+        <p>
+          Amazon's marketplace contains millions of product descriptions that often share common features, specifications, and keywords. LCS algorithms efficiently identify the longest sequence of common elements between two product descriptions, enabling sophisticated similarity matching for duplicate detection, cross-selling, and search optimization.
+        </p>
+
+        <div class="algorithm-comparison">
+          <div class="algorithm-card">
+            <h4>Dynamic Programming LCS</h4>
+            <p>
+              Classic DP approach that builds a table to find the longest common subsequence between two sequences.
+            </p>
+            <ul>
+              <li>Time complexity: O(m × n) where m, n are string lengths</li>
+              <li>Space complexity: O(m × n) for the DP table</li>
+              <li>Guarantees optimal solution</li>
+              <li>Handles text of any length efficiently</li>
+              <li>Perfect for detailed product description analysis</li>
+            </ul>
+          </div>
+
+          <div class="algorithm-card">
+            <h4>Space-Optimized LCS</h4>
+            <p>
+              Memory-efficient variant that uses only two rows instead of full table for large product descriptions.
+            </p>
+            <ul>
+              <li>Time complexity: O(m × n)</li>
+              <li>Space complexity: O(min(m, n))</li>
+              <li>Suitable for memory-constrained environments</li>
+              <li>Ideal for real-time product comparison</li>
+              <li>Scales well for mobile applications</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="algorithm-steps">
+          <h4>Product Matching Process using LCS:</h4>
+          <ol>
+            <li>
+              Text Preprocessing:
+              <ul>
+                <li>Tokenize product descriptions into words or features</li>
+                <li>Remove common stop words and normalize text</li>
+                <li>Extract key specifications and attributes</li>
+              </ul>
+            </li>
+            <li>
+              LCS Computation:
+              <ul>
+                <li>Build DP table comparing two product descriptions</li>
+                <li>Track longest common subsequences of features</li>
+                <li>Calculate similarity score based on LCS length</li>
+              </ul>
+            </li>
+            <li>
+              Similarity Analysis:
+              <ul>
+                <li>Compute similarity percentage: LCS length / max(len1, len2)</li>
+                <li>Apply thresholds for different product categories</li>
+                <li>Generate confidence scores for matching decisions</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div class="code-snippet-container">
+          <div class="code-toggle">
+            <button class="toggle-btn" onclick="toggleCodeSnippet('lcs-algorithm-code')">
+              <i class="fas fa-code"></i> View LCS Algorithm Implementation
+            </button>
+          </div>
+          <div class="code-snippet" id="lcs-algorithm-code" style="display: none">
+            <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/LCS_Algorithm.cpp">View on Github</a>
+          </div>
+        </div>
+        </div>
+
+        
+
+      <div class="amazon-applications">
+        <h3>Applications in Amazon's Ecosystem</h3>
+
+        <div class="application-card">
+          <h4><i class="fas fa-copy"></i> Duplicate Product Detection</h4>
+          <p>
+            Amazon uses LCS to identify duplicate or near-duplicate product listings:
+          </p>
+          <ul>
+            <li>
+              <strong>Description Similarity:</strong> LCS finds common feature sequences between product descriptions to detect duplicates with different wording
+            </li>
+            <li>
+              <strong>Specification Matching:</strong> Identifies products with identical technical specifications despite varied presentation formats
+            </li>
+          </ul>
+        </div>
+
+        <div class="application-card">
+          <h4><i class="fas fa-search-plus"></i> Enhanced Search Results</h4>
+          <p>
+            Amazon's search system leverages LCS for improved product discovery:
+          </p>
+          <ul>
+            <li>
+              <strong>Query-Product Matching:</strong> LCS calculates similarity between search queries and product descriptions for better ranking
+            </li>
+            <li>
+              <strong>Related Product Suggestions:</strong> Finds products with similar feature sets using LCS-based content analysis
+            </li>
+          </ul>
+        </div>
+
+
+        <div class="application-card">
+          <h4><i class="fas fa-chart-line"></i> Recommendation Engine</h4>
+          <p>
+            Amazon's recommendation system uses LCS for content-based filtering:
+          </p>
+          <ul>
+            <li>
+              <strong>Similar Product Recommendations:</strong> LCS identifies products with similar descriptions for "customers also viewed" suggestions
+            </li>
+            <li>
+              <strong>Cross-Category Matching:</strong> Finds related products across different categories based on common features
+            </li>
+          </ul>
+        </div>
+
+        <div class="efficiency-metrics">
+          <h4>LCS Performance Metrics</h4>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <h5>Time Complexity</h5>
+              <div class="metric-value">O(m × n)</div>
+              <p class="metric-description">
+                Time to compare descriptions of length m and n
+              </p>
+            </div>
+            <div class="metric-card">
+              <h5>Space Complexity</h5>
+              <div class="metric-value">O(min(m,n))</div>
+              <p class="metric-description">
+                Memory usage with space optimization
+              </p>
+            </div>
+            </div>
+            </div>
+
+            <div class="diagram-container" style="margin-top: 8px; flex-direction: column; gap: 10px;">
+          <h2>LCS Algorithm Visualization</h2>
+          <img src="./images/lcs.png" 
+               style="width: 80%; height: auto; border-radius: 6px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: block; margin: 0 auto;" />
+      </div>
+        
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!---------------------- Case Study: Product Matching using LCS ----------------------------- -->
+
+<!---------------------- Case Study: Cart Management using Stack ----------------------------- -->
+<section id="cart-stack" class="algorithm-case-study">
+  <div class="container">
+    <div class="case-study-header">
+      <p class="case-study-subtitle">Algorithm Analysis</p>
+      <h2 class="case-study-title">17. Cart Management</h2>
+      <p class="case-study-intro">
+        Exploring how Amazon leverages Stack data structure to manage shopping cart operations, enabling efficient undo/redo functionality, item history tracking, and seamless cart state management across its e-commerce platform.
+      </p>
+    </div>
+
+    <div class="algorithm-grid">
+      <div class="algorithm-explanation">
+        <h3>Understanding Stack for Cart Management</h3>
+        <p>
+          Amazon's shopping cart requires efficient management of user actions including adding items, removing products, and undoing recent changes. Stack's LIFO (Last In, First Out) principle perfectly matches user behavior patterns, enabling intuitive undo operations and maintaining action history for enhanced user experience.
+        </p>
+
+        <div class="algorithm-comparison">
+          <div class="algorithm-card">
+            <h4>Stack Operations</h4>
+            <p>
+              LIFO data structure providing constant-time operations for cart state management.
+            </p>
+            <ul>
+              <li>Push operation: O(1) - add item to cart</li>
+              <li>Pop operation: O(1) - remove last added item</li>
+              <li>Peek operation: O(1) - view top item without removal</li>
+              <li>Space complexity: O(n) for n cart operations</li>
+              <li>Perfect for undo/redo functionality</li>
+            </ul>
+          </div>
+
+          <div class="algorithm-card">
+            <h4>Cart State Management</h4>
+            <p>
+              Comprehensive cart operations using stack-based approach for action tracking.
+            </p>
+            <ul>
+              <li><strong>Add Item:</strong> Push item onto cart stack</li>
+              <li><strong>Remove Item:</strong> Pop item from stack</li>
+              <li><strong>Undo Action:</strong> Reverse last cart modification</li>
+              <li><strong>Save State:</strong> Checkpoint cart for later restoration</li>
+              <li><strong>Clear Cart:</strong> Empty entire cart stack</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="algorithm-steps">
+          <h4>Cart Management Process using Stack:</h4>
+          <ol>
+            <li>
+              Initialize Cart Stack:
+              <ul>
+                <li>Create empty stack for cart items</li>
+                <li>Initialize action history stack for undo operations</li>
+                <li>Set up cart state persistence</li>
+              </ul>
+            </li>
+            <li>
+              Item Addition:
+              <ul>
+                <li>Push new item onto cart stack</li>
+                <li>Record action in history for undo capability</li>
+                <li>Update cart total and item count</li>
+              </ul>
+            </li>
+            <li>
+              Item Removal & Undo:
+              <ul>
+                <li>Pop item from cart stack for removal</li>
+                <li>Implement undo by reversing last action</li>
+                <li>Maintain action history for multiple undo levels</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div class="code-snippet-container">
+          <div class="code-toggle">
+            <button class="toggle-btn" onclick="toggleCodeSnippet('cart-stack-code')">
+              <i class="fas fa-shopping-cart"></i> View Cart Stack Implementation
+            </button>
+          </div>
+          <div class="code-snippet" id="cart-stack-code" style="display: none">
+            <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Cart_Stack.cpp">View on Github</a>
+          </div>
+        </div>
+
+        <div class="diagram-container" style="margin-top: 20px;">
+          <h2>Stack-Based Cart Operations</h2>
+          <img src="./images/stack.png" 
+               style="width: 60%; height: auto; border-radius: 6px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: block; margin: 0 auto;" />
+        </div>
+      </div>
+
+      <div class="amazon-applications">
+        <h3>Applications in Amazon's Ecosystem</h3>
+
+        <div class="application-card">
+          <h4><i class="fas fa-shopping-cart"></i> Shopping Cart Operations</h4>
+          <p>
+            Amazon uses stack-based cart management for intuitive user interactions:
+          </p>
+          <ul>
+            <li>
+              <strong>Item Addition/Removal:</strong> Stack operations provide natural LIFO behavior matching user expectations for cart modifications
+            </li>
+            <li>
+              <strong>Undo Functionality:</strong> Users can easily undo recent cart changes with stack-based action reversal
+            </li>
+          </ul>
+        </div>
+
+        <div class="application-card">
+          <h4><i class="fas fa-history"></i> Action History Tracking</h4>
+          <p>
+            Amazon tracks user cart actions for enhanced shopping experience:
+          </p>
+          <ul>
+            <li>
+              <strong>Session Management:</strong> Stack maintains chronological order of cart modifications within shopping sessions
+            </li>
+            <li>
+              <strong>Quick Restore:</strong> Recently removed items can be quickly restored using stack-based history
+            </li>
+          </ul>
+        </div>
+
+        <div class="application-card">
+          <h4><i class="fas fa-mobile-alt"></i> Mobile App Cart</h4>
+          <p>
+            Amazon's mobile applications leverage stack for responsive cart management:
+          </p>
+          <ul>
+            <li>
+              <strong>Offline Cart Management:</strong> Stack-based operations work efficiently in offline mode with local storage
+            </li>
+            <li>
+              <strong>Gesture Support:</strong> Stack operations map naturally to swipe gestures for item addition/removal
+            </li>
+          </ul>
+        </div>
+
+        <div class="application-card">
+          <h4><i class="fas fa-save"></i> Cart State Persistence</h4>
+          <p>
+            Amazon maintains cart state across sessions using stack-based approach:
+          </p>
+          <ul>
+            <li>
+              <strong>Session Recovery:</strong> Stack structure enables efficient cart restoration after app crashes or session timeouts
+            </li>
+            <li>
+              <strong>Cross-Device Sync:</strong> Stack serialization allows cart synchronization across multiple devices
+            </li>
+          </ul>
+        </div>
+
+        <div class="efficiency-metrics">
+          <h4>Stack Performance Metrics</h4>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <h5>Push Operation</h5>
+              <div class="metric-value">O(1)</div>
+              <p class="metric-description">
+                Constant time to add items to cart
+              </p>
+            </div>
+            <div class="metric-card">
+              <h5>Pop Operation</h5>
+              <div class="metric-value">O(1)</div>
+              <p class="metric-description">
+                Constant time to remove items from cart
+              </p>
+            </div>
+            <div class="metric-card">
+              <h5>Space Complexity</h5>
+              <div class="metric-value">O(n)</div>
+              <p class="metric-description">
+                Linear space for n cart items
+              </p>
+            </div>
+            <div class="metric-card">
+              <h5>Peek Operation</h5>
+              <div class="metric-value">O(1)</div>
+              <p class="metric-description">
+                Instant access to most recent cart item
+              </p>
+            </div>
+      
+            <div class="metric-card">
+              <h5>Memory Usage</h5>
+              <div class="metric-value">O(n)</div>
+              <p class="metric-description">
+              Linear space complexity for n items in cart
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!---------------------- Case Study: Cart Management using Stack ----------------------------- -->
+
+<!---------------------- Case Study: Warehouse Navigation using A* ----------------------------- -->
+<section id="astar-pathfinding" class="algorithm-case-study">
+  <div class="container">
+    <div class="case-study-header">
+      <p class="case-study-subtitle">Algorithm Analysis</p>
+      <h2 class="case-study-title">18. Warehouse Navigation using A*</h2>
+      <p class="case-study-intro">
+        Exploring how Amazon Robotics leverages A* Search algorithm to guide Kiva robots through warehouse floors, enabling intelligent pathfinding that avoids obstacles while optimizing routes for maximum efficiency in fulfillment operations.
+      </p>
+    </div>
+
+    <div class="algorithm-grid">
+      <div class="algorithm-explanation">
+        <h3>Understanding A* for Robot Navigation</h3>
+        <p>
+          Amazon's fulfillment centers use thousands of Kiva robots that must navigate complex warehouse environments. A* provides optimal pathfinding by combining actual distance (g(n)) with heuristic estimates (h(n)) to efficiently guide robots to their destinations while avoiding obstacles and traffic congestion.
+        </p>
+
+        <div class="algorithm-comparison">
+          <div class="algorithm-card">
+            <h4>A* Search Algorithm</h4>
+            <p>
+              Intelligent pathfinding using f(n) = g(n) + h(n) for optimal route discovery.
+            </p>
+            <ul>
+              <li>Time complexity: O(b^d) where b = branching factor</li>
+              <li>Space complexity: O(b^d) for open/closed sets</li>
+              <li>Optimal when heuristic is admissible</li>
+              <li>Faster than Dijkstra's with good heuristics</li>
+              <li>Perfect for dynamic warehouse environments</li>
+            </ul>
+          </div>
+
+          <div class="algorithm-card">
+            <h4>Robot Navigation Components</h4>
+            <p>
+              Key elements enabling efficient warehouse robot movement.
+            </p>
+            <ul>
+              <li><strong>g(n):</strong> Actual distance traveled from start</li>
+              <li><strong>h(n):</strong> Manhattan distance to destination</li>
+              <li><strong>f(n):</strong> Total estimated cost = g(n) + h(n)</li>
+              <li><strong>Obstacle avoidance:</strong> Dynamic path adjustment</li>
+              <li><strong>Traffic management:</strong> Multi-robot coordination</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="algorithm-steps">
+          <h4>Robot Navigation Process using A*:</h4>
+          <ol>
+            <li>
+              Initialize Navigation:
+              <ul>
+                <li>Create grid map of warehouse with obstacles marked</li>
+                <li>Set robot start position and destination coordinates</li>
+                <li>Initialize open set with start node (f = h value)</li>
+              </ul>
+            </li>
+            <li>
+              Path Search:
+              <ul>
+                <li>Select node with lowest f(n) from open set</li>
+                <li>Move to closed set and check if destination reached</li>
+                <li>Evaluate all neighboring nodes for path extension</li>
+              </ul>
+            </li>
+            <li>
+              Dynamic Adaptation:
+              <ul>
+                <li>Monitor for new obstacles or traffic</li>
+                <li>Recalculate path when conditions change</li>
+                <li>Coordinate with other robots to prevent collisions</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div class="code-snippet-container">
+          <div class="code-toggle">
+            <button class="toggle-btn" onclick="toggleCodeSnippet('astar-algorithm-code')">
+              <i class="fas fa-route"></i> View A* Search Implementation
+            </button>
+          </div>
+          <div class="code-snippet" id="astar-algorithm-code" style="display: none">
+            <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/AStar_Search.cpp">View on Github</a>
+          </div>
+        </div>
+
+        <div class="diagram-container" style="margin-top: 20px;">
+          <h2>A* Pathfinding Visualization</h2>
+          <img src="/images/Astart1.gif" 
+               style="width: 80%; height: auto; border-radius: 6px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: block; margin: 0 auto;" />
+        </div>
+      </div>
+
+      <div class="amazon-applications">
+        <h3>Applications in Amazon's Ecosystem</h3>
+
+        <div class="application-card">
+          <h4><i class="fas fa-robot"></i> Kiva Robot Navigation</h4>
+          <p>
+            Amazon's Kiva robots use A* for efficient warehouse floor navigation:
+          </p>
+          <ul>
+            <li>
+              <strong>Optimal Route Planning:</strong> A* finds shortest paths between storage pods and packing stations while avoiding other robots and obstacles
+            </li>
+            <li>
+              <strong>Real-time Adaptation:</strong> Dynamic replanning when warehouse layout changes or new obstacles appear
+            </li>
+          </ul>
+        </div>
+
+        <div class="application-card">
+          <h4><i class="fas fa-warehouse"></i> Fulfillment Center Optimization</h4>
+          <p>
+            Amazon's warehouse systems leverage A* for traffic management:
+          </p>
+          <ul>
+            <li>
+              <strong>Multi-Robot Coordination:</strong> A* prevents robot collisions by planning non-conflicting paths across the warehouse floor
+            </li>
+            <li>
+              <strong>Efficiency Maximization:</strong> Intelligent routing reduces travel time and increases order fulfillment speed
+            </li>
+          </ul>
+        </div>
+
+        <div class="application-card">
+          <h4><i class="fas fa-shipping-fast"></i> Order Picking & Performance Optimization</h4>
+          <p>
+            Amazon leverages A* pathfinding for warehouse efficiency:
+          </p>
+          <ul>
+            <li>
+              <strong>Storage & Retrieval:</strong> Robots navigate efficiently to storage pods containing required items and route them to packing stations
+            </li>
+            <li>
+              <strong>Continuous Improvement:</strong> Path data analysis helps identify congestion points and optimize warehouse layouts for better throughput
+            </li>
+          </ul>
+        </div>
+
+        <div class="efficiency-metrics">
+          <h4>A* Navigation Performance Metrics</h4>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <h5>Search Time</h5>
+              <div class="metric-value">O(b^d)</div>
+              <p class="metric-description">
+                Time complexity where b = branching factor, d = depth
+              </p>
+            </div>
+            <div class="metric-card">
+              <h5>Space Usage</h5>
+              <div class="metric-value">O(b^d)</div>
+              <p class="metric-description">
+                Memory for open and closed sets during search
+              </p>
+            </div>
+            <div class="metric-card">
+              <h5>Path Optimality</h5>
+              <div class="metric-value">100%</div>
+              <p class="metric-description">
+                Guaranteed optimal path with admissible heuristics
+              </p>
+            </div>
+          </div>
+        </div>
+
+             <div class="diagram-container" style="margin-top: 20px; flex-direction: column; gap: 10px;">
+          <h2>A* Pathfinding Visualization</h2>
+          <img src="/images/Astar2.gif" 
+               style="width: 80%; height: auto; border-radius: 6px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: block; margin: 0 auto;" />
+        </div>
+           
+           
+           
+      </div>
+    </div>
+  </div>
+</section>
+<!---------------------- Case Study: Warehouse Navigation using A* ----------------------------- -->
+
+<!---------------------- Case Study: Media Compression using Huffman Coding ----------------------------- -->
+<section id="huffman-compression" class="algorithm-case-study">
+  <div class="container">
+    <div class="case-study-header">
+      <p class="case-study-subtitle">Algorithm Analysis</p>
+      <h2 class="case-study-title">19. Media Compression </h2>
+      <p class="case-study-intro">
+        Exploring how Amazon Prime Video and Amazon Music leverage Huffman Coding within video compression codecs (H.264, H.265) and audio compression algorithms to optimize streaming quality while minimizing bandwidth usage across its global content delivery network.
+      </p>
+    </div>
+
+    <div class="algorithm-grid">
+      <div class="algorithm-explanation">
+        <h3>Understanding Huffman Coding for Media Compression</h3>
+        <p>
+          Huffman Coding is a lossless data compression algorithm that assigns variable-length codes to characters based on their frequency of occurrence. Amazon's streaming services utilize Huffman coding within video codecs and audio compression schemes to reduce file sizes while maintaining quality, enabling efficient content delivery across varying network conditions.
+        </p>
+
+        <div class="algorithm-comparison">
+          <div class="algorithm-card">
+            <h4>Huffman Coding Algorithm</h4>
+            <p>
+              Greedy algorithm that builds optimal prefix-free codes by constructing a binary tree based on character frequencies.
+            </p>
+            <ul>
+              <li>Time complexity: O(n log n) for building the tree</li>
+              <li>Space complexity: O(n) for storing the tree and codes</li>
+              <li>Optimal for known frequency distributions</li>
+              <li>Creates prefix-free codes preventing ambiguity</li>
+              <li>Achieves theoretical minimum for symbol-by-symbol encoding</li>
+            </ul>
+          </div>
+
+          <div class="algorithm-card">
+            <h4>Media Compression Applications</h4>
+            <p>
+              Integration of Huffman coding within modern compression standards for optimal media delivery.
+            </p>
+            <ul>
+              <li><strong>Video Codecs:</strong> H.264/H.265 entropy encoding</li>
+              <li><strong>Audio Compression:</strong> MP3, AAC, and lossless formats</li>
+              <li><strong>Adaptive Encoding:</strong> Dynamic frequency analysis</li>
+              <li><strong>Streaming Optimization:</strong> Bandwidth-aware compression</li>
+              <li><strong>Quality Preservation:</strong> Lossless data reduction</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="algorithm-steps">
+          <h4>Huffman Coding Process for Media:</h4>
+          <ol>
+            <li>
+              Frequency Analysis:
+              <ul>
+                <li>Analyze symbol frequency in media data blocks</li>
+                <li>Create frequency table for characters/coefficients</li>
+                <li>Identify most and least common data patterns</li>
+              </ul>
+            </li>
+            <li>
+              Tree Construction:
+              <ul>
+                <li>Build binary tree with least frequent symbols at bottom</li>
+                <li>Merge nodes using priority queue (min-heap)</li>
+                <li>Generate optimal prefix-free code assignments</li>
+              </ul>
+            </li>
+            <li>
+              Encoding & Integration:
+              <ul>
+                <li>Apply Huffman codes within codec frameworks</li>
+                <li>Integrate with quantization and transformation stages</li>
+                <li>Optimize for real-time streaming requirements</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div class="code-snippet-container">
+          <div class="code-toggle">
+            <button class="toggle-btn" onclick="toggleCodeSnippet('huffman-coding-code')">
+              <i class="fas fa-compress"></i> View Huffman Coding Implementation
+            </button>
+          </div>
+          <div class="code-snippet" id="huffman-coding-code" style="display: none">
+            <a href="https://github.com/bPavan16/my-aps-academia/blob/main/amzaon-analysis/Huffman_Coding.cpp">View on Github</a>
+          </div>
+        </div>
+
+        <div class="diagram-container" style="margin-top: 20px;">
+          <h2>Huffman Tree Construction</h2>
+          <img src="./images/huffman.png" 
+               style="width: 70%; height: auto; border-radius: 6px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: block; margin: 0 auto;" />
+        </div>
+      </div>
+
+      <div class="amazon-applications">
+        <h3>Applications in Amazon's Ecosystem</h3>
+
+        <div class="application-card">
+          <h4><i class="fas fa-video"></i> Prime Video Streaming</h4>
+          <p>
+            Amazon Prime Video uses Huffman coding within video compression standards:
+          </p>
+          <ul>
+            <li>
+              <strong>H.264/H.265 Entropy Coding:</strong> Huffman coding compresses quantized transform coefficients in video frames, reducing bitrate while maintaining visual quality
+            </li>
+            <li>
+              <strong>Adaptive Streaming:</strong> Dynamic compression adjustment based on network bandwidth and device capabilities for optimal viewing experience
+            </li>
+          </ul>
+        </div>
+
+        <div class="application-card">
+          <h4><i class="fas fa-music"></i> Amazon Music Streaming</h4>
+          <p>
+            Amazon Music integrates Huffman coding in various audio compression formats:
+          </p>
+          <ul>
+            <li>
+              <strong>Lossless Audio Compression:</strong> Huffman coding preserves audio quality in Amazon Music HD while reducing file sizes for faster streaming
+            </li>
+            <li>
+              <strong>Variable Bitrate Encoding:</strong> Adaptive compression allocates more bits to complex audio passages using frequency-based Huffman optimization
+            </li>
+          </ul>
+        </div>
+
+        <div class="application-card">
+          <h4><i class="fas fa-cloud"></i> AWS Media Services</h4>
+          <p>
+            AWS Elemental MediaConvert and MediaLive utilize Huffman coding:
+          </p>
+          <ul>
+            <li>
+              <strong>Broadcast Quality Encoding:</strong> Professional video encoding services leverage Huffman coding for broadcast and streaming applications
+            </li>
+            <li>
+              <strong>Cost-Efficient Processing:</strong> Optimized compression reduces storage and bandwidth costs for media workloads
+            </li>
+              <li>
+              <strong>Data Usage Optimization:</strong> Efficient compression reduces mobile data consumption while maintaining acceptable quality levels
+            </li>
+          </ul>
+        </div>
+
+        <div class="efficiency-metrics">
+          <h4>Huffman Coding Performance Metrics</h4>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <h5>Encoding Time</h5>
+              <div class="metric-value">O(n log n)</div>
+              <p class="metric-description">
+                Time to build Huffman tree and encode data
+              </p>
+            </div>
+            <div class="metric-card">
+              <h5>Compression Ratio</h5>
+              <div class="metric-value">30-50%</div>
+              <p class="metric-description">
+                Typical size reduction in media compression pipelines
+              </p>
+            </div>
+            <div class="metric-card">
+              <h5>Decoding Speed</h5>
+              <div class="metric-value">O(n)</div>
+              <p class="metric-description">
+                Linear time for real-time media playback
+              </p>
+            </div>
+            <div class="metric-card">
+              <h5>Memory Usage</h5>
+              <div class="metric-value">O(k)</div>
+              <p class="metric-description">
+                Space for storing k unique symbols and codes
+              </p>
+            </div>
+        
+            <div class="metric-card">
+              <h5>Quality Preservation</h5>
+              <div class="metric-value">100%</div>
+              <p class="metric-description">
+                Lossless compression maintaining original data integrity
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!---------------------- Case Study: Media Compression using Huffman Coding ----------------------------- -->
 
 
 
-    <script src="./scripts/script.js"></script>
+
+<!-- Footer Section -->
+<footer class="case-study-footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Amazon Algorithm Analysis</h3>
+        <p>Comprehensive case studies exploring how Amazon leverages advanced algorithms and data structures to power its global e-commerce and cloud computing infrastructure.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <div class="footer-buttons">
+          <a href="./references.html" class="references-button">
+            <i class="fas fa-book"></i>
+            View References & Sources
+          </a>
+          <a href="./index.html" class="home-button">
+            <i class="fas fa-home"></i>
+            Back to Portfolio
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+<script src="./scripts/script3.js"></script>
+</body>
+    
+    <div class="footer-bottom">
+      <div class="footer-divider"></div>
+      <p>&copy; 2024 Algorithm Portfolio. Educational case studies for learning purposes.</p>
+      <p class="footer-note">This is an academic project analyzing algorithmic concepts. All Amazon references are for educational illustration.</p>
+    </div>
+  </div>
+</footer>
+
+
+
+    <script src="./scripts/script3.js"></script>
   </body>
 
 </html>
